@@ -45,22 +45,24 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //Updating the newPos x value (where the player will move to)
-        //based on if the player is grounded or not.
-        float xMov = Input.GetAxis("Horizontal");
+        if (isAlive)
+        {
+            //Updating the newPos x value (where the player will move to)
+            //based on if the player is grounded or not.
+            float xMov = Input.GetAxis("Horizontal");
 
-        //Checking if the player is grounded.
-        isGrounded = Physics2D.Linecast(transform.position, groundPosition.position, whatIsGround);
+            //Checking if the player is grounded.
+            isGrounded = Physics2D.Linecast(transform.position, groundPosition.position, whatIsGround);
 
-        //Updating the x value accordingly.
-        if (isGrounded)
-            newPos.x = xMov * moveSpeed;
-        else
-            newPos.x = xMov * airSpeed;
+            //Updating the x value accordingly.
+            if (isGrounded)
+                newPos.x = xMov * moveSpeed;
+            else
+                newPos.x = xMov * airSpeed;
 
-        ActivateUmbrella();
-        PointUmbrella();
-
+            ActivateUmbrella();
+            PointUmbrella();
+        }
     }
 
     private void FixedUpdate()
@@ -108,5 +110,23 @@ public class PlayerController : MonoBehaviour
         }
         
         
+    }
+
+    public static bool isAlive = true;
+    public static bool livesChanged = false;
+
+    /// <summary>
+    /// When the player collides with objects. In this case, spikes.
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // If the collided object is a spike trap, reduce player's lives and update UI.
+        if(collision.gameObject.tag == "Spikes" && !GameControllerScript.invincible)
+        {
+            GameControllerScript.playerLives -= 1;
+            livesChanged = true;
+            GameControllerScript.invincible = true;
+        }
     }
 }
