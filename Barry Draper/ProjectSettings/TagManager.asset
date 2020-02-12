@@ -44,3 +44,6 @@ TagManager:
   - name: umbrella
     uniqueID: 66427331
     locked: 0
+  - name: Interactables
+    uniqueID: 3934388817
+    locked: 0
