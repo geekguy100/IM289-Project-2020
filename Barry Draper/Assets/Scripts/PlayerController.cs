@@ -35,32 +35,43 @@ public class PlayerController : MonoBehaviour
     //Is the players umbrella is activated or not
     private bool umbrella = false;
 
+    [Header("Rotations of the umbrella")]
+    Quaternion up = Quaternion.Euler(new Vector3(0, 0, 0));
+
+    Quaternion right = Quaternion.Euler(new Vector3(0, 0, 270));
+
+    Quaternion down = Quaternion.Euler(new Vector3(0, 0, 180));
+
+    Quaternion left = Quaternion.Euler(new Vector3(0, 0, 90));
+
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
 
-        umbrellaObject.SetActive(false);                    /*CD*/
         umbrellaOrientation = "idle";                       /*CD*/
     }
 
     void Update()
     {
-        //Updating the newPos x value (where the player will move to)
-        //based on if the player is grounded or not.
-        float xMov = Input.GetAxis("Horizontal");
+        if (isAlive)
+        {
+            //Updating the newPos x value (where the player will move to)
+            //based on if the player is grounded or not.
+            float xMov = Input.GetAxis("Horizontal");
 
-        //Checking if the player is grounded.
-        isGrounded = Physics2D.Linecast(transform.position, groundPosition.position, whatIsGround);
+            //Checking if the player is grounded.
+            isGrounded = Physics2D.Linecast(transform.position, groundPosition.position, whatIsGround);
 
-        //Updating the x value accordingly.
-        if (isGrounded)
-            newPos.x = xMov * moveSpeed;
-        else
-            newPos.x = xMov * airSpeed;
+            //Updating the x value accordingly.
+            if (isGrounded)
+                newPos.x = xMov * moveSpeed;
+            else
+                newPos.x = xMov * airSpeed;
 
-        ActivateUmbrella();
-        PointUmbrella();
-
+            ActivateUmbrella();
+            PointUmbrella();
+        }
     }
 
     private void FixedUpdate()
@@ -72,21 +83,33 @@ public class PlayerController : MonoBehaviour
         rb.position = pos;
     }
 
+    /// <summary>
+    /// If the player presses the space bar, the umbrella will open or close,
+    /// the swap bool will be swaped in the swap function which is invoked
+    /// after the player presses spacebar.
+    /// Connor Riley
+    /// </summary>
     void ActivateUmbrella()
     {
         if(Input.GetKeyDown(KeyCode.Space) && umbrella == false)
         {
+            rb.mass = 1;
             rb.gravityScale = 0.5f;
             Invoke("swap", 1f);
         }
 
         if(Input.GetKeyDown(KeyCode.Space) && umbrella == true)
         {
+            rb.mass = 1.5f;
             rb.gravityScale = 0.75f;
             Invoke("swap", 1f);
         }
     }
 
+    /// <summary>
+    /// flips the umbrella bool to whatever it isn't.
+    /// Connor Riley
+    /// </summary>
     void swap()
     {
 
@@ -100,13 +123,49 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Switches the rotation of the players umbrella by pressing the
+    /// up, down, left, and right arrow keys.
+    /// Connor Riley
+    /// </summary>
     void PointUmbrella()
     {
         if (Input.GetButton("UmbrellaUp"))
         {
-            umbrellaObject.SetActive(true);
+            umbrellaObject.transform.rotation = up;
         }
-        
-        
+
+        if(Input.GetButton("UmbrellaRight"))
+        {
+            umbrellaObject.transform.rotation = right;
+        }
+
+        if(Input.GetButton("UmbrellaDown"))
+        {
+            umbrellaObject.transform.rotation = down;
+        }
+
+        if (Input.GetButton("UmbrellaLeft"))
+        {
+            umbrellaObject.transform.rotation = left;
+        }
+    }
+
+    public static bool isAlive = true;
+    public static bool livesChanged = false;
+
+    /// <summary>
+    /// When the player collides with objects. In this case, spikes.
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // If the collided object is a spike trap, reduce player's lives and update UI.
+        if(collision.gameObject.tag == "Spikes" && !GameControllerScript.invincible)
+        {
+            GameControllerScript.playerLives -= 1;
+            livesChanged = true;
+            GameControllerScript.invincible = true;
+        }
     }
 }
