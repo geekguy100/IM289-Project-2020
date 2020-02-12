@@ -26,12 +26,21 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
     private bool isGrounded = false;
 
+    [Header("Game Objects")]                                /*CD*/
+    [Tooltip("The sprite for the player's umbrella.")]      /*CD*/
+    public GameObject umbrellaObject;                       /*CD*/
+
+    public static string umbrellaOrientation;               /*CD*/
+    
     //Is the players umbrella is activated or not
     private bool umbrella = false;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        umbrellaObject.SetActive(false);                    /*CD*/
+        umbrellaOrientation = "idle";                       /*CD*/
     }
 
     void Update()
@@ -50,6 +59,7 @@ public class PlayerController : MonoBehaviour
             newPos.x = xMov * airSpeed;
 
         ActivateUmbrella();
+        PointUmbrella();
 
     }
 
@@ -88,5 +98,15 @@ public class PlayerController : MonoBehaviour
         {
             umbrella = false;
         }
+    }
+
+    void PointUmbrella()
+    {
+        if (Input.GetButton("UmbrellaUp"))
+        {
+            umbrellaObject.SetActive(true);
+        }
+        
+        
     }
 }
