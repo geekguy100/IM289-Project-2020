@@ -39,10 +39,11 @@ public class ButtonBehaviour : MonoBehaviour
         }
     }
 
-    //Used for weighting buttons.
+    //Powers off the button when an object leaves it.
     private void OnTriggerExit2D(Collider2D col)
     {
-        PowerOffButton();
+        if (weighted)
+            PowerOffButton();
     }
 
 

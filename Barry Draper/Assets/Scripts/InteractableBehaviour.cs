@@ -23,6 +23,9 @@ public class InteractableBehaviour : MonoBehaviour
     public Color onColor;
     public Color offColor;
 
+    [Header("Fan Attributes")]
+    public GameObject[] drafts;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -31,24 +34,9 @@ public class InteractableBehaviour : MonoBehaviour
     private void Start()
     {
         sr.color = offColor;
+        if (!isPowered)
+            PowerOff();
     }
-
-    private void Update()
-    {
-        if (isPowered)
-        {
-            switch(type)
-            {
-                case InteractableType.Fan:
-                    FanAction();
-                    break;
-                case InteractableType.Door:
-                    DoorAction();
-                    break;
-            }
-        }
-    }
-
 
 
 
@@ -57,13 +45,32 @@ public class InteractableBehaviour : MonoBehaviour
     {
         isPowered = true;
         sr.color = onColor;
+        switch (type)
+        {
+            case InteractableType.Fan:
+                FanAction();
+                break;
+            case InteractableType.Door:
+                DoorAction();
+                break;
+        }
     }
 
-    //Power on the interactable and peform appropriate functions.
+    //Power off the interactable and peform appropriate functions.
     public void PowerOff()
     {
         isPowered = false;
         sr.color = offColor;
+
+        switch (type)
+        {
+            case InteractableType.Fan:
+                FanOffAction();
+                break;
+            case InteractableType.Door:
+                DoorOffAction();
+                break;
+        }
     }
 
     /// <summary>
@@ -83,12 +90,30 @@ public class InteractableBehaviour : MonoBehaviour
     private void FanAction()
     {
         print("Fan is on!!");
+        foreach(GameObject draft in drafts)
+        {
+            draft.SetActive(true);
+        }
+    }
+
+    private void FanOffAction()
+    {
+        print("Fan just turned off.");
+        foreach(GameObject draft in drafts)
+        {
+            draft.SetActive(false);
+        }
     }
 
     /// <summary>
     /// Contains code that controls what the door does when powered on.
     /// </summary>
     private void DoorAction()
+    {
+        print("Door has opened");
+    }
+
+    private void DoorOffAction()
     {
 
     }
