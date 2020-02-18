@@ -3,7 +3,8 @@
 // Author :            Kyle Grenier
 // Creation Date :     February 8, 2020
 //
-// Brief Description : Script that translates player input into actual movement of the character.
+// Brief Description : Script that translates player input into actual movement
+   of the character.
 *****************************************************************************/
 
 using System.Collections;
@@ -37,12 +38,15 @@ public class PlayerController : MonoBehaviour
 
     [Header("Rotations of the umbrella")]
     Quaternion up = Quaternion.Euler(new Vector3(0, 0, 0));
-
     Quaternion right = Quaternion.Euler(new Vector3(0, 0, 270));
-
     Quaternion down = Quaternion.Euler(new Vector3(0, 0, 180));
-
     Quaternion left = Quaternion.Euler(new Vector3(0, 0, 90));
+
+    [Header("Bools that tell what direction the Umbrella is in")]
+    public bool umbrellaUp = true;
+    public bool umbrellaDown = false;
+    public bool umbrellaRight = false;
+    public bool umbrellaLeft = false;
 
 
     void Awake()
@@ -61,7 +65,8 @@ public class PlayerController : MonoBehaviour
             float xMov = Input.GetAxis("Horizontal");
 
             //Checking if the player is grounded.
-            isGrounded = Physics2D.Linecast(transform.position, groundPosition.position, whatIsGround);
+            isGrounded = Physics2D.Linecast(transform.position,
+                        groundPosition.position, whatIsGround);
 
             //Updating the x value accordingly.
             if (isGrounded)
@@ -133,21 +138,37 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("UmbrellaUp"))
         {
             umbrellaObject.transform.rotation = up;
+            umbrellaUp = true;
+            umbrellaDown = false;
+            umbrellaLeft = false;
+            umbrellaRight = false;
         }
 
         if(Input.GetButton("UmbrellaRight"))
         {
             umbrellaObject.transform.rotation = right;
+            umbrellaUp = false;
+            umbrellaDown = false;
+            umbrellaLeft = false;
+            umbrellaRight = true;
         }
 
         if(Input.GetButton("UmbrellaDown"))
         {
+            umbrellaUp = false;
+            umbrellaDown = true;
+            umbrellaLeft = false;
+            umbrellaRight = false;
             umbrellaObject.transform.rotation = down;
         }
 
         if (Input.GetButton("UmbrellaLeft"))
         {
             umbrellaObject.transform.rotation = left;
+            umbrellaUp = false;
+            umbrellaDown = false;
+            umbrellaLeft = true;
+            umbrellaRight = false;
         }
     }
 
@@ -160,8 +181,10 @@ public class PlayerController : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // If the collided object is a spike trap, reduce player's lives and update UI.
-        if(collision.gameObject.tag == "Spikes" && !GameControllerScript.invincible)
+        // If the collided object is a spike trap, reduce player's lives
+        //and update UI.
+        if(collision.gameObject.tag == "Spikes" && 
+                  !GameControllerScript.invincible)
         {
             GameControllerScript.playerLives -= 1;
             livesChanged = true;

@@ -3,7 +3,8 @@
 // Author :            Kyle Grenier
 // Creation Date :     February 8, 2020
 //
-// Brief Description : Controls the behaviour of drafts/wind in the game, including direction and force applied to objects.
+// Brief Description : Controls the behaviour of drafts/wind in the game, 
+                       including direction and force applied to objects.
 *****************************************************************************/
 
 using System.Collections;
@@ -14,12 +15,21 @@ public class DraftBehaviour : MonoBehaviour
 {
     public Vector2 direction;
 
-    [Tooltip("The force to be applied, either applied instantaneouly or over time.")]
+    [Tooltip("The force to be applied, either applied instantaneouly" +
+        " or over time.")]
     public float force;
 
 
-    [Tooltip("If the draft should provide a suddent burst of force. Otherwise, it will apply the force over time.")]
+    [Tooltip("If the draft should provide a suddent burst of force. " +
+        "               Otherwise, it will apply the force over time.")]
     public bool instantaneous = false;
+
+    GameObject player;
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -34,8 +44,12 @@ public class DraftBehaviour : MonoBehaviour
     {
         if (!instantaneous)
         {
-            Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
-            rb.AddForce(direction * force, ForceMode2D.Force);
+            if (gameObject.tag == "up" && player.GetComponent<PlayerController>
+                                                        ().umbrellaUp == true)
+            {
+                Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
+                rb.AddForce(direction * force, ForceMode2D.Force);
+            }
         }
     }
 }
