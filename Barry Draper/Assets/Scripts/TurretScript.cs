@@ -13,6 +13,7 @@ using UnityEngine;
 
 public class TurretScript : MonoBehaviour
 {
+    public bool facingRight = false;
     public GameObject bullet;
     // Start is called before the first frame update
     void Start()
@@ -35,8 +36,18 @@ public class TurretScript : MonoBehaviour
 
             float angle = Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg;
 
-            Quaternion rot = Quaternion.Euler(new Vector3(0, 0, angle));
-            transform.rotation = rot;
+
+            if (facingRight == false)
+            {
+                Quaternion rot = Quaternion.Euler(new Vector3(0, 0, angle));
+                transform.rotation = rot;
+            }
+            else
+            {
+                Quaternion rot = Quaternion.Euler(new Vector3(0, 0, angle + 180));
+                transform.rotation = rot;
+            }
+            
             Invoke("shoot", 2f);
         }
     }

@@ -9,7 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour
+public class BulletScript : TurretScript
 {
     public float bulletSpeed = 5;
 
@@ -22,7 +22,16 @@ public class BulletScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left * Time.deltaTime * bulletSpeed);
+        //transform.Translate(transform.right * Time.deltaTime * bulletSpeed);
+        if(facingRight == false)
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * bulletSpeed);
+        }
+        else if(facingRight == true)
+        {
+            transform.Translate(Vector3.left * Time.deltaTime * bulletSpeed);
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
