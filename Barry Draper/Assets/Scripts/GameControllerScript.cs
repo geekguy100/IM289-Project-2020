@@ -3,7 +3,7 @@
 // Author : Connor Dunn
 // Creation Date : February 2, 2020
 //
-// Brief Description : [DESCRIPTION]
+// Brief Description : Manages player lives, score, and other global values.
 *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
