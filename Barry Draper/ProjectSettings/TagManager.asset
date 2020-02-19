@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Spikes
   - up
+  - right
+  - left
   layers:
   - Default
   - TransparentFX

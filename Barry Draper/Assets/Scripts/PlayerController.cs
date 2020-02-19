@@ -1,6 +1,15 @@
 ﻿/*****************************************************************************
 // File Name :         PlayerController.cs
-// Author :            Kyle Grenier
+// Author :            Connor Riley (60%):
+                            Implemented umbrella behaviours such as rotation,
+                            checking which direction the umbrella is in, 
+                            changing air speed depending on what orientation 
+                            the umbrella is in the air.
+                       Kyle Grenier (30%):
+                             Implemented character movement, getting 
+                             important components on the character.
+                       Connor Dunn (10%):
+                              Implemented spike interaction with the player. 
 // Creation Date :     February 8, 2020
 //
 // Brief Description : Script that translates player input into actual movement
@@ -70,9 +79,22 @@ public class PlayerController : MonoBehaviour
 
             //Updating the x value accordingly.
             if (isGrounded)
+            {
                 newPos.x = xMov * moveSpeed;
+            }
             else
-                newPos.x = xMov * airSpeed;
+            {
+                if(umbrellaUp == true)
+                {
+                    airSpeed = 1;
+                    newPos.x = xMov * airSpeed;
+                }
+                else
+                {
+                    airSpeed = 2;
+                    newPos.x = xMov * airSpeed;
+                }
+            }
 
             ActivateUmbrella();
             PointUmbrella();
