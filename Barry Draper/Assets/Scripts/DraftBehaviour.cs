@@ -44,12 +44,63 @@ public class DraftBehaviour : MonoBehaviour
     {
         if (!instantaneous)
         {
-            if (gameObject.tag == "up" && player.GetComponent<PlayerController>
-                                                        ().umbrellaUp == true)
+            if (gameObject.tag == "up")
             {
-                Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
-                rb.AddForce(direction * force, ForceMode2D.Force);
+                if(player.GetComponent<PlayerController>().umbrellaUp == true)
+                {
+                    AddForce(2f);
+                }
+                if(player.GetComponent<PlayerController>().umbrellaDown == true)
+                {
+                    AddForce(0f);
+                }
+                else
+                {
+                    AddForce();
+                }
+            }
+
+            if(gameObject.tag == "right")
+            {
+                if(player.GetComponent
+                   <PlayerController>().umbrellaRight == true)
+                {
+                    AddForce(2f);
+                }
+                if(player.GetComponent<PlayerController>()
+                                   .umbrellaLeft == true)
+                {
+                    AddForce(0f);
+                }
+                else
+                {
+                    AddForce();
+                }
+            }
+
+            if(gameObject.tag == "left")
+            {
+                if(player.GetComponent
+                     <PlayerController>().umbrellaLeft == true)
+                {
+                    AddForce(2f);
+                }
+                if(player.GetComponent
+                     <PlayerController>().umbrellaRight == true)
+                {
+                    AddForce(0f);
+                }
+                else
+                {
+                    AddForce();
+                }
             }
         }
+    }
+
+    void AddForce(float modifier = 1)
+    {
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        rb.AddForce(direction * force * modifier, ForceMode2D.Force);
     }
 }
