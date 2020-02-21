@@ -1,6 +1,7 @@
 /*****************************************************************************
 // File Name : InteractableBehaviour
-// Author : Kyle Grenier
+// Author : Kyle Grenier (100%)
+                Implemented full functionality. (2/29/2020)
 // Creation Date : February 12, 2020
 //
 // Brief Description : Script to control behaviour of interactables such as fans, doors, etc.
@@ -26,6 +27,17 @@ public class InteractableBehaviour : MonoBehaviour
     [Header("Fan Attributes")]
     public GameObject[] drafts;
 
+    [Header("Door Attributes")]
+    public float openSpeed = 1f;
+    public float closeSpeed = 1f;
+    /// <summary>
+    /// The number of units in the Y-axis to move.
+    /// </summary>
+    [Tooltip("The number of units in the Y-axis to move.")]
+    public float openDistance = 5f;
+    private Vector2 closedPos = Vector2.zero;
+    private Vector2 openedPos = Vector2.zero;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -33,9 +45,18 @@ public class InteractableBehaviour : MonoBehaviour
 
     private void Start()
     {
+        if (type == InteractableType.Door)
+        {
+            openedPos = transform.position;
+            openedPos.y += openDistance;
+
+            closedPos = transform.position;
+
+            print("openedPos: " + openedPos);
+        }
+
+
         sr.color = offColor;
-        if (!isPowered)
-            PowerOff();
     }
 
 
@@ -45,13 +66,15 @@ public class InteractableBehaviour : MonoBehaviour
     {
         isPowered = true;
         sr.color = onColor;
+
         switch (type)
         {
             case InteractableType.Fan:
                 FanAction();
                 break;
             case InteractableType.Door:
-                DoorAction();
+                StopCoroutine("DoorOffAction");
+                StartCoroutine("DoorAction");
                 break;
         }
     }
@@ -68,7 +91,8 @@ public class InteractableBehaviour : MonoBehaviour
                 FanOffAction();
                 break;
             case InteractableType.Door:
-                DoorOffAction();
+                StopCoroutine("DoorAction");
+                StartCoroutine("DoorOffAction");
                 break;
         }
     }
@@ -96,6 +120,9 @@ public class InteractableBehaviour : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Contains code that controls what the fan does when powered off.
+    /// </summary>
     private void FanOffAction()
     {
         print("Fan just turned off.");
@@ -108,14 +135,30 @@ public class InteractableBehaviour : MonoBehaviour
     /// <summary>
     /// Contains code that controls what the door does when powered on.
     /// </summary>
-    private void DoorAction()
+    private IEnumerator DoorAction()
     {
-        print("Door has opened");
+        Vector2 cPos = transform.position;
+        
+        while(Vector2.Distance(cPos, openedPos) > 0.05f)
+        {
+            cPos.y += openSpeed * Time.deltaTime;
+            transform.position = cPos;
+            yield return null;
+        } 
     }
 
-    private void DoorOffAction()
+    /// <summary>
+    /// Contains code that controls what the door does when powered off.
+    /// </summary>
+    private IEnumerator DoorOffAction()
     {
+        Vector2 cPos = transform.position;
 
+        while (Vector2.Distance(cPos, closedPos) > 0.05f)
+        {
+            cPos.y -=  closeSpeed * Time.deltaTime;
+            transform.position = cPos;
+            yield return null;
+        }
     }
-
 }
