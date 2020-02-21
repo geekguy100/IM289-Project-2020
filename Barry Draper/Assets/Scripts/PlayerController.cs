@@ -57,6 +57,11 @@ public class PlayerController : MonoBehaviour
     public bool umbrellaRight = false;
     public bool umbrellaLeft = false;
 
+    public GameObject playerUmbrella;
+
+    private float force = 5.0f;
+
+
 
     void Awake()
     {
@@ -113,23 +118,34 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// If the player presses the space bar, the umbrella will open or close,
     /// the swap bool will be swaped in the swap function which is invoked
-    /// after the player presses spacebar.
+    /// after the player presses spacebar. If the umbrella is left when the
+    /// player opens the umbrella they will dash right. 
     /// Connor Riley
     /// </summary>
     void ActivateUmbrella()
     {
         if(Input.GetKeyDown(KeyCode.Space) && umbrella == false)
         {
+            playerUmbrella.transform.localScale = 
+                new Vector3(0.25f, 0.25f, 0.25f);
             rb.mass = 1;
             rb.gravityScale = 0.5f;
-            Invoke("swap", 1f);
+            Invoke("swap", 0.1f);
+
+            if(umbrellaLeft)
+            {
+                rb.AddForce(new Vector2(1.0f, 0.0f) * force, 
+                                        ForceMode2D.Impulse);
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.Space) && umbrella == true)
         {
+            playerUmbrella.transform.localScale = 
+                new Vector3(0.15f, 0.15f, 0.15f);
             rb.mass = 1.5f;
             rb.gravityScale = 0.75f;
-            Invoke("swap", 1f);
+            Invoke("swap", 0.1f);
         }
     }
 
