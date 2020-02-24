@@ -51,8 +51,6 @@ public class InteractableBehaviour : MonoBehaviour
             openedPos.y += openDistance;
 
             closedPos = transform.position;
-
-            print("openedPos: " + openedPos);
         }
 
 
