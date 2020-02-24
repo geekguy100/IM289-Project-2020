@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4429307967742660751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.6555424, y: -2.0146534, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 4429307968305536108}
   - {fileID: 4429307969020419861}
@@ -74,7 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bf88ca3089cc669448436e638228dfb2, type: 3}
+  m_Sprite: {fileID: -7778395711231474067, guid: 891134f544cb9ed44b67aa6173deb782,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,18 +99,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.010488987, y: -0.12056112}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0, y: 0, z: 0.31, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.24, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.83217525, y: 2.4991546}
   m_EdgeRadius: 0
 --- !u!50 &4429307967742660736
 Rigidbody2D:
@@ -151,6 +152,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   umbrellaObject: {fileID: 4429307969020419860}
+  umbrellaUp: 1
+  umbrellaDown: 0
+  umbrellaRight: 0
+  umbrellaLeft: 0
+  playerUmbrella: {fileID: 0}
 --- !u!1 &4429307968305536107
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4429307968496052571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.34, y: 0.127, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.198}
   m_Children: []
   m_Father: {fileID: 4429307969020419861}
@@ -285,7 +291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4429307969020419860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.07, y: 0.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4429307968496052572}
