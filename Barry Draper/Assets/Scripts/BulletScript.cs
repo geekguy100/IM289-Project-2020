@@ -12,6 +12,7 @@ using UnityEngine;
 public class BulletScript : TurretScript
 {
     public float bulletSpeed = 5;
+    public GameObject target;
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +23,11 @@ public class BulletScript : TurretScript
     // Update is called once per frame
     void Update()
     {
-        //transform.Translate(transform.right * Time.deltaTime * bulletSpeed);
-        if(facingRight == false)
+        if(facingRight)
         {
             transform.Translate(Vector3.right * Time.deltaTime * bulletSpeed);
         }
-        else if(facingRight == true)
+        else
         {
             transform.Translate(Vector3.left * Time.deltaTime * bulletSpeed);
         }

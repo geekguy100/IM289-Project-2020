@@ -132,4 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 768c5369d9e66fe42850ffd5de55d18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  facingRight: 0
+  bullet: {fileID: 6482987585282691791}
+  timeBetweenShots: 1
   bulletSpeed: 5
+  target: {fileID: 4429307967742660751, guid: 45899967eb7fbe547b7081a43727f4ee, type: 3}
