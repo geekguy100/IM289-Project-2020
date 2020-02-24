@@ -120,6 +120,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &299894709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4429307968496052571, guid: 45899967eb7fbe547b7081a43727f4ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1923897565}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &504122633 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4429307967742660739, guid: 45899967eb7fbe547b7081a43727f4ee,
@@ -200,6 +206,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4eaa93dc3c6a2d42b4d431af3bdc3f1, type: 3}
+--- !u!1 &889515731 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4429307967742660751, guid: 45899967eb7fbe547b7081a43727f4ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1923897565}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &889515736
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889515731}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &989404305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -736,6 +767,11 @@ PrefabInstance:
       propertyPath: airSpeed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4429307967742660740, guid: 45899967eb7fbe547b7081a43727f4ee,
+        type: 3}
+      propertyPath: playerUmbrella
+      value: 
+      objectReference: {fileID: 299894709}
     - target: {fileID: 4429307967742660751, guid: 45899967eb7fbe547b7081a43727f4ee,
         type: 3}
       propertyPath: m_Name
