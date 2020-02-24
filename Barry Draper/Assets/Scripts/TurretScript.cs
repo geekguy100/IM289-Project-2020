@@ -13,7 +13,7 @@ using UnityEngine;
 
 public class TurretScript : MonoBehaviour
 {
-    public bool facingRight = false;
+    public bool facingRight;
     public GameObject bullet;
     // Start is called before the first frame update
     void Start()
@@ -58,7 +58,9 @@ public class TurretScript : MonoBehaviour
     {
         if(Time.time >= validShotTime)
         {
-            Instantiate(bullet, transform.position, transform.rotation);
+
+            var newBullet = Instantiate(bullet, transform.position, transform.rotation);
+            newBullet.GetComponent<BulletScript>().facingRight = facingRight;
             validShotTime = Time.time + timeBetweenShots;
         }
         
