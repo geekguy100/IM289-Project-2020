@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
             float xMov = Input.GetAxis("Horizontal");
 
             //Checking if the player is grounded.
-            isGrounded = Physics2D.BoxCast(groundPosition.position, new Vector2(transform.localScale.x, boxCastYScale), 0f, Vector3.zero);
+            isGrounded = Physics2D.BoxCast(groundPosition.position, new Vector2(transform.localScale.x, boxCastYScale), 0f, Vector3.zero, 0f, whatIsGround);
             
 
             //Updating the x value accordingly.
