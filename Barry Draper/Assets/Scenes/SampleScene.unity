@@ -1044,9 +1044,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 561385866558153465, guid: 4eb422d7e1b3ee943a74d663e5ea4f33,
         type: 3}
+      propertyPath: interactables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 561385866558153465, guid: 4eb422d7e1b3ee943a74d663e5ea4f33,
+        type: 3}
       propertyPath: interactable
       value: 
       objectReference: {fileID: 179123392}
+    - target: {fileID: 561385866558153465, guid: 4eb422d7e1b3ee943a74d663e5ea4f33,
+        type: 3}
+      propertyPath: interactables.Array.data[0]
+      value: 
+      objectReference: {fileID: 1420741727}
     - target: {fileID: 561385866558153469, guid: 4eb422d7e1b3ee943a74d663e5ea4f33,
         type: 3}
       propertyPath: m_LocalPosition.x

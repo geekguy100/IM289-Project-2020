@@ -16,7 +16,7 @@ public class ButtonBehaviour : MonoBehaviour
     /// </summary>
     public bool weighted = true;
     private bool isPowered = false; //Is the button being powered?
-    public InteractableBehaviour interactable; //The interactable attached to this button.
+    public InteractableBehaviour[] interactables; //The interactable attached to this button.
 
     [Header("Colors")]
     public Color offColor; //color when the button is turned off.
@@ -55,14 +55,17 @@ public class ButtonBehaviour : MonoBehaviour
         sr.color = onColor;
         //TODO: Play sound.
 
-        //Power on the attached interactable if it is not already.
-        if (interactable != null && !interactable.IsPowered())
+        foreach (InteractableBehaviour interactable in interactables)
         {
-            interactable.PowerOn();
-        }
-        else if (interactable == null)
-        {
-            Debug.LogWarning("There is no Interactable attached to this button!: " + gameObject.name);
+            //Power on the attached interactable if it is not already.
+            if (interactable != null && !interactable.IsPowered())
+            {
+                interactable.PowerOn();
+            }
+            else if (interactable == null)
+            {
+                Debug.LogWarning("There is no Interactable attached to this button!: " + gameObject.name);
+            }
         }
     }
 
@@ -72,14 +75,17 @@ public class ButtonBehaviour : MonoBehaviour
         sr.color = offColor;
         //TODO: Play sound.
 
-        //Power off the attached interactable if it is not already.
-        if (interactable != null && interactable.IsPowered())
+        foreach (InteractableBehaviour interactable in interactables)
         {
-            interactable.PowerOff();
-        }
-        else if (interactable == null)
-        {
-            Debug.LogWarning("There is no Interactable attached to this button!: " + gameObject.name);
+            //Power on the attached interactable if it is not already.
+            if (interactable != null && interactable.IsPowered())
+            {
+                interactable.PowerOff();
+            }
+            else if (interactable == null)
+            {
+                Debug.LogWarning("There is no Interactable attached to this button!: " + gameObject.name);
+            }
         }
     }
 }
