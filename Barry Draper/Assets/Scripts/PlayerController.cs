@@ -70,6 +70,15 @@ public class PlayerController : MonoBehaviour
         umbrellaOrientation = "idle";                       /*CD*/
     }
 
+    //Used to visualize the box cast used to check if the player is grounded.
+    private float boxCastYScale = 0.05f;
+    void OnDrawGizmosSelected()
+    {
+        // Draw a semitransparent blue cube at the transforms position
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.DrawCube(groundPosition.position, new Vector2(transform.localScale.x, boxCastYScale));
+    }
+
     void Update()
     {
         if (isAlive)
@@ -79,8 +88,8 @@ public class PlayerController : MonoBehaviour
             float xMov = Input.GetAxis("Horizontal");
 
             //Checking if the player is grounded.
-            isGrounded = Physics2D.Linecast(transform.position,
-                        groundPosition.position, whatIsGround);
+            isGrounded = Physics2D.BoxCast(groundPosition.position, new Vector2(transform.localScale.x, boxCastYScale), 0f, Vector3.zero);
+            
 
             //Updating the x value accordingly.
             if (isGrounded)
