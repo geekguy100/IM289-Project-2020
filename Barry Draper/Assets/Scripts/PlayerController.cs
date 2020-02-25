@@ -70,11 +70,11 @@ public class PlayerController : MonoBehaviour
         umbrellaOrientation = "idle";                       /*CD*/
     }
 
-    //Used to visualize the box cast used to check if the player is grounded.
+    //Used to visualize the box cast used to check if the player is grounded. KG
     private float boxCastYScale = 0.05f;
     void OnDrawGizmosSelected()
     {
-        // Draw a semitransparent blue cube at the transforms position
+        // Draw a semitransparent red cube at the groundPosition's position
         Gizmos.color = new Color(1, 0, 0, 0.5f);
         Gizmos.DrawCube(groundPosition.position, new Vector2(transform.localScale.x, boxCastYScale));
     }
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
         if (isAlive)
         {
             //Updating the newPos x value (where the player will move to)
-            //based on if the player is grounded or not.
+            //based on if the player is grounded or not. KG
             float xMov = Input.GetAxis("Horizontal");
 
             //Checking if the player is grounded.
@@ -98,16 +98,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if(umbrellaUp == true)
-                {
-                    airSpeed = 1;
-                    newPos.x = xMov * airSpeed;
-                }
-                else
-                {
-                    airSpeed = 2;
-                    newPos.x = xMov * airSpeed;
-                }
+                newPos.x = xMov * airSpeed;
             }
 
             ActivateUmbrella();
@@ -144,6 +135,11 @@ public class PlayerController : MonoBehaviour
             if(umbrellaLeft)
             {
                 rb.AddForce(new Vector2(1.0f, 0.0f) * force, 
+                                        ForceMode2D.Impulse);
+            }
+            else if (umbrellaRight)
+            {
+                rb.AddForce(new Vector2(-1.0f, 0.0f) * force,
                                         ForceMode2D.Impulse);
             }
         }

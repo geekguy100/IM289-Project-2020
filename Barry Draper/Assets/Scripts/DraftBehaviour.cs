@@ -35,8 +35,11 @@ public class DraftBehaviour : MonoBehaviour
     {
         if (instantaneous)
         {
-            Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
-            rb.AddForce(direction * force, ForceMode2D.Impulse);
+            if (CanMove())
+            {
+                Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
+                rb.AddForce(direction * force, ForceMode2D.Impulse);
+            }
         }
     }
 
@@ -50,34 +53,33 @@ public class DraftBehaviour : MonoBehaviour
                 {
                     AddForce(2f);
                 }
-                if(player.GetComponent<PlayerController>().umbrellaDown == true)
+                else if(player.GetComponent<PlayerController>().umbrellaDown == true)
                 {
                     AddForce(0f);
                 }
-                else
-                {
-                    AddForce();
-                }
+                //else
+                //{
+                //    AddForce();
+                //}
             }
-
+            else
             if(gameObject.tag == "right")
             {
-                if(player.GetComponent
-                   <PlayerController>().umbrellaRight == true)
+                if(player.GetComponent<PlayerController>().umbrellaRight == true)
                 {
                     AddForce(2f);
                 }
-                if(player.GetComponent<PlayerController>()
-                                   .umbrellaLeft == true)
-                {
-                    AddForce(0f);
-                }
-                else
-                {
-                    AddForce();
-                }
+                //if(player.GetComponent<PlayerController>()
+                //                   .umbrellaLeft == true)
+                //{
+                //    AddForce(0f);
+                //}
+                //else
+                //{
+                //    AddForce();
+                //}
             }
-
+            else
             if(gameObject.tag == "left")
             {
                 if(player.GetComponent
@@ -85,17 +87,23 @@ public class DraftBehaviour : MonoBehaviour
                 {
                     AddForce(2f);
                 }
-                if(player.GetComponent
-                     <PlayerController>().umbrellaRight == true)
-                {
-                    AddForce(0f);
-                }
-                else
-                {
-                    AddForce();
-                }
+                //if(player.GetComponent
+                //     <PlayerController>().umbrellaRight == true)
+                //{
+                //    AddForce(0f);
+                //}
+                //else
+                //{
+                //    AddForce();
+                //}
             }
         }
+    }
+
+    bool CanMove()
+    {
+        PlayerController pc = player.GetComponent<PlayerController>();
+        return (pc.umbrellaUp && gameObject.tag == "up") || (pc.umbrellaLeft && gameObject.tag == "left") || (pc.umbrellaRight && gameObject.tag == "right");
     }
 
     void AddForce(float modifier = 1)
