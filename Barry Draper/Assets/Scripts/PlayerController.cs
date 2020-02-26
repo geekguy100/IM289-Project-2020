@@ -29,19 +29,21 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     [Tooltip("Movement speed of character while in the air.")]
     public float airSpeed;
+    public float dashForce = 5.0f;
     private Vector2 newPos;
 
-    [Header("Movement Mechanics")]
+    [Header("Movement Dependencies")]
     public Transform groundPosition;
     public LayerMask whatIsGround;
     private bool isGrounded = false;
+    private bool facingRight = true;
 
     [Header("Game Objects")]                                /*CD*/
     [Tooltip("The sprite for the player's umbrella.")]      /*CD*/
-    public GameObject umbrellaObject;                       /*CD*/
+    public GameObject umbrellaObject;
+    public GameObject playerUmbrella;
 
-    public static string umbrellaOrientation;               /*CD*/
-    
+
     //Is the players umbrella is activated or not
     private bool umbrella = false;
 
@@ -57,68 +59,120 @@ public class PlayerController : MonoBehaviour
     public bool umbrellaRight = false;
     public bool umbrellaLeft = false;
 
-    public GameObject playerUmbrella;
+    [Header("Player Interaction Attributes")]
+    //The max distance the player must be from an object to be able to pick it up.
+    public float grabDistance = 1f;
 
-    public GameObject box;
+    public LayerMask interactableLayer;
+    public Transform objHoldPos;
+    public Transform rayStart;
+    private Rigidbody2D theObjectInRange;
 
-    private float force = 5.0f;
+    //The offset of where the ray will be casted in relation to the player's position.
+    public Vector3 grabOffset = Vector3.zero;
+
+    private bool objectGrabbed = false;
 
 
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        umbrellaOrientation = "idle";                       /*CD*/
     }
 
-    //Used to visualize the box cast used to check if the player is grounded.KG
-    private float boxCastYScale = 0.05f;
+
+    //Used to visualize the box cast used to check if the player is grounded. KG
+    float boxCastYScale = 0.05f;
     void OnDrawGizmosSelected()
-    {
-        // Draw a semitransparent red cube at the groundPosition's position
+    {    
+        // Draw a semitransparent red cube at the groundPosition's position. KG
         Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(groundPosition.position, new Vector2
-                    (transform.localScale.x, boxCastYScale));
+        Gizmos.DrawCube(groundPosition.position, new Vector2 (transform.localScale.x, boxCastYScale));
     }
+
+
+
+
+
 
     void Update()
     {
-        if (isAlive)
+        //If the player is not alive don't bother running the code in this function.
+        if (!GameControllerScript.instance.playerAlive)
+            return;
+
+        //Updating the newPos x value (where the player will move to)
+        //based on if the player is grounded or not. KG
+        float xMov = Input.GetAxis("Horizontal");
+
+        //Updating player's direction (which direction he is facing).
+        if ((xMov > 0 && !facingRight) || (xMov < 0 && facingRight))
+            Flip();
+
+
+        //Checking if the player is grounded.
+        isGrounded = Physics2D.BoxCast(groundPosition.position, new Vector2(Mathf.Abs(transform.localScale.x), boxCastYScale), 0f, Vector3.zero, 0f, whatIsGround);
+
+        //Updating the x value accordingly.
+        if (isGrounded)
         {
-            //Updating the newPos x value (where the player will move to)
-            //based on if the player is grounded or not. KG
-            float xMov = Input.GetAxis("Horizontal");
-
-            //Checking if the player is grounded.
-            isGrounded = Physics2D.BoxCast(groundPosition.position, new 
-                        Vector2(transform.localScale.x, boxCastYScale),
-                                    0f, Vector3.zero, 0f, whatIsGround);
-            
-
-            //Updating the x value accordingly.
-            if (isGrounded)
-            {
-                newPos.x = xMov * moveSpeed;
-            }
-            else
-            {
-                newPos.x = xMov * airSpeed;
-            }
-
-            ActivateUmbrella();
-            PointUmbrella();
-            cheats();
+            newPos.x = xMov * moveSpeed;
         }
+        else
+        {
+            newPos.x = xMov * airSpeed;
+        }
+
+        ActivateUmbrella();
+        PointUmbrella();
+
+
+
+
+        //Checking to see if the player is in range of a grabbable object.
+        RaycastHit2D objectInRange = Physics2D.Raycast(rayStart.position, transform.right, grabDistance, interactableLayer);
+        Debug.DrawRay(rayStart.position, transform.right * grabDistance, Color.green);
+
+        if (objectInRange || objectGrabbed)
+        {
+            if (objectGrabbed)
+            {
+                HandleGrabbing(theObjectInRange);
+            }
+            else if (!objectGrabbed)
+            {
+                theObjectInRange = objectInRange.transform.GetComponent<Rigidbody2D>();
+                HandleGrabbing(theObjectInRange);
+            }
+        }
+
     }
 
     private void FixedUpdate()
     {
+        //If the player is not alive don't bother running the code in this function.
+        if (!GameControllerScript.instance.playerAlive)
+            return;
+
         //Moving the rigidbody along x-axis.
         Vector2 pos = rb.position;
         pos.x += newPos.x * Time.fixedDeltaTime;
 
         rb.position = pos;
+    }
+
+    /// <summary>
+    /// Flip the player transform horizontally so they are facing in the direction they are moving in.
+    /// </summary>
+    private void Flip()
+    {
+        Vector3 rot = transform.rotation.eulerAngles;
+        rot.y += 180;
+
+        //Invert the boolean.
+        facingRight = !facingRight;
+
+        transform.rotation = Quaternion.Euler(rot);
     }
 
     /// <summary>
@@ -140,12 +194,12 @@ public class PlayerController : MonoBehaviour
 
             if(umbrellaLeft)
             {
-                rb.AddForce(new Vector2(1.0f, 0.0f) * force, 
+                rb.AddForce(new Vector2(1.0f, 0.0f) * dashForce, 
                                         ForceMode2D.Impulse);
             }
             else if (umbrellaRight)
             {
-                rb.AddForce(new Vector2(-1.0f, 0.0f) * force,
+                rb.AddForce(new Vector2(-1.0f, 0.0f) * dashForce,
                                         ForceMode2D.Impulse);
             }
         }
@@ -221,49 +275,38 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public static bool isAlive = true;
-    public static bool livesChanged = false;
-
-    /// <summary>
-    /// When the player collides with objects. In this case, spikes.
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnCollisionEnter2D(Collision2D collision)
+    void HandleGrabbing(Rigidbody2D obj)
     {
-        // If the collided object is a spike trap, reduce player's lives
-        //and update UI.
-        if(collision.gameObject.tag == "Spikes" && 
-                  !GameControllerScript.invincible)
+        //If the player presses 'F' and the object is NOT already grabbed, freeze it and update its movement to move with the player.
+        if (Input.GetKeyDown(KeyCode.F) && !objectGrabbed)
         {
-            GameControllerScript.playerLives -= 1;
-            livesChanged = true;
-            GameControllerScript.invincible = true;
+            obj.constraints = RigidbodyConstraints2D.FreezeAll;
+            objectGrabbed = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.F) && objectGrabbed)
+        {
+            obj.constraints = RigidbodyConstraints2D.None;
+            objectGrabbed = false;
+            print("He gone");
+        }
+        else if (objectGrabbed)
+        {
+            obj.transform.position = objHoldPos.position;
         }
     }
 
     /// <summary>
-    /// For prototype presentation so if anythingg goes wrong we can reset.
+    /// When the player collides with objects. In this case, spikes.
     /// </summary>
-    void cheats()
+    /// <param name="collision">Object the player collided with.</param>
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        // If the collided object is a spike trap, reduce player's lives
+        //and update UI.
+        if(collision.gameObject.tag == "Spikes")
         {
-            transform.position = new Vector3(-9.0f, 3.0f, 0f);
-        }
-
-        if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            transform.position = new Vector3(21.0f, -5.0f, 0f);
-        }
-
-        if(Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            box.transform.position = new Vector3(51.0f, -5.0f, 0.0f);
-        }
-
-        if (Input.GetKey(KeyCode.R))
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Sample Level");
+            //Will only be called if the player is invincible (check the RemoveLivesFromPlayer function in the GameControllerScript).
+            GameControllerScript.instance.RemoveLivesFromPlayer(1);
         }
     }
 }

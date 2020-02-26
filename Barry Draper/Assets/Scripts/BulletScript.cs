@@ -39,7 +39,7 @@ public class BulletScript : TurretScript
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            GameControllerScript.playerLives--;
+            GameControllerScript.instance.RemoveLivesFromPlayer(1);
         }
     }
 }

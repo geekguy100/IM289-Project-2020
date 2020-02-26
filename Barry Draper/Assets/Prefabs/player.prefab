@@ -147,16 +147,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   airSpeed: 2
+  dashForce: 5
   groundPosition: {fileID: 4429307968305536108}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
   umbrellaObject: {fileID: 4429307969020419860}
+  playerUmbrella: {fileID: 4429307968496052571}
   umbrellaUp: 1
   umbrellaDown: 0
   umbrellaRight: 0
   umbrellaLeft: 0
-  playerUmbrella: {fileID: 4429307968496052571}
+  grabDistance: 0.5
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &4429307968305536107
 GameObject:
   m_ObjectHideFlags: 0

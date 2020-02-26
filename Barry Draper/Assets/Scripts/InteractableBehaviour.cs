@@ -51,6 +51,18 @@ public class InteractableBehaviour : MonoBehaviour
             openedPos.y += openDistance;
 
             closedPos = transform.position;
+
+            if (isPowered)
+            {
+                StartCoroutine(DoorAction());
+            }
+        }
+        else if (type == InteractableType.Fan)
+        {
+            if (isPowered)
+                FanAction();
+            else
+                FanOffAction();
         }
 
 
@@ -111,7 +123,6 @@ public class InteractableBehaviour : MonoBehaviour
     /// </summary>
     private void FanAction()
     {
-        print("Fan is on!!");
         foreach(GameObject draft in drafts)
         {
             draft.SetActive(true);
@@ -123,7 +134,6 @@ public class InteractableBehaviour : MonoBehaviour
     /// </summary>
     private void FanOffAction()
     {
-        print("Fan just turned off.");
         foreach(GameObject draft in drafts)
         {
             draft.SetActive(false);

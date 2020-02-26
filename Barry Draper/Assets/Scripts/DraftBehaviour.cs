@@ -15,100 +15,46 @@ public class DraftBehaviour : MonoBehaviour
 {
     public Vector2 direction;
 
-    [Tooltip("The force to be applied, either applied instantaneouly" +
-        " or over time.")]
     public float force;
-
-
-    [Tooltip("If the draft should provide a suddent burst of force. " +
-        "               Otherwise, it will apply the force over time.")]
-    public bool instantaneous = false;
-
-    GameObject player;
-
-    private void Awake()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (instantaneous)
-        {
-            if (CanMove())
-            {
-                Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
-                rb.AddForce(direction * force, ForceMode2D.Impulse);
-            }
-        }
-    }
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (!instantaneous)
+        Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
+
+        if (col.gameObject.CompareTag("Player"))
         {
+            PlayerController pc = col.gameObject.GetComponent<PlayerController>();
+
             if (gameObject.tag == "up")
             {
-                if(player.GetComponent<PlayerController>().umbrellaUp == true)
+                if (pc.umbrellaUp == true)
                 {
-                    AddForce(2f);
+                    AddForce(rb, 2f);
                 }
-                else if(player.GetComponent<PlayerController>().umbrellaDown == true)
-                {
-                    AddForce(0f);
-                }
-                //else
-                //{
-                //    AddForce();
-                //}
             }
-            else
-            if(gameObject.tag == "right")
+            else if (gameObject.tag == "right")
             {
-                if(player.GetComponent<PlayerController>().umbrellaRight == true)
+                if (pc.umbrellaRight == true)
                 {
-                    AddForce(2f);
+                    AddForce(rb, 2f);
                 }
-                //if(player.GetComponent<PlayerController>()
-                //                   .umbrellaLeft == true)
-                //{
-                //    AddForce(0f);
-                //}
-                //else
-                //{
-                //    AddForce();
-                //}
             }
-            else
-            if(gameObject.tag == "left")
+            else if (gameObject.tag == "left")
             {
-                if(player.GetComponent
-                     <PlayerController>().umbrellaLeft == true)
+                if (pc == true)
                 {
-                    AddForce(2f);
+                    AddForce(rb, 2f);
                 }
-                //if(player.GetComponent
-                //     <PlayerController>().umbrellaRight == true)
-                //{
-                //    AddForce(0f);
-                //}
-                //else
-                //{
-                //    AddForce();
-                //}
             }
+        }
+        else //if a rigidbody other than the player enters the draft
+        {
+            AddForce(rb, 1f);
         }
     }
 
-    bool CanMove()
+    void AddForce(Rigidbody2D rb, float modifier = 1)
     {
-        PlayerController pc = player.GetComponent<PlayerController>();
-        return (pc.umbrellaUp && gameObject.tag == "up") || (pc.umbrellaLeft && gameObject.tag == "left") || (pc.umbrellaRight && gameObject.tag == "right");
-    }
-
-    void AddForce(float modifier = 1)
-    {
-        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
         rb.AddForce(direction * force * modifier, ForceMode2D.Force);
     }
 }
