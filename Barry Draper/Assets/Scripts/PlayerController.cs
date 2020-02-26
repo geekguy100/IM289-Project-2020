@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     public float airSpeed;
     public float dashForce = 5.0f;
     private Vector2 newPos;
+    public float standardGravity = 1f;
+    public float umbrellaGravity = 0.5f;
 
     [Header("Movement Dependencies")]
     public Transform groundPosition;
@@ -78,6 +80,11 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        rb.gravityScale = standardGravity;
     }
 
 
@@ -188,9 +195,10 @@ public class PlayerController : MonoBehaviour
         {
             playerUmbrella.transform.localScale = 
                 new Vector3(0.25f, 0.25f, 0.25f);
-            rb.mass = 1;
-            rb.gravityScale = 0.5f;
-            Invoke("swap", 0.1f);
+            //rb.mass = 1;
+            rb.gravityScale = umbrellaGravity;
+            //Invoke("swap", 0.1f);
+            umbrella = true;
 
             if(umbrellaLeft)
             {
@@ -203,14 +211,15 @@ public class PlayerController : MonoBehaviour
                                         ForceMode2D.Impulse);
             }
         }
-
+        else 
         if(Input.GetKeyDown(KeyCode.Space) && umbrella == true)
         {
             playerUmbrella.transform.localScale = 
                 new Vector3(0.15f, 0.15f, 0.15f);
-            rb.mass = 1.5f;
-            rb.gravityScale = 0.75f;
-            Invoke("swap", 0.1f);
+            //rb.mass = 1.5f;
+            rb.gravityScale = standardGravity;
+            //Invoke("swap", 0.1f);
+            umbrella = false;
         }
     }
 
