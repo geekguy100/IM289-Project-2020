@@ -59,6 +59,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject playerUmbrella;
 
+    public GameObject box;
+
     private float force = 5.0f;
 
 
@@ -70,13 +72,14 @@ public class PlayerController : MonoBehaviour
         umbrellaOrientation = "idle";                       /*CD*/
     }
 
-    //Used to visualize the box cast used to check if the player is grounded. KG
+    //Used to visualize the box cast used to check if the player is grounded.KG
     private float boxCastYScale = 0.05f;
     void OnDrawGizmosSelected()
     {
         // Draw a semitransparent red cube at the groundPosition's position
         Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(groundPosition.position, new Vector2(transform.localScale.x, boxCastYScale));
+        Gizmos.DrawCube(groundPosition.position, new Vector2
+                    (transform.localScale.x, boxCastYScale));
     }
 
     void Update()
@@ -88,7 +91,9 @@ public class PlayerController : MonoBehaviour
             float xMov = Input.GetAxis("Horizontal");
 
             //Checking if the player is grounded.
-            isGrounded = Physics2D.BoxCast(groundPosition.position, new Vector2(transform.localScale.x, boxCastYScale), 0f, Vector3.zero, 0f, whatIsGround);
+            isGrounded = Physics2D.BoxCast(groundPosition.position, new 
+                        Vector2(transform.localScale.x, boxCastYScale),
+                                    0f, Vector3.zero, 0f, whatIsGround);
             
 
             //Updating the x value accordingly.
@@ -103,6 +108,7 @@ public class PlayerController : MonoBehaviour
 
             ActivateUmbrella();
             PointUmbrella();
+            cheats();
         }
     }
 
@@ -232,6 +238,32 @@ public class PlayerController : MonoBehaviour
             GameControllerScript.playerLives -= 1;
             livesChanged = true;
             GameControllerScript.invincible = true;
+        }
+    }
+
+    /// <summary>
+    /// For prototype presentation so if anythingg goes wrong we can reset.
+    /// </summary>
+    void cheats()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            transform.position = new Vector3(-9.0f, 3.0f, 0f);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            transform.position = new Vector3(21.0f, -5.0f, 0f);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            box.transform.position = new Vector3(51.0f, -5.0f, 0.0f);
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Sample Level");
         }
     }
 }

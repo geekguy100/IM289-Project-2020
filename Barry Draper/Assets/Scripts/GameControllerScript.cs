@@ -19,7 +19,8 @@ public class GameControllerScript : MonoBehaviour
     /// </summary>
     public static bool invincible;
 
-    [Tooltip("How long the player has invinciblilty after being hit. (in seconds).")]
+    [Tooltip("How long the player has invinciblilty after being hit." +
+        "(in seconds).")]
     public float invincibilityTime = 2f;
 
     [Tooltip("UI text to display lives count.")]
