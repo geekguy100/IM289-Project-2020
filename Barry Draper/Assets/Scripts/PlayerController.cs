@@ -31,8 +31,7 @@ public class PlayerController : MonoBehaviour
     public float airSpeed;
     public float dashForce = 5.0f;
     private Vector2 newPos;
-    public float standardGravity = 1f;
-    public float umbrellaGravity = 0.5f;
+    public float minYVel = -4.9f;
 
     [Header("Movement Dependencies")]
     public Transform groundPosition;
@@ -47,7 +46,8 @@ public class PlayerController : MonoBehaviour
 
 
     //Is the players umbrella is activated or not
-    private bool umbrella = false;
+    [HideInInspector]
+    public bool umbrella = false;
 
     [Header("Rotations of the umbrella")]
     Quaternion up = Quaternion.Euler(new Vector3(0, 0, 0));
@@ -56,10 +56,10 @@ public class PlayerController : MonoBehaviour
     Quaternion left = Quaternion.Euler(new Vector3(0, 0, 90));
 
     [Header("Bools that tell what direction the Umbrella is in")]
-    public bool umbrellaUp = true;
-    public bool umbrellaDown = false;
-    public bool umbrellaRight = false;
-    public bool umbrellaLeft = false;
+    [HideInInspector] public bool umbrellaUp = true;
+    [HideInInspector] public bool umbrellaDown = false;
+    [HideInInspector] public bool umbrellaRight = false;
+    [HideInInspector] public bool umbrellaLeft = false;
 
     [Header("Player Interaction Attributes")]
     //The max distance the player must be from an object to be able to pick it up.
@@ -81,12 +81,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
-    private void Start()
-    {
-        rb.gravityScale = standardGravity;
-    }
-
 
     //Used to visualize the box cast used to check if the player is grounded. KG
     float boxCastYScale = 0.05f;
@@ -122,13 +116,9 @@ public class PlayerController : MonoBehaviour
 
         //Updating the x value accordingly.
         if (isGrounded)
-        {
             newPos.x = xMov * moveSpeed;
-        }
         else
-        {
             newPos.x = xMov * airSpeed;
-        }
 
         ActivateUmbrella();
         PointUmbrella();
@@ -165,7 +155,16 @@ public class PlayerController : MonoBehaviour
         Vector2 pos = rb.position;
         pos.x += newPos.x * Time.fixedDeltaTime;
 
+        //Clamp the y-axis velocity to prevent the player from falling too fast with the umbrella in hand and facing up.
+        if (umbrella && umbrellaUp)
+        {
+            Vector2 vel = rb.velocity;
+            vel.y = Mathf.Clamp(vel.y, -4.9f, 900f);
+            rb.velocity = vel;
+        }
+
         rb.position = pos;
+        print(rb.velocity.y);
     }
 
     /// <summary>
@@ -195,9 +194,7 @@ public class PlayerController : MonoBehaviour
         {
             playerUmbrella.transform.localScale = 
                 new Vector3(0.25f, 0.25f, 0.25f);
-            //rb.mass = 1;
-            rb.gravityScale = umbrellaGravity;
-            //Invoke("swap", 0.1f);
+           // rb.gravityScale = umbrellaGravity;
             umbrella = true;
 
             if(umbrellaLeft)
@@ -217,25 +214,7 @@ public class PlayerController : MonoBehaviour
             playerUmbrella.transform.localScale = 
                 new Vector3(0.15f, 0.15f, 0.15f);
             //rb.mass = 1.5f;
-            rb.gravityScale = standardGravity;
             //Invoke("swap", 0.1f);
-            umbrella = false;
-        }
-    }
-
-    /// <summary>
-    /// flips the umbrella bool to whatever it isn't.
-    /// Connor Riley
-    /// </summary>
-    void swap()
-    {
-
-        if(umbrella == false)
-        {
-            umbrella = true;
-        }
-        else 
-        {
             umbrella = false;
         }
     }
@@ -296,7 +275,6 @@ public class PlayerController : MonoBehaviour
         {
             obj.constraints = RigidbodyConstraints2D.None;
             objectGrabbed = false;
-            print("He gone");
         }
         else if (objectGrabbed)
         {

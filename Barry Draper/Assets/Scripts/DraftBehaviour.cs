@@ -20,41 +20,38 @@ public class DraftBehaviour : MonoBehaviour
     private void OnTriggerStay2D(Collider2D col)
     {
         Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
+        //rb.AddForce(direction * force, ForceMode2D.Force);
 
         if (col.gameObject.CompareTag("Player"))
         {
             PlayerController pc = col.gameObject.GetComponent<PlayerController>();
 
-            if (gameObject.tag == "up")
+            //If the player's umbrella is NOT open, don't bother applying a force to him.
+            if (!pc.umbrella)
+                return;
+
+            //Making sure the direction of the force and the direction of the player's umbrella align.
+            if (gameObject.tag == "up" && pc.umbrellaUp)
             {
-                if (pc.umbrellaUp == true)
-                {
-                    AddForce(rb, 2f);
-                }
+                ApplyForce(rb);
             }
-            else if (gameObject.tag == "right")
+            else if (gameObject.tag == "right" && pc.umbrellaRight)
             {
-                if (pc.umbrellaRight == true)
-                {
-                    AddForce(rb, 2f);
-                }
+                ApplyForce(rb);
             }
-            else if (gameObject.tag == "left")
+            else if (gameObject.tag == "left" && pc.umbrellaLeft)
             {
-                if (pc == true)
-                {
-                    AddForce(rb, 2f);
-                }
+                ApplyForce(rb);
             }
         }
-        else //if a rigidbody other than the player enters the draft
+        else  //if some other rigidbody enters the draft
         {
-            AddForce(rb, 1f);
+            ApplyForce(rb);
         }
     }
 
-    void AddForce(Rigidbody2D rb, float modifier = 1)
+    private void ApplyForce(Rigidbody2D rb)
     {
-        rb.AddForce(direction * force * modifier, ForceMode2D.Force);
+        rb.AddForce(direction * force, ForceMode2D.Force);
     }
 }
