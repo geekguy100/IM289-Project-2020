@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Movement speed of character while in the air.")]
     public float airSpeed;
     public float dashForce = 5.0f;
-    private Vector2 newPos;
+    [HideInInspector]
+    public Vector2 newPos;
     public float minYVel = -4.9f;
 
     [Header("Movement Dependencies")]
@@ -116,7 +117,9 @@ public class PlayerController : MonoBehaviour
 
         //Updating the x value accordingly.
         if (isGrounded)
+        {
             newPos.x = xMov * moveSpeed;
+        }
         else
             newPos.x = xMov * airSpeed;
 
@@ -164,7 +167,7 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.position = pos;
-        print(rb.velocity.y);
+       // print(rb.velocity.y);
     }
 
     /// <summary>
