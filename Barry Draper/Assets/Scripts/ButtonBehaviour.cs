@@ -34,6 +34,7 @@ public class ButtonBehaviour : MonoBehaviour
     private void OnTriggerEnter2D()
     {
         contacts++;
+        print("Enter: Contacts = " + contacts);
     }
 
     //Used for weighted buttons.
@@ -53,6 +54,7 @@ public class ButtonBehaviour : MonoBehaviour
         if (weighted && contacts < 1)
             PowerOffButton();
 
+        print("Exit: Contacts = " + contacts + "   name: " + col.gameObject.name);
     }
 
 

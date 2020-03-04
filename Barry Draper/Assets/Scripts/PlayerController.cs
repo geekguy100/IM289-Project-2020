@@ -2,14 +2,14 @@
 // File Name :         PlayerController.cs
 // Author :            Connor Riley (60%):
                             Implemented umbrella behaviours such as rotation,
-                            checking which direction the umbrella is in, 
-                            changing air speed depending on what orientation 
+                            checking which direction the umbrella is in,
+                            changing air speed depending on what orientation
                             the umbrella is in the air.
                        Kyle Grenier (30%):
-                             Implemented character movement, getting 
+                             Implemented character movement, getting
                              important components on the character.
                        Connor Dunn (10%):
-                              Implemented spike interaction with the player. 
+                              Implemented spike interaction with the player.
 // Creation Date :     February 8, 2020
 //
 // Brief Description : Script that translates player input into actual movement
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     //Used to visualize the box cast used to check if the player is grounded. KG
     float boxCastYScale = 0.05f;
     void OnDrawGizmosSelected()
-    {    
+    {
         // Draw a semitransparent red cube at the groundPosition's position. KG
         Gizmos.color = new Color(1, 0, 0, 0.5f);
         Gizmos.DrawCube(groundPosition.position, new Vector2 (transform.localScale.x, boxCastYScale));
@@ -149,9 +149,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private float minYVelWithUmbrella = -4.9f;
-    private float minYVelWithoutUmbrella = -15f;
-
     private void FixedUpdate()
     {
         //If the player is not alive don't bother running the code in this function.
@@ -166,28 +163,12 @@ public class PlayerController : MonoBehaviour
         if (umbrella && umbrellaUp)
         {
             Vector2 vel = rb.velocity;
-            vel.y = Mathf.Clamp(vel.y, minYVelWithUmbrella, 900f);
+            vel.y = Mathf.Clamp(vel.y, -4.9f, 900f);
             rb.velocity = vel;
-        }
-        //if the player has the umbrella open in some other direction or not open at all
-        else
-        {
-            Vector2 vel = rb.velocity;
-            vel.y = Mathf.Clamp(vel.y, minYVelWithoutUmbrella, 900f);
-            rb.velocity = vel;
-        }
-
-        //If the player is grounded and the x velocity does NOT equal 0, change it to 0.
-        if (isGrounded && rb.velocity.x != 0)
-        {
-            Vector2 vel = rb.velocity;
-            vel.x = 0;
-            rb.velocity = vel;
-
-            //print("Changed the x velocity");
         }
 
         rb.position = pos;
+        print(rb.velocity.y);
     }
 
     /// <summary>
@@ -208,7 +189,7 @@ public class PlayerController : MonoBehaviour
     /// If the player presses the space bar, the umbrella will open or close,
     /// the swap bool will be swaped in the swap function which is invoked
     /// after the player presses spacebar. If the umbrella is left when the
-    /// player opens the umbrella they will dash right. 
+    /// player opens the umbrella they will dash right.
     /// Connor Riley
     /// </summary>
     void ActivateUmbrella()
