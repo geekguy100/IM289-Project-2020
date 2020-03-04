@@ -22,7 +22,10 @@ public class MenuBehavior : MonoBehaviour
         levelSelect.SetActive(false);
     }
 
-
+    /// <summary>
+    /// Loads into the level of your choosing
+    /// </summary>
+    /// <param name="levelname">Name of level being loaded into</param>
     public void LoadLevel(string levelname)
     {
         SceneManager.LoadScene(levelname);
