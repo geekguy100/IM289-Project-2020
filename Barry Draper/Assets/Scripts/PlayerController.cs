@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Movement speed of character while in the air.")]
     public float airSpeed;
     public float dashForce = 5.0f;
+    public float dashTime = 1f;
+    private float currentDashTime = 0f;
     [HideInInspector]
     public Vector2 newPos;
     public float minYVel = -4.9f;
@@ -117,9 +119,7 @@ public class PlayerController : MonoBehaviour
 
         //Updating the x value accordingly.
         if (isGrounded)
-        {
             newPos.x = xMov * moveSpeed;
-        }
         else
             newPos.x = xMov * airSpeed;
 
@@ -148,6 +148,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private float minYVelWithUmbrella = -4.9f;
+    private float minYVelWithoutUmbrella = -15f;
+
     private void FixedUpdate()
     {
         //If the player is not alive don't bother running the code in this function.
@@ -162,12 +165,28 @@ public class PlayerController : MonoBehaviour
         if (umbrella && umbrellaUp)
         {
             Vector2 vel = rb.velocity;
-            vel.y = Mathf.Clamp(vel.y, -4.9f, 900f);
+            vel.y = Mathf.Clamp(vel.y, minYVelWithUmbrella, 900f);
+            rb.velocity = vel;
+        }
+        //if the player has the umbrella open in some other direction or not open at all
+        else
+        {
+            Vector2 vel = rb.velocity;
+            vel.y = Mathf.Clamp(vel.y, minYVelWithoutUmbrella, 900f);
             rb.velocity = vel;
         }
 
+        //If the player is grounded and the x velocity does NOT equal 0, change it to 0.
+        if (isGrounded && rb.velocity.x != 0)
+        {
+            Vector2 vel = rb.velocity;
+            vel.x = 0;
+            rb.velocity = vel;
+
+            //print("Changed the x velocity");
+        }
+
         rb.position = pos;
-       // print(rb.velocity.y);
     }
 
     /// <summary>
