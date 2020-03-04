@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public float dashForce = 5.0f;
     public float dashTime = 1f;
     private float currentDashTime = 0f;
+    private bool canDash = true;
     [HideInInspector]
     public Vector2 newPos;
     public float minYVel = -4.9f;
@@ -214,31 +215,30 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && umbrella == false)
         {
-            playerUmbrella.transform.localScale = 
-                new Vector3(0.25f, 0.25f, 0.25f);
-           // rb.gravityScale = umbrellaGravity;
+            playerUmbrella.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
             umbrella = true;
 
-            if(umbrellaLeft)
+            if(umbrellaLeft && canDash)
             {
-                rb.AddForce(new Vector2(1.0f, 0.0f) * dashForce, 
-                                        ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(1.0f, 0.0f) * dashForce, ForceMode2D.Impulse);
+                ResetDash();
             }
-            else if (umbrellaRight)
+            else if (umbrellaRight && canDash)
             {
-                rb.AddForce(new Vector2(-1.0f, 0.0f) * dashForce,
-                                        ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-1.0f, 0.0f) * dashForce, ForceMode2D.Impulse);
+                ResetDash();
             }
         }
-        else 
-        if(Input.GetKeyDown(KeyCode.Space) && umbrella == true)
+        else if(Input.GetKeyDown(KeyCode.Space) && umbrella == true)
         {
-            playerUmbrella.transform.localScale = 
-                new Vector3(0.15f, 0.15f, 0.15f);
-            //rb.mass = 1.5f;
-            //Invoke("swap", 0.1f);
+            playerUmbrella.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
             umbrella = false;
         }
+    }
+
+    void ResetDash()
+    {
+        canDash = false;
     }
 
     /// <summary>
