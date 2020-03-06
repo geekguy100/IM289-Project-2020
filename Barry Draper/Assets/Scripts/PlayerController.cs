@@ -2,14 +2,14 @@
 // File Name :         PlayerController.cs
 // Author :            Connor Riley (60%):
                             Implemented umbrella behaviours such as rotation,
-                            checking which direction the umbrella is in, 
-                            changing air speed depending on what orientation 
+                            checking which direction the umbrella is in,
+                            changing air speed depending on what orientation
                             the umbrella is in the air.
                        Kyle Grenier (30%):
-                             Implemented character movement, getting 
+                             Implemented character movement, getting
                              important components on the character.
                        Connor Dunn (10%):
-                              Implemented spike interaction with the player. 
+                              Implemented spike interaction with the player.
 // Creation Date :     February 8, 2020
 //
 // Brief Description : Script that translates player input into actual movement
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public float dashForce = 5.0f;
     public float dashTime = 1f;
     private float currentDashTime = 0f;
+    private bool canDash = true;
     [HideInInspector]
     public Vector2 newPos;
     public float minYVel = -4.9f;
@@ -78,17 +79,18 @@ public class PlayerController : MonoBehaviour
 
     private bool objectGrabbed = false;
 
-
+    private Animator anim;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     //Used to visualize the box cast used to check if the player is grounded. KG
     float boxCastYScale = 0.05f;
     void OnDrawGizmosSelected()
-    {    
+    {
         // Draw a semitransparent red cube at the groundPosition's position. KG
         Gizmos.color = new Color(1, 0, 0, 0.5f);
         Gizmos.DrawCube(groundPosition.position, new Vector2 (transform.localScale.x, boxCastYScale));
@@ -122,6 +124,9 @@ public class PlayerController : MonoBehaviour
             newPos.x = xMov * moveSpeed;
         else
             newPos.x = xMov * airSpeed;
+
+        anim.SetFloat("xMov", xMov);
+        anim.SetBool("isGrounded", isGrounded);
 
         ActivateUmbrella();
         PointUmbrella();
@@ -186,6 +191,7 @@ public class PlayerController : MonoBehaviour
             //print("Changed the x velocity");
         }
 
+        print(rb.velocity.y);
         rb.position = pos;
     }
 
@@ -207,38 +213,37 @@ public class PlayerController : MonoBehaviour
     /// If the player presses the space bar, the umbrella will open or close,
     /// the swap bool will be swaped in the swap function which is invoked
     /// after the player presses spacebar. If the umbrella is left when the
-    /// player opens the umbrella they will dash right. 
+    /// player opens the umbrella they will dash right.
     /// Connor Riley
     /// </summary>
     void ActivateUmbrella()
     {
         if(Input.GetKeyDown(KeyCode.Space) && umbrella == false)
         {
-            playerUmbrella.transform.localScale = 
-                new Vector3(0.25f, 0.25f, 0.25f);
-           // rb.gravityScale = umbrellaGravity;
+            playerUmbrella.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
             umbrella = true;
 
-            if(umbrellaLeft)
+            if(umbrellaLeft && canDash)
             {
-                rb.AddForce(new Vector2(1.0f, 0.0f) * dashForce, 
-                                        ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(1.0f, 0.0f) * dashForce, ForceMode2D.Impulse);
+                ResetDash();
             }
-            else if (umbrellaRight)
+            else if (umbrellaRight && canDash)
             {
-                rb.AddForce(new Vector2(-1.0f, 0.0f) * dashForce,
-                                        ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-1.0f, 0.0f) * dashForce, ForceMode2D.Impulse);
+                ResetDash();
             }
         }
-        else 
-        if(Input.GetKeyDown(KeyCode.Space) && umbrella == true)
+        else if(Input.GetKeyDown(KeyCode.Space) && umbrella == true)
         {
-            playerUmbrella.transform.localScale = 
-                new Vector3(0.15f, 0.15f, 0.15f);
-            //rb.mass = 1.5f;
-            //Invoke("swap", 0.1f);
+            playerUmbrella.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
             umbrella = false;
         }
+    }
+
+    void ResetDash()
+    {
+        canDash = false;
     }
 
     /// <summary>

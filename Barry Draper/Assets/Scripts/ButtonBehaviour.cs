@@ -52,7 +52,6 @@ public class ButtonBehaviour : MonoBehaviour
         //If the button is weighted and has no more contacts on it.
         if (weighted && contacts < 1)
             PowerOffButton();
-
     }
 
 
