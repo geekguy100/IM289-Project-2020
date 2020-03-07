@@ -29,8 +29,6 @@ public class GameControllerScript : MonoBehaviour
 
 
     [Header("General Player Attributes")]
-    [Tooltip("Player game object.")]
-    public GameObject playerAvatar;
     [Tooltip("UI text to display lives count.")]
     public Text livesText;
 

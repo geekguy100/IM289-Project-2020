@@ -29,14 +29,15 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     [Tooltip("Movement speed of character while in the air.")]
     public float airSpeed;
-    public float dashForce = 5.0f;
-    public float dashTime = 1f;
-    private float currentDashTime = 0f;
-    private bool canDash = true;
     [HideInInspector]
     public Vector2 newPos;
     public float minYVel = -4.9f;
-
+    [Header("Dashing")]
+    public float dashForce = 5.0f;
+    public float dashTime = 1f;
+    public float dashCooldownTime = 0.5f;
+    [SerializeField]
+    private bool canDash = true;
     [Header("Movement Dependencies")]
     public Transform groundPosition;
     public LayerMask whatIsGround;
@@ -79,12 +80,12 @@ public class PlayerController : MonoBehaviour
 
     private bool objectGrabbed = false;
 
-    private Animator anim;
+    //private Animator anim;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
     }
 
     //Used to visualize the box cast used to check if the player is grounded. KG
@@ -125,8 +126,8 @@ public class PlayerController : MonoBehaviour
         else
             newPos.x = xMov * airSpeed;
 
-        anim.SetFloat("xMov", xMov);
-        anim.SetBool("isGrounded", isGrounded);
+        //anim.SetFloat("xMov", xMov);
+        //anim.SetBool("isGrounded", isGrounded);
 
         ActivateUmbrella();
         PointUmbrella();
@@ -181,8 +182,8 @@ public class PlayerController : MonoBehaviour
             rb.velocity = vel;
         }
 
-        //If the player is grounded and the x velocity does NOT equal 0, change it to 0.
-        if (isGrounded && rb.velocity.x != 0)
+        //If the player is grounded AND the x velocity does NOT equal 0 AND the player CANNOT dash, change it to 0.
+        if (isGrounded && rb.velocity.x != 0 && !canDash)
         {
             Vector2 vel = rb.velocity;
             vel.x = 0;
@@ -191,7 +192,6 @@ public class PlayerController : MonoBehaviour
             //print("Changed the x velocity");
         }
 
-        print(rb.velocity.y);
         rb.position = pos;
     }
 
@@ -207,6 +207,18 @@ public class PlayerController : MonoBehaviour
         facingRight = !facingRight;
 
         transform.rotation = Quaternion.Euler(rot);
+
+        //Changing umbrella direction
+        if (umbrellaRight)
+        {
+            umbrellaRight = false;
+            umbrellaLeft = true;
+        }
+        else if (umbrellaLeft)
+        {
+            umbrellaLeft = false;
+            umbrellaRight = true;
+        }
     }
 
     /// <summary>
@@ -226,12 +238,14 @@ public class PlayerController : MonoBehaviour
             if(umbrellaLeft && canDash)
             {
                 rb.AddForce(new Vector2(1.0f, 0.0f) * dashForce, ForceMode2D.Impulse);
-                ResetDash();
+                StopCoroutine(ResetDash());
+                StartCoroutine(ResetDash());
             }
             else if (umbrellaRight && canDash)
             {
                 rb.AddForce(new Vector2(-1.0f, 0.0f) * dashForce, ForceMode2D.Impulse);
-                ResetDash();
+                StopCoroutine(ResetDash());
+                StartCoroutine(ResetDash());
             }
         }
         else if(Input.GetKeyDown(KeyCode.Space) && umbrella == true)
@@ -241,9 +255,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ResetDash()
+    private int dashNum = 0;
+
+    IEnumerator ResetDash()
     {
+        print("Starting: " + dashNum);
+        dashNum++;
+
+        if (dashNum > 1)
+        {
+            dashNum--;
+            yield break;
+        }
+
+        yield return new WaitForSeconds(dashTime);
         canDash = false;
+        yield return new WaitForSeconds(dashCooldownTime);
+        canDash = true;
+        print("finishing");
+        dashNum--;
     }
 
     /// <summary>
