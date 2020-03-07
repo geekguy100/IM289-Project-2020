@@ -1,15 +1,17 @@
 /*****************************************************************************
 // File Name :         PlayerController.cs
-// Author :            Connor Riley (60%):
+// Author :            Connor Riley (57%):
                             Implemented umbrella behaviours such as rotation,
                             checking which direction the umbrella is in,
                             changing air speed depending on what orientation
                             the umbrella is in the air.
-                       Kyle Grenier (30%):
+                       Kyle Grenier (28%):
                              Implemented character movement, getting
                              important components on the character.
-                       Connor Dunn (10%):
-                              Implemented spike interaction with the player.
+                       Connor Dunn (15%):
+                              Implemented spike interaction with the player,
+                              as well as animation functionality and sprite
+                              changes to reflect umbrella directions.
 // Creation Date :     February 8, 2020
 //
 // Brief Description : Script that translates player input into actual movement
@@ -47,7 +49,7 @@ public class ConnorPlayerController : MonoBehaviour
     [Header("Game Objects")]                                /*CD*/
     [Tooltip("The sprite for the player's umbrella.")]      /*CD*/
     public GameObject umbrellaObject;
-    public GameObject playerUmbrella;
+    //public GameObject playerUmbrella;
 
 
     //Is the players umbrella is activated or not
@@ -59,6 +61,15 @@ public class ConnorPlayerController : MonoBehaviour
     Quaternion right = Quaternion.Euler(new Vector3(0, 0, 270));
     Quaternion down = Quaternion.Euler(new Vector3(0, 0, 180));
     Quaternion left = Quaternion.Euler(new Vector3(0, 0, 90));
+
+    public Sprite[] spriteArray = new Sprite[8];
+    /* 0 = Col Right    |   4 = Act Right
+     * 1 = Col Up       |   5 = Act Up
+     * 2 = Col Left     |   6 = Act Left
+     * 3 = Col Down     |   7 = Act Down
+    */
+
+    GameObject umbrellaSprite;
 
     [Header("Bools that tell what direction the Umbrella is in")]
     [HideInInspector] public bool umbrellaUp = true;
@@ -86,6 +97,7 @@ public class ConnorPlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
     }
 
     //Used to visualize the box cast used to check if the player is grounded. KG
@@ -232,8 +244,9 @@ public class ConnorPlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && umbrella == false)
         {
-            playerUmbrella.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+            //playerUmbrella.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
             umbrella = true;
+            
 
             if (umbrellaLeft && canDash)
             {
@@ -250,9 +263,10 @@ public class ConnorPlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space) && umbrella == true)
         {
-            playerUmbrella.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
+            //playerUmbrella.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
             umbrella = false;
         }
+        UpdateSprite();
     }
 
     private int dashNum = 0;
@@ -285,20 +299,29 @@ public class ConnorPlayerController : MonoBehaviour
     {
         if (Input.GetButton("UmbrellaUp"))
         {
-            umbrellaObject.transform.rotation = up;
             umbrellaUp = true;
             umbrellaDown = false;
             umbrellaLeft = false;
             umbrellaRight = false;
+            ChangeUmbrellaSprite("Up");
         }
 
-        if (Input.GetButton("UmbrellaRight"))
+        if (Input.GetButton("UmbrellaRight") && facingRight)
         {
-            umbrellaObject.transform.rotation = right;
             umbrellaUp = false;
             umbrellaDown = false;
             umbrellaLeft = false;
             umbrellaRight = true;
+            ChangeUmbrellaSprite("Right");
+        }
+
+        if (Input.GetButton("UmbrellaRight") && !facingRight)
+        {
+            umbrellaUp = false;
+            umbrellaDown = false;
+            umbrellaLeft = false;
+            umbrellaRight = true;
+            ChangeUmbrellaSprite("Left");
         }
 
         if (Input.GetButton("UmbrellaDown"))
@@ -307,16 +330,25 @@ public class ConnorPlayerController : MonoBehaviour
             umbrellaDown = true;
             umbrellaLeft = false;
             umbrellaRight = false;
-            umbrellaObject.transform.rotation = down;
+            ChangeUmbrellaSprite("Down");
         }
 
-        if (Input.GetButton("UmbrellaLeft"))
+        if (Input.GetButton("UmbrellaLeft") && facingRight)
         {
-            umbrellaObject.transform.rotation = left;
             umbrellaUp = false;
             umbrellaDown = false;
             umbrellaLeft = true;
             umbrellaRight = false;
+            ChangeUmbrellaSprite("Left");
+        }
+
+        if (Input.GetButton("UmbrellaLeft") && !facingRight)
+        {
+            umbrellaUp = false;
+            umbrellaDown = false;
+            umbrellaLeft = true;
+            umbrellaRight = false;
+            ChangeUmbrellaSprite("Right");
         }
     }
 
@@ -352,5 +384,35 @@ public class ConnorPlayerController : MonoBehaviour
             //Will only be called if the player is invincible (check the RemoveLivesFromPlayer function in the GameControllerScript).
             GameControllerScript.instance.RemoveLivesFromPlayer(1);
         }
+    }
+
+    void ChangeUmbrellaSprite(string direction)
+    {
+        SpriteRenderer spriteDirection = umbrellaObject.GetComponent<SpriteRenderer>();
+        int index = 0;
+        string dir = direction;
+        switch (dir)
+        {
+            case ("Right"): index = 0;
+                break;
+            case ("Up"): index = 1;
+                break;
+            case ("Left"): index = 2;
+                break;
+            case ("Down"): index = 3; 
+                break;
+        }
+        spriteDirection.sprite = spriteArray[index];
+        if (umbrella)
+        {
+            spriteDirection.sprite = spriteArray[index + 4];
+        }
+    }
+    void UpdateSprite()
+    {
+        if (umbrellaRight) { ChangeUmbrellaSprite("Right"); }
+        if (umbrellaUp) { ChangeUmbrellaSprite("Up"); }
+        if (umbrellaLeft) { ChangeUmbrellaSprite("Left"); }
+        if (umbrellaDown) { ChangeUmbrellaSprite("Down"); }
     }
 }

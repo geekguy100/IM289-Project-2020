@@ -95,18 +95,18 @@ TextureImporter:
       name: PlayerIdleCycle_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 88
-        height: 139
+        x: 3
+        y: 3
+        width: 97
+        height: 148
       alignment: 9
-      pivot: {x: 0.53079027, y: 0.925601}
+      pivot: {x: 0.53287387, y: 0.92096937}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2db69d4324e31e4a8e14bf7b176d3b2
+      spriteID: 683272855c7acc84c9b478daaf9a086b
       internalID: -2412996612321054188
       vertices: []
       indices: 
@@ -116,18 +116,18 @@ TextureImporter:
       name: PlayerIdleCycle_1
       rect:
         serializedVersion: 2
-        x: 116
-        y: 0
-        width: 80
-        height: 139
+        x: 118
+        y: 3
+        width: 90
+        height: 148
       alignment: 9
-      pivot: {x: 0.4266161, y: 0.93372315}
+      pivot: {x: 0.4236879, y: 0.91931194}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f94cf66aa0ad5434881058db6f6d8cfd
+      spriteID: e8e40d500ecf8c945a6d070140465a13
       internalID: -2501913417140440427
       vertices: []
       indices: 
