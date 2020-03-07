@@ -8,6 +8,7 @@ TagManager:
   - up
   - right
   - left
+  - water
   layers:
   - Default
   - TransparentFX
