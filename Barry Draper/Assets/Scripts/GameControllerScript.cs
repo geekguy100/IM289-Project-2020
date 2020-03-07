@@ -50,13 +50,6 @@ public class GameControllerScript : MonoBehaviour
         UpdateLives();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Gets the "cheat" inputs to help with prototype debugging.
-        Cheats();
-    }
-
     public void RemoveLivesFromPlayer(int livesToRemove)
     {
         if (invincible)
@@ -73,9 +66,12 @@ public class GameControllerScript : MonoBehaviour
 
         if(playerLives <= 0 && playerAlive)
         {
+            //TODO: play a game over SFX.
             print("*You are dead, de-de-dead.*");
             playerAlive = false;
         }
+
+        //TODO: play a player hit SFX.
 
         Invoke("RemoveInvincibility", invincibilityTime);
     }
@@ -83,36 +79,5 @@ public class GameControllerScript : MonoBehaviour
     void RemoveInvincibility()
     {
         invincible = false;
-    }
-
-    /// <summary>
-    /// For prototype presentation so if anything goes wrong we can reset.
-    /// </summary>
-    void Cheats()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            transform.position = new Vector3(-9.0f, 3.0f, 0f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            transform.position = new Vector3(21.0f, -5.0f, 0f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            GameObject.Find("Test Box").transform.position = new Vector3(51.0f, -5.0f, 0.0f);
-        }
-
-        if (Input.GetKey(KeyCode.R))
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Sample Level");
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Application.Quit();
-        }
     }
 }

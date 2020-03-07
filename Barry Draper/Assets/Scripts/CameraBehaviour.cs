@@ -57,7 +57,7 @@ public class CameraBehaviour : MonoBehaviour
         }
 
         //If the 'U' key is pressed, handle free cam mode.
-        if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetButtonDown("Free Cam Mode"))
         {
             HandleFreeCamMode();
         }

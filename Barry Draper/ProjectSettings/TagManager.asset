@@ -9,6 +9,9 @@ TagManager:
   - right
   - left
   - water
+  - Umbrella
+  - Bullet
+  - Turret
   layers:
   - Default
   - TransparentFX
@@ -21,7 +24,7 @@ TagManager:
   - Ground
   - Bullets
   - Grabbable
-  - 
+  - Player
   - 
   - 
   - 

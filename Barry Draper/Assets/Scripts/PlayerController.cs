@@ -211,11 +211,13 @@ public class PlayerController : MonoBehaviour
         //Changing umbrella direction
         if (umbrellaRight)
         {
+            umbrellaObject.transform.rotation = left;
             umbrellaRight = false;
             umbrellaLeft = true;
         }
         else if (umbrellaLeft)
         {
+            umbrellaObject.transform.rotation = right;
             umbrellaLeft = false;
             umbrellaRight = true;
         }
@@ -230,7 +232,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void ActivateUmbrella()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && umbrella == false)
+        if(Input.GetButtonDown("Jump") && umbrella == false)
         {
             playerUmbrella.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
             umbrella = true;
@@ -248,7 +250,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(ResetDash());
             }
         }
-        else if(Input.GetKeyDown(KeyCode.Space) && umbrella == true)
+        else if(Input.GetButtonDown("Jump") && umbrella == true)
         {
             playerUmbrella.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
             umbrella = false;
@@ -291,7 +293,7 @@ public class PlayerController : MonoBehaviour
             umbrellaLeft = false;
             umbrellaRight = false;
         }
-
+        else
         if(Input.GetButton("UmbrellaRight"))
         {
             umbrellaObject.transform.rotation = right;
@@ -300,7 +302,7 @@ public class PlayerController : MonoBehaviour
             umbrellaLeft = false;
             umbrellaRight = true;
         }
-
+        else
         if(Input.GetButton("UmbrellaDown"))
         {
             umbrellaUp = false;
@@ -309,7 +311,7 @@ public class PlayerController : MonoBehaviour
             umbrellaRight = false;
             umbrellaObject.transform.rotation = down;
         }
-
+        else
         if (Input.GetButton("UmbrellaLeft"))
         {
             umbrellaObject.transform.rotation = left;
@@ -323,12 +325,12 @@ public class PlayerController : MonoBehaviour
     void HandleGrabbing(Rigidbody2D obj)
     {
         //If the player presses 'F' and the object is NOT already grabbed, freeze it and update its movement to move with the player.
-        if (Input.GetKeyDown(KeyCode.F) && !objectGrabbed)
+        if (Input.GetButtonDown("Grab Object") && !objectGrabbed)
         {
             obj.constraints = RigidbodyConstraints2D.FreezeAll;
             objectGrabbed = true;
         }
-        else if (Input.GetKeyDown(KeyCode.F) && objectGrabbed)
+        else if (Input.GetButtonDown("Grab Object") && objectGrabbed)
         {
             obj.constraints = RigidbodyConstraints2D.None;
             objectGrabbed = false;
