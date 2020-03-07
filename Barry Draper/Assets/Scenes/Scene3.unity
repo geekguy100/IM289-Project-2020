@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -210,80 +210,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 2a662a15af3bd16419ee8ea40a22e24e, type: 2}
     - target: {fileID: 8251297361140155603, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.034
-      objectReference: {fileID: 0}
-    - target: {fileID: 8251297361140155603, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.002
-      objectReference: {fileID: 0}
-    - target: {fileID: 8251297362413062978, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: playerUmbrella
-      value: 
-      objectReference: {fileID: 1505983076}
-    - target: {fileID: 8251297362413062978, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: umbrellaObject
-      value: 
-      objectReference: {fileID: 1505983076}
-    - target: {fileID: 8251297362413062981, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.4358308
-      objectReference: {fileID: 0}
-    - target: {fileID: 8251297362413062981, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.2213147
-      objectReference: {fileID: 0}
-    - target: {fileID: 8251297362413062981, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8251297362413062981, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8251297362413062981, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8251297362413062981, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8251297362413062981, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8251297362413062981, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8251297362413062981, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8251297362413062981, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8251297362413062981, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8251297362413062985, guid: 536c0d8adaed8e241b2be6a2e6c2d725,
         type: 3}
       propertyPath: m_Name
@@ -402,8 +328,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -421,8 +347,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
@@ -473,8 +399,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8d10ee37718fdd4eb0e3505417c1c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   playerLives: 3
   playerAlive: 1
   invincibilityTime: 2
@@ -527,7 +453,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -624,8 +550,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_IgnoreReversedGraphics: 1
   m_BlockingObjects: 0
   m_BlockingMask:
@@ -641,8 +567,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
