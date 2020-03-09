@@ -15,11 +15,13 @@ public class MenuBehavior : MonoBehaviour
 {
     public GameObject titleScreen;
     public GameObject levelSelect;
+    public GameObject levelOne;
 
     private void Start()
     {
         titleScreen.SetActive(true);
         levelSelect.SetActive(false);
+        levelOne.SetActive(false);
     }
 
     /// <summary>

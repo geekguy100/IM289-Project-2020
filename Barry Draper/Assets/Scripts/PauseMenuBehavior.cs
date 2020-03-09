@@ -1,5 +1,5 @@
 /*****************************************************************************
-// File Name : MenuBehavior.cs
+// File Name : PauseMenuBehavior.cs
 // Author : Robert Lee
 // Creation Date : March 4, 2020
 //
