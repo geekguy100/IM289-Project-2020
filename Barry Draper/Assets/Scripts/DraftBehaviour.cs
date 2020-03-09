@@ -24,13 +24,16 @@ public class DraftBehaviour : MonoBehaviour
 
         if (col.gameObject.CompareTag("Player"))
         {
-            PlayerController pc = col.gameObject.GetComponent<PlayerController>();
+            PlayerController pc = col.gameObject.GetComponent
+                                        <PlayerController>();
 
-            //If the player's umbrella is NOT open, don't bother applying a force to him.
+            //If the player's umbrella is NOT open, don't bother applying
+            //a force to him.
             if (!pc.umbrella)
                 return;
 
-            //Making sure the direction of the force and the direction of the player's umbrella align.
+            //Making sure the direction of the force and the direction of the
+            //player's umbrella align.
             if (gameObject.tag == "up" && pc.umbrellaUp)
             {
                 ApplyForce(rb);
