@@ -27,27 +27,30 @@ public class WaterBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(newWater.activeSelf == false)
+        PlayerController pc = col.gameObject.GetComponent
+                                       <PlayerController>();
+
+        Rigidbody2D rb2d = col.gameObject.GetComponent<Rigidbody2D>();
+
+        if (newWater && newWater.activeSelf == false && pc && pc.umbrellaDown)
         {
             newWater.SetActive(true);
         }
 
         else if (col.gameObject.CompareTag("Player"))
         {
-           
 
-            PlayerController pc = col.gameObject.GetComponent
-                                        <PlayerController>();
-
-            Rigidbody2D rb2d = col.gameObject.GetComponent<Rigidbody2D>();
-
-            if (pc.umbrellaDown)
+            if (pc && pc.umbrellaDown && rb2d && pc.umbrella)
             {
-                isNotTrigger();
-
+                 
                 rb2d.AddForce(Vector2.up * hoverSpeed, ForceMode2D.Force);
 
-                if(created == false)
+                rb2d.constraints = RigidbodyConstraints2D.FreezePositionY |
+                                      RigidbodyConstraints2D.FreezeRotation;
+
+
+
+                if (created == false)
                 {
                     newWater = Instantiate(waterParticle, new Vector3
                     (transform.position.x, transform.position.y,
@@ -62,16 +65,6 @@ public class WaterBehaviour : MonoBehaviour
                 created = true;
             }
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        PlayerController pc = col.gameObject.GetComponent
-                                     <PlayerController>();
-
-            newWater.SetActive(false);
-            isTrigger();
-        
     }
 
 
@@ -89,6 +82,8 @@ public class WaterBehaviour : MonoBehaviour
             {
                 isTrigger();
                 pc.moveSpeed = 2;
+                rb2d.constraints = 0;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
 
             if(pc.umbrellaDown)
@@ -98,14 +93,30 @@ public class WaterBehaviour : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        Rigidbody2D rb2d = col.gameObject.GetComponent<Rigidbody2D>();
+
+        if(rb2d)
+        {
+            rb2d.constraints = 0;
+            rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+            Invoke("removeWater", 1.5f);
+        }
+    }
+
     void isTrigger()
     {
         gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
     }
 
-
     void isNotTrigger()
     {
         gameObject.GetComponent<PolygonCollider2D>().isTrigger = false;
+    }
+
+    void removeWater()
+    {
+        newWater.SetActive(false);
     }
 }
