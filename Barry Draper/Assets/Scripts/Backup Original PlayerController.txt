@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     [Header("Game Objects")]                                /*CD*/
     [Tooltip("The sprite for the player's umbrella.")]      /*CD*/
     public GameObject umbrellaObject;
+    public GameObject playerUmbrella;
 
 
     //Is the players umbrella is activated or not
@@ -73,32 +74,18 @@ public class PlayerController : MonoBehaviour
     public Transform objHoldPos;
     public Transform rayStart;
     private Rigidbody2D theObjectInRange;
-    public BoxCollider2D umbrellaShieldTrigger;
-    public Vector2 shieldOffsetHigh;
-    public Vector2 shieldOffsetLow;
 
     //The offset of where the ray will be casted in relation to the player's position.
     public Vector3 grabOffset = Vector3.zero;
+
     private bool objectGrabbed = false;
 
-    [Header("Animation Attributes")]
-    private Animator anim;
-    public Sprite[] spriteArray = new Sprite[8];
-    /* 0 = Col Right    |   4 = Act Right
-     * 1 = Col Up       |   5 = Act Up
-     * 2 = Col Left     |   6 = Act Left
-     * 3 = Col Down     |   7 = Act Down
-    */
-
-    GameObject umbrellaSprite;
-    private int currentIndex;
+    //private Animator anim;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-
-        umbrellaShieldTrigger.enabled = false;
+        //anim = GetComponent<Animator>();
     }
 
     //Used to visualize the box cast used to check if the player is grounded. KG
@@ -107,8 +94,11 @@ public class PlayerController : MonoBehaviour
     {
         // Draw a semitransparent red cube at the groundPosition's position. KG
         Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(groundPosition.position, new Vector2(transform.localScale.x, boxCastYScale));
+        Gizmos.DrawCube(groundPosition.position, new Vector2 (transform.localScale.x, boxCastYScale));
     }
+
+
+
 
 
 
@@ -122,11 +112,10 @@ public class PlayerController : MonoBehaviour
         //based on if the player is grounded or not. KG
         float xMov = Input.GetAxis("Horizontal");
 
-        //Updating player's direction (which direction he is moving).
+        //Updating player's direction (which direction he is facing).
         if ((xMov > 0 && !facingRight) || (xMov < 0 && facingRight))
-        {
             Flip();
-        }
+
 
         //Checking if the player is grounded.
         isGrounded = Physics2D.BoxCast(groundPosition.position, new Vector2(Mathf.Abs(transform.localScale.x), boxCastYScale), 0f, Vector3.zero, 0f, whatIsGround);
@@ -137,11 +126,13 @@ public class PlayerController : MonoBehaviour
         else
             newPos.x = xMov * airSpeed;
 
-        anim.SetFloat("xMov", xMov);
-        anim.SetBool("isGrounded", isGrounded);
+        //anim.SetFloat("xMov", xMov);
+        //anim.SetBool("isGrounded", isGrounded);
 
         ActivateUmbrella();
         PointUmbrella();
+
+
 
 
         //Checking to see if the player is in range of a grabbable object.
@@ -160,6 +151,7 @@ public class PlayerController : MonoBehaviour
                 HandleGrabbing(theObjectInRange);
             }
         }
+
     }
 
     private float minYVelWithUmbrella = -4.9f;
@@ -196,39 +188,11 @@ public class PlayerController : MonoBehaviour
             Vector2 vel = rb.velocity;
             vel.x = 0;
             rb.velocity = vel;
+
+            //print("Changed the x velocity");
         }
 
         rb.position = pos;
-    }
-
-    private void UpdateObjectHoldPosition(bool toTheRight)
-    {
-        Vector3 pos = objHoldPos.localPosition;
-        Vector3 pos2 = rayStart.localPosition;
-
-        if (toTheRight)
-        {
-            if (pos.x < 0)
-                pos.x *= -1;
-            if (pos2.x < 0)
-            {
-                pos2.x *= -1;
-                grabDistance *= -1;
-            }
-        }
-        else
-        {
-            if (pos.x > 0)
-                pos.x *= -1;
-            if (pos2.x > 0)
-            {
-                pos2.x *= -1;
-                grabDistance *= -1;
-            }
-        }
-
-        objHoldPos.localPosition = pos;
-        rayStart.localPosition = pos2;
     }
 
     /// <summary>
@@ -236,50 +200,26 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Flip()
     {
+        Vector3 rot = transform.rotation.eulerAngles;
+        rot.y += 180;
+
+        //Invert the boolean.
         facingRight = !facingRight;
-        GetComponent<SpriteRenderer>().flipX = !facingRight; //Puts the legs in the right direction.
 
-        SpriteRenderer bustSpriteRenderer = umbrellaObject.GetComponent<SpriteRenderer>();
-        
-        if (facingRight && umbrellaRight)
+        transform.rotation = Quaternion.Euler(rot);
+
+        //Changing umbrella direction
+        if (umbrellaRight)
         {
-            ChangeUmbrellaSprite("Right");
-            bustSpriteRenderer.flipX = false;
-            UpdateObjectHoldPosition(true);
-
-            umbrellaShieldTrigger.offset = shieldOffsetLow;
-            print("1");
+            umbrellaObject.transform.rotation = left;
+            umbrellaRight = false;
+            umbrellaLeft = true;
         }
-        else if (!facingRight && umbrellaRight)
+        else if (umbrellaLeft)
         {
-            ChangeUmbrellaSprite("Left");
-            bustSpriteRenderer.flipX = true;
-            UpdateObjectHoldPosition(false);
-
-            umbrellaShieldTrigger.offset = shieldOffsetHigh;
-            print("2");
-        }
-        else if (facingRight && umbrellaLeft)
-        {
-            ChangeUmbrellaSprite("Left");
-            bustSpriteRenderer.flipX = false;
-            UpdateObjectHoldPosition(true);
-
-            Vector2 shieldOffset = shieldOffsetHigh;
-            shieldOffset.x = -shieldOffset.x;
-            umbrellaShieldTrigger.offset = shieldOffset;
-            print("3");
-        }
-        else if (!facingRight && umbrellaLeft)
-        {
-            ChangeUmbrellaSprite("Right");
-            bustSpriteRenderer.flipX = true;
-            UpdateObjectHoldPosition(false);
-
-            Vector2 shieldOffset = shieldOffsetLow;
-            shieldOffset.x = -shieldOffset.x;
-            umbrellaShieldTrigger.offset = shieldOffset;
-            print("4");
+            umbrellaObject.transform.rotation = right;
+            umbrellaLeft = false;
+            umbrellaRight = true;
         }
     }
 
@@ -292,13 +232,12 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void ActivateUmbrella()
     {
-        if (Input.GetButtonDown("Jump") && umbrella == false)
+        if(Input.GetButtonDown("Jump") && umbrella == false)
         {
+            playerUmbrella.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
             umbrella = true;
-            OpenUmbrellaSprite();
-            umbrellaShieldTrigger.enabled = true;
 
-            if (umbrellaLeft && canDash)
+            if(umbrellaLeft && canDash)
             {
                 rb.AddForce(new Vector2(1.0f, 0.0f) * dashForce, ForceMode2D.Impulse);
                 StopCoroutine(ResetDash());
@@ -311,11 +250,10 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(ResetDash());
             }
         }
-        else if (Input.GetButtonDown("Jump") && umbrella == true)
+        else if(Input.GetButtonDown("Jump") && umbrella == true)
         {
+            playerUmbrella.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
             umbrella = false;
-            OpenUmbrellaSprite();
-            umbrellaShieldTrigger.enabled = false;
         }
     }
 
@@ -323,7 +261,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ResetDash()
     {
-        print("Dashing: Starting " + dashNum);
+        print("Starting: " + dashNum);
         dashNum++;
 
         if (dashNum > 1)
@@ -336,7 +274,7 @@ public class PlayerController : MonoBehaviour
         canDash = false;
         yield return new WaitForSeconds(dashCooldownTime);
         canDash = true;
-        print("Dashing: finishing");
+        print("finishing");
         dashNum--;
     }
 
@@ -347,82 +285,40 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void PointUmbrella()
     {
-        SpriteRenderer bustSpriteRenderer = umbrellaObject.GetComponent<SpriteRenderer>();
-
-        if (Input.GetButtonDown("UmbrellaRight") && facingRight)
+        if (Input.GetButton("UmbrellaUp"))
         {
-            umbrellaUp = false;
-            umbrellaDown = false;
-            umbrellaLeft = false;
-            umbrellaRight = true;
-            ChangeUmbrellaSprite("Right");
-            bustSpriteRenderer.flipX = false;
-
-            umbrellaShieldTrigger.enabled = true;
-            umbrellaShieldTrigger.offset = shieldOffsetLow;
-        }
-        else if (Input.GetButtonDown("UmbrellaRight") && !facingRight)
-        {
-            umbrellaUp = false;
-            umbrellaDown = false;
-            umbrellaLeft = false;
-            umbrellaRight = true;
-            ChangeUmbrellaSprite("Left");
-            bustSpriteRenderer.flipX = true;
-
-            umbrellaShieldTrigger.enabled = true;
-            umbrellaShieldTrigger.offset = shieldOffsetHigh;
-        }
-        else if (Input.GetButtonDown("UmbrellaLeft") && facingRight)
-        {
-            umbrellaUp = false;
-            umbrellaDown = false;
-            umbrellaLeft = true;
-            umbrellaRight = false;
-            ChangeUmbrellaSprite("Left");
-            bustSpriteRenderer.flipX = false;
-
-            umbrellaShieldTrigger.enabled = true;
-
-            Vector2 shieldOffset = shieldOffsetHigh;
-            shieldOffset.x = -shieldOffset.x;
-            umbrellaShieldTrigger.offset = shieldOffset;
-        }
-        else if (Input.GetButtonDown("UmbrellaLeft") && !facingRight)
-        {
-            umbrellaUp = false;
-            umbrellaDown = false;
-            umbrellaLeft = true;
-            umbrellaRight = false;
-            ChangeUmbrellaSprite("Right");
-            bustSpriteRenderer.flipX = true;
-
-            umbrellaShieldTrigger.enabled = true;
-            Vector2 shieldOffset = shieldOffsetLow;
-            shieldOffset.x = -shieldOffset.x;
-            umbrellaShieldTrigger.offset = shieldOffset;
-        }
-        else if (Input.GetButtonDown("UmbrellaUp"))
-        {
+            umbrellaObject.transform.rotation = up;
             umbrellaUp = true;
             umbrellaDown = false;
             umbrellaLeft = false;
             umbrellaRight = false;
-            ChangeUmbrellaSprite("Up");
-            bustSpriteRenderer.flipX = false;
-
-            umbrellaShieldTrigger.enabled = false;
         }
-        else if (Input.GetButtonDown("UmbrellaDown"))
+        else
+        if(Input.GetButton("UmbrellaRight"))
+        {
+            umbrellaObject.transform.rotation = right;
+            umbrellaUp = false;
+            umbrellaDown = false;
+            umbrellaLeft = false;
+            umbrellaRight = true;
+        }
+        else
+        if(Input.GetButton("UmbrellaDown"))
         {
             umbrellaUp = false;
             umbrellaDown = true;
             umbrellaLeft = false;
             umbrellaRight = false;
-            ChangeUmbrellaSprite("Down");
-            bustSpriteRenderer.flipX = false;
-
-            umbrellaShieldTrigger.enabled = false;
+            umbrellaObject.transform.rotation = down;
+        }
+        else
+        if (Input.GetButton("UmbrellaLeft"))
+        {
+            umbrellaObject.transform.rotation = left;
+            umbrellaUp = false;
+            umbrellaDown = false;
+            umbrellaLeft = true;
+            umbrellaRight = false;
         }
     }
 
@@ -453,57 +349,10 @@ public class PlayerController : MonoBehaviour
     {
         // If the collided object is a spike trap, reduce player's lives
         //and update UI.
-        if (collision.gameObject.tag == "Spikes")
+        if(collision.gameObject.tag == "Spikes")
         {
             //Will only be called if the player is invincible (check the RemoveLivesFromPlayer function in the GameControllerScript).
             GameControllerScript.instance.RemoveLivesFromPlayer(1);
         }
-    }
-
-    void ChangeUmbrellaSprite(string direction)
-    {
-        SpriteRenderer spriteDirection = umbrellaObject.GetComponent<SpriteRenderer>();
-        int index = 0;
-        string dir = direction;
-        switch (dir)
-        {
-            case ("Right"):
-                index = 0;
-                break;
-            case ("Up"):
-                index = 1;
-                break;
-            case ("Left"):
-                index = 2;
-                break;
-            case ("Down"):
-                index = 3;
-                break;
-        }
-        spriteDirection.sprite = spriteArray[index];
-
-        if (umbrella)
-        {
-            index += 4;
-            spriteDirection.sprite = spriteArray[index];
-        }
-
-
-        currentIndex = index;
-    }
-
-    void OpenUmbrellaSprite()
-    {
-        SpriteRenderer spriteDirection = umbrellaObject.GetComponent<SpriteRenderer>();
-        if (umbrella)
-        {
-            currentIndex += 4;
-        }
-        else if (!umbrella)
-        {
-            currentIndex -= 4;
-        }
-
-        spriteDirection.sprite = spriteArray[currentIndex];
     }
 }

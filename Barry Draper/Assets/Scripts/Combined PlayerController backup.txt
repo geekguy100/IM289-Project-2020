@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     [Header("Game Objects")]                                /*CD*/
     [Tooltip("The sprite for the player's umbrella.")]      /*CD*/
     public GameObject umbrellaObject;
+    //public GameObject playerUmbrella;
 
 
     //Is the players umbrella is activated or not
@@ -73,15 +74,12 @@ public class PlayerController : MonoBehaviour
     public Transform objHoldPos;
     public Transform rayStart;
     private Rigidbody2D theObjectInRange;
-    public BoxCollider2D umbrellaShieldTrigger;
-    public Vector2 shieldOffsetHigh;
-    public Vector2 shieldOffsetLow;
 
     //The offset of where the ray will be casted in relation to the player's position.
     public Vector3 grabOffset = Vector3.zero;
+
     private bool objectGrabbed = false;
 
-    [Header("Animation Attributes")]
     private Animator anim;
     public Sprite[] spriteArray = new Sprite[8];
     /* 0 = Col Right    |   4 = Act Right
@@ -97,8 +95,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
-        umbrellaShieldTrigger.enabled = false;
     }
 
     //Used to visualize the box cast used to check if the player is grounded. KG
@@ -160,6 +156,9 @@ public class PlayerController : MonoBehaviour
                 HandleGrabbing(theObjectInRange);
             }
         }
+
+
+
     }
 
     private float minYVelWithUmbrella = -4.9f;
@@ -240,46 +239,33 @@ public class PlayerController : MonoBehaviour
         GetComponent<SpriteRenderer>().flipX = !facingRight; //Puts the legs in the right direction.
 
         SpriteRenderer bustSpriteRenderer = umbrellaObject.GetComponent<SpriteRenderer>();
-        
-        if (facingRight && umbrellaRight)
+        if (umbrellaRight && facingRight)
         {
             ChangeUmbrellaSprite("Right");
             bustSpriteRenderer.flipX = false;
-            UpdateObjectHoldPosition(true);
 
-            umbrellaShieldTrigger.offset = shieldOffsetLow;
-            print("1");
+            UpdateObjectHoldPosition(true);
         }
-        else if (!facingRight && umbrellaRight)
+        else if (umbrellaRight && !facingRight)
         {
             ChangeUmbrellaSprite("Left");
             bustSpriteRenderer.flipX = true;
-            UpdateObjectHoldPosition(false);
 
-            umbrellaShieldTrigger.offset = shieldOffsetHigh;
-            print("2");
+            UpdateObjectHoldPosition(true);
         }
-        else if (facingRight && umbrellaLeft)
+        else if (umbrellaLeft && facingRight)
         {
             ChangeUmbrellaSprite("Left");
             bustSpriteRenderer.flipX = false;
-            UpdateObjectHoldPosition(true);
 
-            Vector2 shieldOffset = shieldOffsetHigh;
-            shieldOffset.x = -shieldOffset.x;
-            umbrellaShieldTrigger.offset = shieldOffset;
-            print("3");
+            UpdateObjectHoldPosition(false);
         }
-        else if (!facingRight && umbrellaLeft)
+        else if (umbrellaLeft && !facingRight)
         {
             ChangeUmbrellaSprite("Right");
             bustSpriteRenderer.flipX = true;
-            UpdateObjectHoldPosition(false);
 
-            Vector2 shieldOffset = shieldOffsetLow;
-            shieldOffset.x = -shieldOffset.x;
-            umbrellaShieldTrigger.offset = shieldOffset;
-            print("4");
+            UpdateObjectHoldPosition(false);
         }
     }
 
@@ -296,7 +282,6 @@ public class PlayerController : MonoBehaviour
         {
             umbrella = true;
             OpenUmbrellaSprite();
-            umbrellaShieldTrigger.enabled = true;
 
             if (umbrellaLeft && canDash)
             {
@@ -315,7 +300,6 @@ public class PlayerController : MonoBehaviour
         {
             umbrella = false;
             OpenUmbrellaSprite();
-            umbrellaShieldTrigger.enabled = false;
         }
     }
 
@@ -347,8 +331,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void PointUmbrella()
     {
-        SpriteRenderer bustSpriteRenderer = umbrellaObject.GetComponent<SpriteRenderer>();
-
         if (Input.GetButtonDown("UmbrellaRight") && facingRight)
         {
             umbrellaUp = false;
@@ -356,10 +338,6 @@ public class PlayerController : MonoBehaviour
             umbrellaLeft = false;
             umbrellaRight = true;
             ChangeUmbrellaSprite("Right");
-            bustSpriteRenderer.flipX = false;
-
-            umbrellaShieldTrigger.enabled = true;
-            umbrellaShieldTrigger.offset = shieldOffsetLow;
         }
         else if (Input.GetButtonDown("UmbrellaRight") && !facingRight)
         {
@@ -368,10 +346,7 @@ public class PlayerController : MonoBehaviour
             umbrellaLeft = false;
             umbrellaRight = true;
             ChangeUmbrellaSprite("Left");
-            bustSpriteRenderer.flipX = true;
-
-            umbrellaShieldTrigger.enabled = true;
-            umbrellaShieldTrigger.offset = shieldOffsetHigh;
+            Flip();
         }
         else if (Input.GetButtonDown("UmbrellaLeft") && facingRight)
         {
@@ -380,13 +355,7 @@ public class PlayerController : MonoBehaviour
             umbrellaLeft = true;
             umbrellaRight = false;
             ChangeUmbrellaSprite("Left");
-            bustSpriteRenderer.flipX = false;
-
-            umbrellaShieldTrigger.enabled = true;
-
-            Vector2 shieldOffset = shieldOffsetHigh;
-            shieldOffset.x = -shieldOffset.x;
-            umbrellaShieldTrigger.offset = shieldOffset;
+            Flip();
         }
         else if (Input.GetButtonDown("UmbrellaLeft") && !facingRight)
         {
@@ -395,12 +364,6 @@ public class PlayerController : MonoBehaviour
             umbrellaLeft = true;
             umbrellaRight = false;
             ChangeUmbrellaSprite("Right");
-            bustSpriteRenderer.flipX = true;
-
-            umbrellaShieldTrigger.enabled = true;
-            Vector2 shieldOffset = shieldOffsetLow;
-            shieldOffset.x = -shieldOffset.x;
-            umbrellaShieldTrigger.offset = shieldOffset;
         }
         else if (Input.GetButtonDown("UmbrellaUp"))
         {
@@ -409,9 +372,6 @@ public class PlayerController : MonoBehaviour
             umbrellaLeft = false;
             umbrellaRight = false;
             ChangeUmbrellaSprite("Up");
-            bustSpriteRenderer.flipX = false;
-
-            umbrellaShieldTrigger.enabled = false;
         }
         else if (Input.GetButtonDown("UmbrellaDown"))
         {
@@ -420,9 +380,6 @@ public class PlayerController : MonoBehaviour
             umbrellaLeft = false;
             umbrellaRight = false;
             ChangeUmbrellaSprite("Down");
-            bustSpriteRenderer.flipX = false;
-
-            umbrellaShieldTrigger.enabled = false;
         }
     }
 
@@ -505,5 +462,13 @@ public class PlayerController : MonoBehaviour
         }
 
         spriteDirection.sprite = spriteArray[currentIndex];
+    }
+
+    void UpdateSprite()
+    {
+        if (umbrellaRight) { ChangeUmbrellaSprite("Right"); }
+        if (umbrellaUp) { ChangeUmbrellaSprite("Up"); }
+        if (umbrellaLeft) { ChangeUmbrellaSprite("Left"); }
+        if (umbrellaDown) { ChangeUmbrellaSprite("Down"); }
     }
 }
