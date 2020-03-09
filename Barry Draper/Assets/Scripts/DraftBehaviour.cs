@@ -19,7 +19,7 @@ public class DraftBehaviour : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = col.gameObject.GetComponentInParent<Rigidbody2D>();
         //rb.AddForce(direction * force, ForceMode2D.Force);
 
         if (col.gameObject.CompareTag("Player"))
