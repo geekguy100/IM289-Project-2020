@@ -1573,7 +1573,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sample Level
+  m_Text: Level One
 --- !u!222 &1520019431
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1673,7 +1673,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Sample Level
+          m_StringArgument: First Level
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1582439698
