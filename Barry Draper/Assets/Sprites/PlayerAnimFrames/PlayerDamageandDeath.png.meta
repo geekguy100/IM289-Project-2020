@@ -1,0 +1,415 @@
+fileFormatVersion: 2
+guid: 687bb654889eff34c9ae64fe962d5dff
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9217704143900101876
+    second: PlayerDamageandDeath_0
+  - first:
+      213: 1362077247549743063
+    second: PlayerDamageandDeath_1
+  - first:
+      213: -7014020873649806106
+    second: PlayerDamageandDeath_2
+  - first:
+      213: 5132912829320707095
+    second: PlayerDamageandDeath_3
+  - first:
+      213: -1372159144058655228
+    second: PlayerDamageandDeath_4
+  - first:
+      213: 4563802346480855687
+    second: PlayerDamageandDeath_5
+  - first:
+      213: 4542300843310200585
+    second: PlayerDamageandDeath_6
+  - first:
+      213: -4317084536718015947
+    second: PlayerDamageandDeath_7
+  - first:
+      213: -6708808251707167871
+    second: PlayerDamageandDeath_8
+  - first:
+      213: -6780037054425326748
+    second: PlayerDamageandDeath_9
+  - first:
+      213: -7524442694471254096
+    second: PlayerDamageandDeath_10
+  - first:
+      213: 3518321491570988014
+    second: PlayerDamageandDeath_11
+  - first:
+      213: -6512066540853446222
+    second: PlayerDamageandDeath_12
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PlayerDamageandDeath_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 714
+        width: 112
+        height: 362
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e0c8169ac1b81445b4924a56b7961c6
+      internalID: -9217704143900101876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDamageandDeath_1
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 714
+        width: 113
+        height: 362
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0997fa3373c7a9042aca8b609c4c0f5c
+      internalID: 1362077247549743063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDamageandDeath_2
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 714
+        width: 125
+        height: 353
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d20336e15f076ac468b242285086f927
+      internalID: -7014020873649806106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDamageandDeath_3
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 713
+        width: 124
+        height: 353
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a77c48071f5f9946962ab8e1bc20c98
+      internalID: 5132912829320707095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDamageandDeath_4
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 714
+        width: 121
+        height: 332
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 136274c6d02c00644bc1050921164d52
+      internalID: -1372159144058655228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDamageandDeath_5
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 426
+        width: 231
+        height: 237
+      alignment: 9
+      pivot: {x: 0.2, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61163be3f75bc434082005d16210af86
+      internalID: 4563802346480855687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDamageandDeath_6
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 427
+        width: 239
+        height: 174
+      alignment: 9
+      pivot: {x: 0.2, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d81d705c5893cb84d8c5f6ce9a8e3f51
+      internalID: 4542300843310200585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDamageandDeath_7
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 426
+        width: 233
+        height: 174
+      alignment: 9
+      pivot: {x: 0.2, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e076c6c885c5584c9472d48d4e5be21
+      internalID: -4317084536718015947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDamageandDeath_8
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 425
+        width: 234
+        height: 175
+      alignment: 9
+      pivot: {x: 0.2, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45e15e2c55627d144bf5e445f28246cd
+      internalID: -6708808251707167871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDamageandDeath_9
+      rect:
+        serializedVersion: 2
+        x: 979
+        y: 426
+        width: 236
+        height: 177
+      alignment: 9
+      pivot: {x: 0.2, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63e0d0f0b978bbb4da934e533dd9b69d
+      internalID: -6780037054425326748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDamageandDeath_10
+      rect:
+        serializedVersion: 2
+        x: 1220
+        y: 422
+        width: 233
+        height: 176
+      alignment: 9
+      pivot: {x: 0.2, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eb1c6e5861119c41b60510dc4207c46
+      internalID: -7524442694471254096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDamageandDeath_11
+      rect:
+        serializedVersion: 2
+        x: 1460
+        y: 424
+        width: 220
+        height: 158
+      alignment: 9
+      pivot: {x: 0.18691517, y: 0.8}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 535d828843a132544887e44a195403df
+      internalID: 3518321491570988014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDamageandDeath_12
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 423
+        width: 291
+        height: 158
+      alignment: 9
+      pivot: {x: 0.2, y: 0.8}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63c0ccace0d239c4381a6f9c3848a58f
+      internalID: -6512066540853446222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
