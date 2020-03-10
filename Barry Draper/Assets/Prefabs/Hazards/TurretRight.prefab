@@ -141,10 +141,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioType: 2
-  audioClips:
+  sfxClips:
   - {fileID: 8300000, guid: 5aab15be2e0aeec49820f1b43d322aca, type: 3}
   - {fileID: 8300000, guid: cc4a5f9219d0bdd44bb9878c69d62651, type: 3}
   - {fileID: 8300000, guid: 455792a93cabe1f44a9ff389b24b44fe, type: 3}
+  intro: {fileID: 0}
+  loop: {fileID: 0}
 --- !u!1 &6613824408461919426
 GameObject:
   m_ObjectHideFlags: 0
