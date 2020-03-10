@@ -105,6 +105,8 @@ public class PlayerController : MonoBehaviour
         audioController = GetComponentInChildren<AudioController>();
 
         umbrellaShieldTrigger.enabled = false;
+
+        deathAnim.SetActive(false);
     }
 
     //Used to visualize the box cast used to check if the player is grounded. KG
@@ -116,13 +118,28 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawCube(groundPosition.position, new Vector2(transform.localScale.x, boxCastYScale));
     }
 
-
+    private bool deathAnimRan = false;
 
     void Update()
     {
         //If the player is not alive don't bother running the code in this function.
-        if (!GameControllerScript.instance.playerAlive)
+        if (!GameControllerScript.instance.playerAlive && !deathAnimRan)
+        {
+            death();
             return;
+        }
+        else if (!GameControllerScript.instance.playerAlive)
+            return;
+
+
+
+        if (Input.GetKey("`"))
+        {
+            death();
+        }
+
+
+
 
         //Updating the newPos x value (where the player will move to)
         //based on if the player is grounded or not. KG
@@ -531,5 +548,16 @@ public class PlayerController : MonoBehaviour
         }
 
         spriteDirection.sprite = spriteArray[currentIndex];
+    }
+
+    public GameObject deathAnim;
+    void death()
+    {
+        GameControllerScript.instance.playerAlive = false;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        deathAnim.SetActive(true);
+        umbrellaObject.SetActive(false);
+
+        deathAnimRan = true;
     }
 }

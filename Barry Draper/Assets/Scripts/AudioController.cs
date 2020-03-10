@@ -21,7 +21,7 @@ public class AudioController : MonoBehaviour
 
 
     public enum PlayerSFX {playerWalk, pickupBox, dropBox, openUmbrella, closeUmbrella};
-    public enum GameManagerSFX { playerHit };
+    public enum GameManagerSFX { playerHit, gameOver };
     public enum TurretSFX { targetFound, shoot, die};
     public AudioClip[] sfxClips;
 
@@ -116,7 +116,17 @@ public class AudioController : MonoBehaviour
         audioSource.Play();
     }
 
+    public void StopBackgroundMusic()
+    {
+        if (audioType != Type.backgroundMusic)
+        {
+            Debug.LogWarning("Only the child of the GameManager, BG Music Source, has the right to stop the background music from playing.");
+            return;
+        }
 
+        audioSource.Stop();
+
+    }
 
 
 

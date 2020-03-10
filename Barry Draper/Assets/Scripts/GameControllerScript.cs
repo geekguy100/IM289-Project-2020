@@ -56,7 +56,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void RemoveLivesFromPlayer(int livesToRemove)
     {
-        if (invincible)
+        if (invincible || !playerAlive)
             return;
 
         playerLives -= livesToRemove;
@@ -75,6 +75,9 @@ public class GameControllerScript : MonoBehaviour
             //TODO: play a game over SFX.
             print("*You are dead, de-de-dead.*");
             playerAlive = false;
+
+            transform.GetChild(1).GetComponent<AudioController>().StopBackgroundMusic(); //Stop the background music.
+            audioController.PlayClip(AudioController.GameManagerSFX.gameOver);
         }
 
         Invoke("RemoveInvincibility", invincibilityTime);
