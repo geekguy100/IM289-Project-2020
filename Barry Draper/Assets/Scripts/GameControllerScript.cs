@@ -32,6 +32,8 @@ public class GameControllerScript : MonoBehaviour
     [Tooltip("UI text to display lives count.")]
     public Text livesText;
 
+    private AudioController audioController;
+
     private void Awake()
     {
         if (instance == null)
@@ -40,6 +42,8 @@ public class GameControllerScript : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+
+        audioController = GetComponentInChildren<AudioController>();
     }
 
     // Start is called before the first frame update
@@ -55,7 +59,9 @@ public class GameControllerScript : MonoBehaviour
         if (invincible)
             return;
 
-        playerLives--;
+        playerLives -= livesToRemove;
+        audioController.PlayClip(AudioController.GameManagerSFX.playerHit);
+
         invincible = true;
         UpdateLives();
     }
@@ -70,8 +76,6 @@ public class GameControllerScript : MonoBehaviour
             print("*You are dead, de-de-dead.*");
             playerAlive = false;
         }
-
-        //TODO: play a player hit SFX.
 
         Invoke("RemoveInvincibility", invincibilityTime);
     }

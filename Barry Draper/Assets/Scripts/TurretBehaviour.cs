@@ -41,8 +41,12 @@ public class TurretBehaviour : MonoBehaviour
 
     private Quaternion defRot;
 
+    AudioController audioController;
+    private bool targetFoundPlayed = false;
+
     private void Start()
     {
+        audioController = transform.parent.parent.GetComponentInChildren<AudioController>();
         defRot = transform.parent.localRotation;
     }
 
@@ -83,6 +87,11 @@ public class TurretBehaviour : MonoBehaviour
             {
                 //TODO: play an in-range SFX.
                 currentWarmupTime += Time.deltaTime;
+                if (!targetFoundPlayed)
+                {
+                    audioController.PlayClip(AudioController.TurretSFX.targetFound);
+                    targetFoundPlayed = true;
+                }
 
                 if (currentWarmupTime >= warmUpTime)
                 {
@@ -110,6 +119,7 @@ public class TurretBehaviour : MonoBehaviour
             {
                 canShoot = false;
                 currentShootTime = 0f;
+                targetFoundPlayed = false;
             }
         }
     }
@@ -126,5 +136,7 @@ public class TurretBehaviour : MonoBehaviour
         //TODO: Play a gun SFX.
         Instantiate(bullet, bulletSpawnPos.position, shootRot);
         currentShootTime = 0f;
+
+        audioController.PlayClip(AudioController.TurretSFX.shoot);
     }
 }
