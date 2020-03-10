@@ -1,17 +1,15 @@
 /*****************************************************************************
 // File Name :         PlayerController.cs
-// Author :            Connor Riley (57%):
+// Author :            Connor Riley (60%):
                             Implemented umbrella behaviours such as rotation,
                             checking which direction the umbrella is in,
                             changing air speed depending on what orientation
                             the umbrella is in the air.
-                       Kyle Grenier (28%):
+                       Kyle Grenier (30%):
                              Implemented character movement, getting
                              important components on the character.
-                       Connor Dunn (15%):
-                              Implemented spike interaction with the player,
-                              as well as animation functionality and sprite
-                              changes to reflect umbrella directions.
+                       Connor Dunn (10%):
+                              Implemented spike interaction with the player.
 // Creation Date :     February 8, 2020
 //
 // Brief Description : Script that translates player input into actual movement
@@ -49,7 +47,6 @@ public class ConnorPlayerController : MonoBehaviour
     [Header("Game Objects")]                                /*CD*/
     [Tooltip("The sprite for the player's umbrella.")]      /*CD*/
     public GameObject umbrellaObject;
-    //public GameObject playerUmbrella;
 
 
     //Is the players umbrella is activated or not
@@ -61,15 +58,6 @@ public class ConnorPlayerController : MonoBehaviour
     Quaternion right = Quaternion.Euler(new Vector3(0, 0, 270));
     Quaternion down = Quaternion.Euler(new Vector3(0, 0, 180));
     Quaternion left = Quaternion.Euler(new Vector3(0, 0, 90));
-
-    public Sprite[] spriteArray = new Sprite[8];
-    /* 0 = Col Right    |   4 = Act Right
-     * 1 = Col Up       |   5 = Act Up
-     * 2 = Col Left     |   6 = Act Left
-     * 3 = Col Down     |   7 = Act Down
-    */
-
-    GameObject umbrellaSprite;
 
     [Header("Bools that tell what direction the Umbrella is in")]
     [HideInInspector] public bool umbrellaUp = true;
@@ -85,19 +73,33 @@ public class ConnorPlayerController : MonoBehaviour
     public Transform objHoldPos;
     public Transform rayStart;
     private Rigidbody2D theObjectInRange;
+    public BoxCollider2D umbrellaShieldTrigger;
+    public Vector2 shieldOffsetHigh;
+    public Vector2 shieldOffsetLow;
 
     //The offset of where the ray will be casted in relation to the player's position.
     public Vector3 grabOffset = Vector3.zero;
-
     private bool objectGrabbed = false;
 
+    [Header("Animation Attributes")]
     private Animator anim;
+    public Sprite[] spriteArray = new Sprite[8];
+    /* 0 = Col Right    |   4 = Act Right
+     * 1 = Col Up       |   5 = Act Up
+     * 2 = Col Left     |   6 = Act Left
+     * 3 = Col Down     |   7 = Act Down
+    */
+
+    GameObject umbrellaSprite;
+    private int currentIndex;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
+        umbrellaShieldTrigger.enabled = false;
+        deathAnim.SetActive(false);
     }
 
     //Used to visualize the box cast used to check if the player is grounded. KG
@@ -111,9 +113,6 @@ public class ConnorPlayerController : MonoBehaviour
 
 
 
-
-
-
     void Update()
     {
         //If the player is not alive don't bother running the code in this function.
@@ -124,10 +123,11 @@ public class ConnorPlayerController : MonoBehaviour
         //based on if the player is grounded or not. KG
         float xMov = Input.GetAxis("Horizontal");
 
-        //Updating player's direction (which direction he is facing).
+        //Updating player's direction (which direction he is moving).
         if ((xMov > 0 && !facingRight) || (xMov < 0 && facingRight))
+        {
             Flip();
-
+        }
 
         //Checking if the player is grounded.
         isGrounded = Physics2D.BoxCast(groundPosition.position, new Vector2(Mathf.Abs(transform.localScale.x), boxCastYScale), 0f, Vector3.zero, 0f, whatIsGround);
@@ -143,8 +143,6 @@ public class ConnorPlayerController : MonoBehaviour
 
         ActivateUmbrella();
         PointUmbrella();
-
-
 
 
         //Checking to see if the player is in range of a grabbable object.
@@ -163,6 +161,13 @@ public class ConnorPlayerController : MonoBehaviour
                 HandleGrabbing(theObjectInRange);
             }
         }
+
+
+        if (Input.GetKey("`"))
+        {
+            death();
+        }
+
 
     }
 
@@ -200,11 +205,39 @@ public class ConnorPlayerController : MonoBehaviour
             Vector2 vel = rb.velocity;
             vel.x = 0;
             rb.velocity = vel;
-
-            //print("Changed the x velocity");
         }
 
         rb.position = pos;
+    }
+
+    private void UpdateObjectHoldPosition(bool toTheRight)
+    {
+        Vector3 pos = objHoldPos.localPosition;
+        Vector3 pos2 = rayStart.localPosition;
+
+        if (toTheRight)
+        {
+            if (pos.x < 0)
+                pos.x *= -1;
+            if (pos2.x < 0)
+            {
+                pos2.x *= -1;
+                grabDistance *= -1;
+            }
+        }
+        else
+        {
+            if (pos.x > 0)
+                pos.x *= -1;
+            if (pos2.x > 0)
+            {
+                pos2.x *= -1;
+                grabDistance *= -1;
+            }
+        }
+
+        objHoldPos.localPosition = pos;
+        rayStart.localPosition = pos2;
     }
 
     /// <summary>
@@ -212,24 +245,50 @@ public class ConnorPlayerController : MonoBehaviour
     /// </summary>
     private void Flip()
     {
-        Vector3 rot = transform.rotation.eulerAngles;
-        rot.y += 180;
-
-        //Invert the boolean.
         facingRight = !facingRight;
+        GetComponent<SpriteRenderer>().flipX = !facingRight; //Puts the legs in the right direction.
 
-        transform.rotation = Quaternion.Euler(rot);
+        SpriteRenderer bustSpriteRenderer = umbrellaObject.GetComponent<SpriteRenderer>();
 
-        //Changing umbrella direction
-        if (umbrellaRight)
+        if (facingRight && umbrellaRight)
         {
-            umbrellaRight = false;
-            umbrellaLeft = true;
+            ChangeUmbrellaSprite("Right");
+            bustSpriteRenderer.flipX = false;
+            UpdateObjectHoldPosition(true);
+
+            umbrellaShieldTrigger.offset = shieldOffsetLow;
+            print("1");
         }
-        else if (umbrellaLeft)
+        else if (!facingRight && umbrellaRight)
         {
-            umbrellaLeft = false;
-            umbrellaRight = true;
+            ChangeUmbrellaSprite("Left");
+            bustSpriteRenderer.flipX = true;
+            UpdateObjectHoldPosition(false);
+
+            umbrellaShieldTrigger.offset = shieldOffsetHigh;
+            print("2");
+        }
+        else if (facingRight && umbrellaLeft)
+        {
+            ChangeUmbrellaSprite("Left");
+            bustSpriteRenderer.flipX = false;
+            UpdateObjectHoldPosition(true);
+
+            Vector2 shieldOffset = shieldOffsetHigh;
+            shieldOffset.x = -shieldOffset.x;
+            umbrellaShieldTrigger.offset = shieldOffset;
+            print("3");
+        }
+        else if (!facingRight && umbrellaLeft)
+        {
+            ChangeUmbrellaSprite("Right");
+            bustSpriteRenderer.flipX = true;
+            UpdateObjectHoldPosition(false);
+
+            Vector2 shieldOffset = shieldOffsetLow;
+            shieldOffset.x = -shieldOffset.x;
+            umbrellaShieldTrigger.offset = shieldOffset;
+            print("4");
         }
     }
 
@@ -242,11 +301,11 @@ public class ConnorPlayerController : MonoBehaviour
     /// </summary>
     void ActivateUmbrella()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && umbrella == false)
+        if (Input.GetButtonDown("Jump") && umbrella == false)
         {
-            //playerUmbrella.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
             umbrella = true;
-            
+            OpenUmbrellaSprite();
+            umbrellaShieldTrigger.enabled = true;
 
             if (umbrellaLeft && canDash)
             {
@@ -261,19 +320,19 @@ public class ConnorPlayerController : MonoBehaviour
                 StartCoroutine(ResetDash());
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && umbrella == true)
+        else if (Input.GetButtonDown("Jump") && umbrella == true)
         {
-            //playerUmbrella.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
             umbrella = false;
+            OpenUmbrellaSprite();
+            umbrellaShieldTrigger.enabled = false;
         }
-        UpdateSprite();
     }
 
     private int dashNum = 0;
 
     IEnumerator ResetDash()
     {
-        print("Starting: " + dashNum);
+        print("Dashing: Starting " + dashNum);
         dashNum++;
 
         if (dashNum > 1)
@@ -286,7 +345,7 @@ public class ConnorPlayerController : MonoBehaviour
         canDash = false;
         yield return new WaitForSeconds(dashCooldownTime);
         canDash = true;
-        print("finishing");
+        print("Dashing: finishing");
         dashNum--;
     }
 
@@ -297,70 +356,94 @@ public class ConnorPlayerController : MonoBehaviour
     /// </summary>
     void PointUmbrella()
     {
-        if (Input.GetButton("UmbrellaUp"))
+        SpriteRenderer bustSpriteRenderer = umbrellaObject.GetComponent<SpriteRenderer>();
+
+        if (Input.GetButtonDown("UmbrellaRight") && facingRight)
+        {
+            umbrellaUp = false;
+            umbrellaDown = false;
+            umbrellaLeft = false;
+            umbrellaRight = true;
+            ChangeUmbrellaSprite("Right");
+            bustSpriteRenderer.flipX = false;
+
+            umbrellaShieldTrigger.enabled = true;
+            umbrellaShieldTrigger.offset = shieldOffsetLow;
+        }
+        else if (Input.GetButtonDown("UmbrellaRight") && !facingRight)
+        {
+            umbrellaUp = false;
+            umbrellaDown = false;
+            umbrellaLeft = false;
+            umbrellaRight = true;
+            ChangeUmbrellaSprite("Left");
+            bustSpriteRenderer.flipX = true;
+
+            umbrellaShieldTrigger.enabled = true;
+            umbrellaShieldTrigger.offset = shieldOffsetHigh;
+        }
+        else if (Input.GetButtonDown("UmbrellaLeft") && facingRight)
+        {
+            umbrellaUp = false;
+            umbrellaDown = false;
+            umbrellaLeft = true;
+            umbrellaRight = false;
+            ChangeUmbrellaSprite("Left");
+            bustSpriteRenderer.flipX = false;
+
+            umbrellaShieldTrigger.enabled = true;
+
+            Vector2 shieldOffset = shieldOffsetHigh;
+            shieldOffset.x = -shieldOffset.x;
+            umbrellaShieldTrigger.offset = shieldOffset;
+        }
+        else if (Input.GetButtonDown("UmbrellaLeft") && !facingRight)
+        {
+            umbrellaUp = false;
+            umbrellaDown = false;
+            umbrellaLeft = true;
+            umbrellaRight = false;
+            ChangeUmbrellaSprite("Right");
+            bustSpriteRenderer.flipX = true;
+
+            umbrellaShieldTrigger.enabled = true;
+            Vector2 shieldOffset = shieldOffsetLow;
+            shieldOffset.x = -shieldOffset.x;
+            umbrellaShieldTrigger.offset = shieldOffset;
+        }
+        else if (Input.GetButtonDown("UmbrellaUp"))
         {
             umbrellaUp = true;
             umbrellaDown = false;
             umbrellaLeft = false;
             umbrellaRight = false;
             ChangeUmbrellaSprite("Up");
-        }
+            bustSpriteRenderer.flipX = false;
 
-        if (Input.GetButton("UmbrellaRight") && facingRight)
-        {
-            umbrellaUp = false;
-            umbrellaDown = false;
-            umbrellaLeft = false;
-            umbrellaRight = true;
-            ChangeUmbrellaSprite("Right");
+            umbrellaShieldTrigger.enabled = false;
         }
-
-        if (Input.GetButton("UmbrellaRight") && !facingRight)
-        {
-            umbrellaUp = false;
-            umbrellaDown = false;
-            umbrellaLeft = false;
-            umbrellaRight = true;
-            ChangeUmbrellaSprite("Left");
-        }
-
-        if (Input.GetButton("UmbrellaDown"))
+        else if (Input.GetButtonDown("UmbrellaDown"))
         {
             umbrellaUp = false;
             umbrellaDown = true;
             umbrellaLeft = false;
             umbrellaRight = false;
             ChangeUmbrellaSprite("Down");
-        }
+            bustSpriteRenderer.flipX = false;
 
-        if (Input.GetButton("UmbrellaLeft") && facingRight)
-        {
-            umbrellaUp = false;
-            umbrellaDown = false;
-            umbrellaLeft = true;
-            umbrellaRight = false;
-            ChangeUmbrellaSprite("Left");
-        }
-
-        if (Input.GetButton("UmbrellaLeft") && !facingRight)
-        {
-            umbrellaUp = false;
-            umbrellaDown = false;
-            umbrellaLeft = true;
-            umbrellaRight = false;
-            ChangeUmbrellaSprite("Right");
+            umbrellaShieldTrigger.enabled = false;
         }
     }
 
     void HandleGrabbing(Rigidbody2D obj)
     {
         //If the player presses 'F' and the object is NOT already grabbed, freeze it and update its movement to move with the player.
-        if (Input.GetKeyDown(KeyCode.F) && !objectGrabbed)
+        if (Input.GetButtonDown("Grab Object") && !objectGrabbed)
         {
             obj.constraints = RigidbodyConstraints2D.FreezeAll;
             objectGrabbed = true;
         }
-        else if (Input.GetKeyDown(KeyCode.F) && objectGrabbed)
+        else if (Input.GetButtonDown("Grab Object") && objectGrabbed)
         {
             obj.constraints = RigidbodyConstraints2D.None;
             objectGrabbed = false;
@@ -393,26 +476,52 @@ public class ConnorPlayerController : MonoBehaviour
         string dir = direction;
         switch (dir)
         {
-            case ("Right"): index = 0;
+            case ("Right"):
+                index = 0;
                 break;
-            case ("Up"): index = 1;
+            case ("Up"):
+                index = 1;
                 break;
-            case ("Left"): index = 2;
+            case ("Left"):
+                index = 2;
                 break;
-            case ("Down"): index = 3; 
+            case ("Down"):
+                index = 3;
                 break;
         }
         spriteDirection.sprite = spriteArray[index];
+
         if (umbrella)
         {
-            spriteDirection.sprite = spriteArray[index + 4];
+            index += 4;
+            spriteDirection.sprite = spriteArray[index];
         }
+
+
+        currentIndex = index;
     }
-    void UpdateSprite()
+
+    void OpenUmbrellaSprite()
     {
-        if (umbrellaRight) { ChangeUmbrellaSprite("Right"); }
-        if (umbrellaUp) { ChangeUmbrellaSprite("Up"); }
-        if (umbrellaLeft) { ChangeUmbrellaSprite("Left"); }
-        if (umbrellaDown) { ChangeUmbrellaSprite("Down"); }
+        SpriteRenderer spriteDirection = umbrellaObject.GetComponent<SpriteRenderer>();
+        if (umbrella)
+        {
+            currentIndex += 4;
+        }
+        else if (!umbrella)
+        {
+            currentIndex -= 4;
+        }
+
+        spriteDirection.sprite = spriteArray[currentIndex];
+    }
+
+    public GameObject deathAnim;
+    void death()
+    {
+        GameControllerScript.instance.playerAlive = false;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        deathAnim.SetActive(true);
+        umbrellaObject.SetActive(false);
     }
 }
