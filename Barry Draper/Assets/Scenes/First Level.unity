@@ -120,6 +120,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &1384734 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5958724769395891426, guid: c764ae66ae4b21e448bc7cc31fd94fe9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1764305209}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &54908147
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +709,7 @@ PrefabInstance:
     - target: {fileID: 9147783071625325209, guid: bfd0b22db42b7e9429ceb5580d4c2936,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.288146
+      value: 3.2887063
       objectReference: {fileID: 0}
     - target: {fileID: 9147783071625325209, guid: bfd0b22db42b7e9429ceb5580d4c2936,
         type: 3}
@@ -1727,6 +1739,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 4873748756721177175, guid: 7831f28fd0dc7ae43ade7eb346fb68b9,
+        type: 3}
+      propertyPath: livesText
+      value: 
+      objectReference: {fileID: 1384734}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7831f28fd0dc7ae43ade7eb346fb68b9, type: 3}
 --- !u!1001 &962150686
@@ -3050,7 +3067,7 @@ PrefabInstance:
     - target: {fileID: 4460190570592114538, guid: 56145b284cd017e478efb76a69efbc09,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.288146
+      value: 3.2887063
       objectReference: {fileID: 0}
     - target: {fileID: 4460190570592114538, guid: 56145b284cd017e478efb76a69efbc09,
         type: 3}

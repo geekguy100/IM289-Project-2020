@@ -16,7 +16,7 @@ public class CameraBehaviour : MonoBehaviour
     private CinemachineVirtualCamera vcam;
     private CinemachineFramingTransposer ft;
 
-    private KylePlayerController player;
+    private PlayerController player;
     private Rigidbody2D playerRb;
 
     private float initialLookaheadSmoothing;
@@ -35,7 +35,7 @@ public class CameraBehaviour : MonoBehaviour
     {
         vcam = GetComponent<CinemachineVirtualCamera>();
         ft = vcam.GetCinemachineComponent<CinemachineFramingTransposer>();
-        player = vcam.Follow.GetComponent<KylePlayerController>();
+        player = vcam.Follow.GetComponent<PlayerController>();
         playerRb = vcam.Follow.GetComponent<Rigidbody2D>();
 
         initialLookaheadSmoothing = ft.m_LookaheadSmoothing;
