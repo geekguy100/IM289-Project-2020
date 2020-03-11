@@ -21,7 +21,7 @@ public class AudioController : MonoBehaviour
 
 
     public enum PlayerSFX {playerWalk, pickupBox, dropBox, openUmbrella, closeUmbrella};
-    public enum GameManagerSFX { playerHit, gameOver };
+    public enum GameManagerSFX { playerHit, gameOver, finishLevel };
     public enum TurretSFX { targetFound, shoot, die};
     public AudioClip[] sfxClips;
 
@@ -80,7 +80,7 @@ public class AudioController : MonoBehaviour
         else
             audioSource.time = 0f;
 
-        print(transform.parent.name + " is playing clip: " + audioSource.clip.name);
+       // print(transform.parent.name + " is playing clip: " + audioSource.clip.name);
         audioSource.Play();
     }
 
@@ -106,10 +106,11 @@ public class AudioController : MonoBehaviour
         audioSource.Play();
 
         //Wait until the intro is over.
-        while(audioSource.time < audioSource.clip.length)
-        {
-            yield return null;
-        }
+        yield return new WaitForSeconds(audioSource.clip.length);
+        //while(audioSource.time < audioSource.clip.length)
+        //{
+        //    yield return null;
+        //}
 
         audioSource.clip = loop;
         audioSource.loop = true;
@@ -124,6 +125,7 @@ public class AudioController : MonoBehaviour
             return;
         }
 
+        print("Stopping BG Music");
         audioSource.Stop();
 
     }

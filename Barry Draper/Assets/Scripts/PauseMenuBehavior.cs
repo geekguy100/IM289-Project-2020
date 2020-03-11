@@ -72,8 +72,7 @@ public class PauseMenuBehavior : MonoBehaviour
     /// </summary>
     public void RestartGame()
     {
-        string levelName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(levelName);
+        GameControllerScript.instance.RestartLevel();
     }
 
     /// <summary>

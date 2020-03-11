@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class DrowningBehaviour : MonoBehaviour
 {
-    float time = 0;
+    private float time = 0;
+    public float breathTime = 10;
 
-
-    private void OnTriggerStay2D(Collider2D col)
+    public void CheckHeight(Transform maxHeight)
     {
-        if(col.tag == "water")
-        {
-            time += Time.deltaTime;
-        }
+        print(transform.position.y - maxHeight.position.y);
 
-        if(time >= 10)
-        {
-            GameObject gc = GameObject.Find("Game Controller");
+        //If the player is below the water level, drown.
+        if (transform.position.y - maxHeight.position.y < 0f)
+            Drown();
+        else if (time != 0)
+            time = 0;
+    }
 
-            gc.GetComponent<GameControllerScript>().RemoveLivesFromPlayer(1);            
+    private void Drown()
+    {
+        time += Time.deltaTime;
+        if (time >= breathTime)
+        {
+            GameControllerScript.instance.RemoveLivesFromPlayer(1);
+            time = 0;
         }
     }
 }

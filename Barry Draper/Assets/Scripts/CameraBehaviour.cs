@@ -31,6 +31,12 @@ public class CameraBehaviour : MonoBehaviour
     public Vector2 minPosClamp;
     public Vector2 maxPosClamp;
 
+    [Header("Player Movement Offsets")]
+    public float leftOffset = 0.7f;
+    public float rightOffset = 0.3f;
+    public float upOffset = 0.7f;
+    public float downOffset = 0.3f;
+
     private void Awake()
     {
         vcam = GetComponent<CinemachineVirtualCamera>();
@@ -56,6 +62,8 @@ public class CameraBehaviour : MonoBehaviour
             ft.m_LookaheadSmoothing = initialLookaheadSmoothing;
         }
 
+        HandleOffsetChanges();
+        
         //If the 'U' key is pressed, handle free cam mode.
         if (Input.GetButtonDown("Free Cam Mode"))
         {
@@ -76,6 +84,39 @@ public class CameraBehaviour : MonoBehaviour
                 transform.position = pos;
             }
         }
+    }
+
+    void HandleOffsetChanges()
+    {
+        if (freeMode)
+            return;
+
+        //If the player is moving to the left, set the cameraX in that direction.
+        if (player.newPos.x < 0)
+        {
+            ft.m_ScreenX = leftOffset;
+        }
+        else if (player.newPos.x > 0)
+        {
+            ft.m_ScreenX = rightOffset;
+        }
+        else
+        {
+            ft.m_ScreenX = 0.5f;
+        }
+
+        //if (player.umbrellaUp || playerRb.velocity.y > 0)
+        //{
+        //    ft.m_ScreenY = upOffset;
+        //}
+        //else if (player.umbrellaDown || playerRb.velocity.y < 0)
+        //{
+        //    ft.m_ScreenY = downOffset;
+        //}
+        //else
+        //{
+        //    ft.m_ScreenY = 0.5f;
+        //}
     }
 
     void HandleFreeCamMode()

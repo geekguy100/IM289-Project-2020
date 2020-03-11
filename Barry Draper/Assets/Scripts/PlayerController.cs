@@ -475,12 +475,14 @@ public class PlayerController : MonoBehaviour
             objectGrabbed = true;
 
             audioController.PlayClip(AudioController.PlayerSFX.pickupBox);
+            obj.GetComponent<BoxCollider2D>().enabled = false;
         }
         else if (Input.GetButtonDown("Grab Object") && objectGrabbed)
         {
             obj.constraints = RigidbodyConstraints2D.None;
             objectGrabbed = false;
             audioController.PlayClip(AudioController.PlayerSFX.dropBox);
+            obj.GetComponent<BoxCollider2D>().enabled = true;
         }
         else if (objectGrabbed)
         {

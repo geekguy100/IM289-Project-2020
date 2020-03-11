@@ -16,8 +16,8 @@ public class GameControllerScript : MonoBehaviour
     public static GameControllerScript instance;
 
     [Header("Player Life Management")]
-    [SerializeField] //Made this a [SerializeField] so we can edit it in the Unity editor but not in other classes.
     private int playerLives = 3;
+    public int maxPlayerLives = 3;
 
     //Is the player currently invincible (after taking damage)?
     private bool invincible;
@@ -30,7 +30,7 @@ public class GameControllerScript : MonoBehaviour
 
     [Header("General Player Attributes")]
     [Tooltip("UI text to display lives count.")]
-    public Text livesText;
+    public GameObject livesText;
 
     private AudioController audioController;
 
@@ -50,7 +50,7 @@ public class GameControllerScript : MonoBehaviour
     void Start()
     {
         invincible = false;
-
+        playerLives = maxPlayerLives;
         UpdateLives();
     }
 
@@ -68,11 +68,15 @@ public class GameControllerScript : MonoBehaviour
 
     public void UpdateLives()
     {
-        livesText.text = ("Lives: " + playerLives);
+        if (livesText == null)
+        {
+            livesText = GameObject.Find("LivesText"); ;
+        }
+
+        livesText.GetComponent<Text>().text = "Lives: " + playerLives;
 
         if(playerLives <= 0 && playerAlive)
         {
-            //TODO: play a game over SFX.
             print("*You are dead, de-de-dead.*");
             playerAlive = false;
 
@@ -86,5 +90,18 @@ public class GameControllerScript : MonoBehaviour
     void RemoveInvincibility()
     {
         invincible = false;
+    }
+
+    public void FinishLevel()
+    {
+        audioController.PlayClip(AudioController.GameManagerSFX.finishLevel);
+    }
+
+    public void RestartLevel()
+    {
+        string levelName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(levelName);
+        playerLives = maxPlayerLives;
+        UpdateLives();
     }
 }

@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 1248221873385897675}
   - component: {fileID: 3182500187501956187}
   - component: {fileID: 2034070280315304172}
+  - component: {fileID: 3839771703079694008}
   m_Layer: 11
   m_Name: thePlayer
   m_TagString: Player
@@ -226,7 +227,7 @@ MonoBehaviour:
   umbrellaShieldTrigger: {fileID: 4131023055418618292}
   shieldOffsetHigh: {x: 1.5, y: 0.74}
   shieldOffsetLow: {x: 1.5, y: 0.25}
-  grabOffset: {x: 0, y: -0.5, z: 0}
+  grabOffset: {x: 0, y: -0.5}
   spriteArray:
   - {fileID: 3778948002603646263, guid: 4fb6d30b253f0a547917c0a75a3d442a, type: 3}
   - {fileID: -5351780077981791758, guid: 4fb6d30b253f0a547917c0a75a3d442a, type: 3}
@@ -237,6 +238,18 @@ MonoBehaviour:
   - {fileID: 249050913489333079, guid: 4fb6d30b253f0a547917c0a75a3d442a, type: 3}
   - {fileID: -3711407755285744164, guid: 4fb6d30b253f0a547917c0a75a3d442a, type: 3}
   deathAnim: {fileID: 2716078453710946617}
+--- !u!114 &3839771703079694008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248221873385897668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1384489d9e8f5ce46b9dec6638276277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3182500187163598878
 GameObject:
   m_ObjectHideFlags: 0

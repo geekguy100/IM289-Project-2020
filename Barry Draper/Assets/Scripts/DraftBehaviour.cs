@@ -1,4 +1,4 @@
-﻿/*****************************************************************************
+/*****************************************************************************
 // File Name :         DraftBehaviour.cs
 // Author :            Kyle Grenier
 // Creation Date :     February 8, 2020
@@ -19,13 +19,11 @@ public class DraftBehaviour : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        Rigidbody2D rb = col.gameObject.GetComponentInParent<Rigidbody2D>();
-        //rb.AddForce(direction * force, ForceMode2D.Force);
+        Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
 
         if (col.gameObject.CompareTag("Player"))
         {
-            PlayerController pc = col.gameObject.GetComponent
-                                        <PlayerController>();
+            PlayerController pc = col.gameObject.GetComponent<PlayerController>();
 
             //If the player's umbrella is NOT open, don't bother applying
             //a force to him.
@@ -36,19 +34,23 @@ public class DraftBehaviour : MonoBehaviour
             //player's umbrella align.
             if (gameObject.tag == "up" && pc.umbrellaUp)
             {
+                print("up??");
                 ApplyForce(rb);
             }
             else if (gameObject.tag == "right" && pc.umbrellaRight)
             {
+                print("right??");
                 ApplyForce(rb);
             }
             else if (gameObject.tag == "left" && pc.umbrellaLeft)
             {
+                print("left??");
                 ApplyForce(rb);
             }
         }
-        else  //if some other rigidbody enters the draft
+        else if (!col.gameObject.CompareTag("Umbrella")) //if some other rigidbody enters the draft
         {
+            print("something else");
             ApplyForce(rb);
         }
     }

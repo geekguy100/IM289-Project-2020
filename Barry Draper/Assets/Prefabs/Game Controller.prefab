@@ -144,6 +144,7 @@ MonoBehaviour:
   sfxClips:
   - {fileID: 8300000, guid: 0f9cf910f1823d94a88faa3e88b98cc5, type: 3}
   - {fileID: 8300000, guid: 98c14d89c2365104d84e768832629dbd, type: 3}
+  - {fileID: 8300000, guid: 2ef2a020e2e84a642ab00cbc75a276df, type: 3}
   intro: {fileID: 0}
   loop: {fileID: 0}
 --- !u!1 &1198074856
@@ -336,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLives: 3
+  maxPlayerLives: 3
   playerAlive: 1
   invincibilityTime: 2
   livesText: {fileID: 0}

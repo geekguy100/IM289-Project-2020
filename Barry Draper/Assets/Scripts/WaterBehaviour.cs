@@ -10,113 +10,81 @@ using UnityEngine;
 
 public class WaterBehaviour : MonoBehaviour
 {
-    int waterSpeed = 10;
+    public int waterWalkSpeed = 2;
+    public int hoverSpeed = 20;
 
-    int hoverSpeed = 150;
+    public Transform maxHeight;
 
     public GameObject waterParticle;
+    private GameObject instantiation = null;
 
-    GameObject newWater;
+    private float previousMoveSpeed;
+    private float previousAirSpeed;
 
-    bool created = false;
-
-    private void Start()
-    {
-        newWater = waterParticle;
-    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        PlayerController pc = col.gameObject.GetComponent
-                                       <PlayerController>();
+        //If the player didn't enter don't bother running the code.
+        if (!col.CompareTag("Player"))
+            return;
 
+        PlayerController pc = col.gameObject.GetComponent<PlayerController>();
         Rigidbody2D rb2d = col.gameObject.GetComponent<Rigidbody2D>();
 
-        if (newWater && newWater.activeSelf == false && pc && pc.umbrellaDown)
-        {
-            newWater.SetActive(true);
-        }
+        previousMoveSpeed = pc.moveSpeed;
+        previousAirSpeed = pc.airSpeed;
+        pc.moveSpeed = waterWalkSpeed;
 
-        else if (col.gameObject.CompareTag("Player"))
-        {
-
-            if (pc && pc.umbrellaDown && rb2d && pc.umbrella)
-            {
-                 
-                rb2d.AddForce(Vector2.up * hoverSpeed, ForceMode2D.Force);
-
-                rb2d.constraints = RigidbodyConstraints2D.FreezePositionY |
-                                      RigidbodyConstraints2D.FreezeRotation;
-
-
-
-                if (created == false)
-                {
-                    newWater = Instantiate(waterParticle, new Vector3
-                    (transform.position.x, transform.position.y,
-                    transform.position.z), Quaternion.identity);
-
-                    newWater.transform.parent = col.gameObject.transform;
-                    newWater.transform.position = new Vector3(2f, -3f, 0f);
-                    newWater.transform.localScale = new Vector3(1f, 1f, 1f);
-                    newWater.transform.rotation = 
-                        Quaternion.Euler(-90f, 0f, 0f);
-                }
-                created = true;
-            }
-        }
+        rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if(col.gameObject.CompareTag("Player"))
+        if (!col.CompareTag("Player"))
+            return;
+
+        PlayerController pc = col.gameObject.GetComponent<PlayerController>();
+        DrowningBehaviour playerDrowning = col.gameObject.GetComponent<DrowningBehaviour>();
+        Rigidbody2D rb2d = col.gameObject.GetComponent<Rigidbody2D>();
+
+        //If the player is below the maxHeight's y position, he will drown and take damage.
+        playerDrowning.CheckHeight(maxHeight);
+
+        if (pc.umbrellaDown && pc.umbrella)
         {
+            rb2d.AddForce(Vector2.up * hoverSpeed, ForceMode2D.Force);
 
-            PlayerController pc = col.gameObject.GetComponent
-                                        <PlayerController>();
-
-            Rigidbody2D rb2d = col.gameObject.GetComponent<Rigidbody2D>();
-
-            if(!pc.umbrellaDown)
-            {
-                isTrigger();
-                pc.moveSpeed = 2;
-                rb2d.constraints = 0;
-                rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-            }
-
-            if(pc.umbrellaDown)
-            {
-                rb2d.AddForce(Vector2.up * waterSpeed, ForceMode2D.Force);
-            }
+            if (instantiation == null)
+                CreateParticle(col.transform);
+        }
+        else
+        {
+            if (instantiation != null)
+                Destroy(instantiation);
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
+        if (!col.CompareTag("Player"))
+            return;
+
         Rigidbody2D rb2d = col.gameObject.GetComponent<Rigidbody2D>();
+        PlayerController pc = col.gameObject.GetComponent<PlayerController>();
 
-        if(rb2d)
-        {
-            rb2d.constraints = 0;
-            rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-            Invoke("removeWater", 1.5f);
-        }
+        //rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        pc.moveSpeed = previousMoveSpeed;
+        pc.airSpeed = previousAirSpeed;
+        Destroy(instantiation);
     }
 
-    void isTrigger()
-    {
-        gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
-    }
 
-    void isNotTrigger()
+    void CreateParticle(Transform parent)
     {
-        gameObject.GetComponent<PolygonCollider2D>().isTrigger = false;
-    }
-
-    void removeWater()
-    {
-        newWater.SetActive(false);
+        instantiation = Instantiate(waterParticle, new Vector3(parent.position.x, parent.position.y - 2f, parent.position.z), Quaternion.identity,parent);
+        instantiation.transform.localScale = new Vector3(1f, 1f, 1f);
+        instantiation.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
     }
 }
