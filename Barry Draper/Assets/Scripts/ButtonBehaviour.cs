@@ -23,12 +23,17 @@ public class ButtonBehaviour : MonoBehaviour
     public Color offColor; //color when the button is turned off.
     public Color onColor; //color when the button is turned on.
 
+    [Header("Sprites")]
+    public Sprite offSprite; //Button's unpressed sprite.
+    public Sprite onSprite; //Button's pressed sprite.
+
     private SpriteRenderer sr;
 
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         sr.color = offColor;
+        sr.sprite = offSprite;
     }
 
     private void OnTriggerEnter2D()
@@ -61,6 +66,7 @@ public class ButtonBehaviour : MonoBehaviour
     {
         isPowered = true;
         sr.color = onColor;
+        sr.sprite = onSprite;
         //TODO: Play sound.
 
         foreach (InteractableBehaviour interactable in interactables)
@@ -81,6 +87,7 @@ public class ButtonBehaviour : MonoBehaviour
     {
         isPowered = false;
         sr.color = offColor;
+        sr.sprite = offSprite;
         //TODO: Play sound.
 
         foreach (InteractableBehaviour interactable in interactables)
