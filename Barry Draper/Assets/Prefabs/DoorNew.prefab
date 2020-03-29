@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5372537325325505263}
   - component: {fileID: 5372537325325505262}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: doors_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5372537326239994678}
   - component: {fileID: 5372537326239994679}
   - component: {fileID: 5372537326239994680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoorNew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,9 +150,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingLayerID: -360578479
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -5869873724788712370, guid: 9567d5af8efe5ea46b0ee34d951a2e21,
     type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}

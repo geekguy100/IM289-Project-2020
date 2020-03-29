@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4497489544660143215}
   - component: {fileID: 4497489544660143212}
   - component: {fileID: 4497489544660143213}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ButtonBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 4497489546715745565}
   - component: {fileID: 4497489546715745564}
   - component: {fileID: 4497489546715745567}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ButtonNew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ Transform:
   m_GameObject: {fileID: 4497489546715745563}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2, y: -3.943, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4497489544660143215}
   m_Father: {fileID: 0}
@@ -180,8 +180,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -360578479
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: 1763989116612304091, guid: 81ef9b6561a900f4bb30b66b2380e71c,
     type: 3}
@@ -236,7 +236,7 @@ MonoBehaviour:
   weighted: 1
   interactables: []
   offColor: {r: 1, g: 0.4764151, b: 0.4764151, a: 1}
-  onColor: {r: 1, g: 0.27450982, b: 0.27450982, a: 1}
+  onColor: {r: 0.29528075, g: 1, b: 0.2745098, a: 1}
   offSprite: {fileID: 1763989116612304091, guid: 81ef9b6561a900f4bb30b66b2380e71c,
     type: 3}
   onSprite: {fileID: -5033884579438549468, guid: 81ef9b6561a900f4bb30b66b2380e71c,
