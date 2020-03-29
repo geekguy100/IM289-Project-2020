@@ -960,7 +960,7 @@ PrefabInstance:
     - target: {fileID: 9147783071625325209, guid: bfd0b22db42b7e9429ceb5580d4c2936,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.185333
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 9147783071625325209, guid: bfd0b22db42b7e9429ceb5580d4c2936,
         type: 3}
@@ -5657,10 +5657,35 @@ PrefabInstance:
       propertyPath: maxPosClamp.x
       value: 260
       objectReference: {fileID: 0}
+    - target: {fileID: 4460190570592114537, guid: 56145b284cd017e478efb76a69efbc09,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460190570592114537, guid: 56145b284cd017e478efb76a69efbc09,
+        type: 3}
+      propertyPath: leftOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460190570592114537, guid: 56145b284cd017e478efb76a69efbc09,
+        type: 3}
+      propertyPath: rightOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460190570592114537, guid: 56145b284cd017e478efb76a69efbc09,
+        type: 3}
+      propertyPath: upOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460190570592114537, guid: 56145b284cd017e478efb76a69efbc09,
+        type: 3}
+      propertyPath: downOffset
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4460190570592114538, guid: 56145b284cd017e478efb76a69efbc09,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.185333
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 4460190570592114538, guid: 56145b284cd017e478efb76a69efbc09,
         type: 3}
@@ -5735,7 +5760,7 @@ PrefabInstance:
     - target: {fileID: 4460190570926824370, guid: 56145b284cd017e478efb76a69efbc09,
         type: 3}
       propertyPath: m_ScreenX
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4460190570926824370, guid: 56145b284cd017e478efb76a69efbc09,
         type: 3}
@@ -5750,7 +5775,12 @@ PrefabInstance:
     - target: {fileID: 4460190570926824370, guid: 56145b284cd017e478efb76a69efbc09,
         type: 3}
       propertyPath: m_LookaheadTime
-      value: 0.598
+      value: 0.644
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460190570926824370, guid: 56145b284cd017e478efb76a69efbc09,
+        type: 3}
+      propertyPath: m_LookaheadIgnoreY
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56145b284cd017e478efb76a69efbc09, type: 3}

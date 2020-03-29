@@ -92,18 +92,18 @@ public class CameraBehaviour : MonoBehaviour
             return;
 
         //If the player is moving to the left, set the cameraX in that direction.
-        if (player.newPos.x < 0)
-        {
-            ft.m_ScreenX = leftOffset;
-        }
-        else if (player.newPos.x > 0)
-        {
-            ft.m_ScreenX = rightOffset;
-        }
-        else
-        {
-            ft.m_ScreenX = 0.5f;
-        }
+        //if (player.newPos.x < 0)
+        //{
+        //    ft.m_ScreenX = leftOffset;
+        //}
+        //else if (player.newPos.x > 0)
+        //{
+        //    ft.m_ScreenX = rightOffset;
+        //}
+        //else
+        //{
+        //    ft.m_ScreenX = 0.5f;
+        //}
 
         //if (player.umbrellaUp || playerRb.velocity.y > 0)
         //{
