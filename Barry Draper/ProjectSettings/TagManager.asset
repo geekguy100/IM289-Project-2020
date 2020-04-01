@@ -12,6 +12,7 @@ TagManager:
   - Umbrella
   - Bullet
   - Turret
+  - Minion Spawner
   layers:
   - Default
   - TransparentFX

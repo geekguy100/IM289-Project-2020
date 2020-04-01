@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 7.49
+    OrthographicSize: 11.37
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -83,8 +83,12 @@ MonoBehaviour:
   clampInFreeMode: 1
   freeModeOrthoSize: 15
   freeCamSpeed: 2
-  minPosClamp: {x: -20, y: -20}
-  maxPosClamp: {x: 50, y: 30}
+  minPosClamp: {x: -20, y: -76}
+  maxPosClamp: {x: 260, y: 30}
+  leftOffset: 0
+  rightOffset: 0
+  upOffset: 0
+  downOffset: 0
 --- !u!1 &4460190570926824372
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,14 +145,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LookaheadTime: 0.485
+  m_LookaheadTime: 0.644
   m_LookaheadSmoothing: 8.7
   m_LookaheadIgnoreY: 0
   m_XDamping: 1.3
   m_YDamping: 1
   m_ZDamping: 0
   m_ScreenX: 0.5
-  m_ScreenY: 0.43
+  m_ScreenY: 0.5
   m_CameraDistance: 10
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
