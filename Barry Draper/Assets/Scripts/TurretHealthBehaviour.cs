@@ -26,7 +26,7 @@ public class TurretHealthBehaviour : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentLives -= damage;
-        if (currentLives <= 0)
+        if (currentLives < 0)
         {
             //TODO: Add particle effects or maybe an animation of the turret falling apart.
             audioController.PlayClip(AudioController.TurretSFX.die);

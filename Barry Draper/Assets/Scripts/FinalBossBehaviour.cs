@@ -29,8 +29,6 @@ public class FinalBossBehaviour : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        if (player == null)
-            Debug.LogWarning("Cannot find the player!");
     }
 
     void Update()
@@ -88,7 +86,7 @@ public class FinalBossBehaviour : MonoBehaviour
         for (int i = 0; i < spawnerObjects.Length; ++i)
         {
             spawners[i] = spawnerObjects[i].GetComponent<MinionSpawner>();
-            //spawner[i].SpawnEnemies();
+            spawners[i].SpawnMinions();
             currentEnemyCount += spawners[i].GetEnemyCount();
         }
     }

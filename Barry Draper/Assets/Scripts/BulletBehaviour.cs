@@ -65,5 +65,10 @@ public class BulletBehaviour : MonoBehaviour
             col.gameObject.GetComponent<TurretHealthBehaviour>().TakeDamage(damageDealt);
             Destroy(gameObject);
         }
+        else if (col.gameObject.CompareTag("Minion"))
+        {
+            col.gameObject.GetComponent<MinionHealthBehaviour>().TakeDamage(damageDealt);
+            Destroy(gameObject);
+        }
     }
 }
