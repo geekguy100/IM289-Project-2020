@@ -21,11 +21,16 @@ public class MinionBehaviour : MonoBehaviour
     private float assignedDistanceToPlayer;
     private float currentDistanceToPlayer;
 
+    private MinionShootingBehaviour shootingBehaviour;
+
     private Rigidbody2D rb;
+
+    private bool facingRight = false;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        shootingBehaviour = GetComponent<MinionShootingBehaviour>();
     }
 
     void Start()
@@ -37,7 +42,13 @@ public class MinionBehaviour : MonoBehaviour
 
     private void Update()
     {
+        //Calculating distance and direction towards the player.
         currentDistanceToPlayer = Vector2.Distance(transform.position, player.position);
+        Vector2 direction = (player.position - transform.position).normalized;
+
+        //Handle flipping here.
+        HandleFlipping(direction);
+
         if (currentDistanceToPlayer <= assignedDistanceToPlayer)
         {
             if (newPos.x != 0)
@@ -46,16 +57,39 @@ public class MinionBehaviour : MonoBehaviour
                 assignedDistanceToPlayer = Random.Range(distanceToPlayer.x, distanceToPlayer.y);
             }
 
-            //HANDLE SHOOTING()
+            //Handle shooting. Time between shots, bullet prefab, etc., is all in the MinionShootingBehaviour script.
+            shootingBehaviour.HandleShooting();
 
             return; //Returning so we don't move the minion while he is supposed to be stationary.
         }
 
-        //Calculating the direction and velocity for the minion.
-        Vector2 direction = (player.position - transform.position).normalized;
+        //Calculating the velocity for the minion.
         newPos.x = direction.x * assignedMovementSpeed;
     }
 
+    private void HandleFlipping(Vector2 direction)
+    {
+        if (direction.x < 0 && facingRight)
+        {
+            Flip();
+        }
+        else if (direction.x > 0 && !facingRight)
+        {
+            Flip();
+        }
+    }
+
+    private void Flip()
+    {
+        Vector3 rot = transform.rotation.eulerAngles;
+        rot.y += 180;
+
+        //Invert the boolean.
+        facingRight = !facingRight;
+
+        transform.rotation = Quaternion.Euler(rot);
+    }
+    
     void FixedUpdate()
     {
         //Moving the rigidbody along x-axis.

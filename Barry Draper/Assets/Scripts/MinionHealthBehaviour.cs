@@ -23,7 +23,8 @@ public class MinionHealthBehaviour : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentLives -= damage;
-        if (currentLives < 0)
+        print(currentLives);
+        if (currentLives <= 0)
         {
             //PLAY AUDIO EFFECT
             GameObject.FindObjectOfType<FinalBossBehaviour>().DecreaseMinionCount();

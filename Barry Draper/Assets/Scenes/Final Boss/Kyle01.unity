@@ -135,7 +135,7 @@ PrefabInstance:
     - target: {fileID: 1248221873385897672, guid: c260e93836926ce45a27d21892a28b49,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.39
+      value: -19.02
       objectReference: {fileID: 0}
     - target: {fileID: 1248221873385897672, guid: c260e93836926ce45a27d21892a28b49,
         type: 3}
@@ -607,7 +607,7 @@ PrefabInstance:
     - target: {fileID: 9147783071625325209, guid: bfd0b22db42b7e9429ceb5580d4c2936,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.39
+      value: -19.02
       objectReference: {fileID: 0}
     - target: {fileID: 9147783071625325209, guid: bfd0b22db42b7e9429ceb5580d4c2936,
         type: 3}
@@ -942,7 +942,7 @@ PrefabInstance:
     - target: {fileID: 4460190570592114538, guid: 56145b284cd017e478efb76a69efbc09,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.39
+      value: -19.02
       objectReference: {fileID: 0}
     - target: {fileID: 4460190570592114538, guid: 56145b284cd017e478efb76a69efbc09,
         type: 3}
@@ -1237,5 +1237,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2655771054977823990, guid: ec12278c5292dfd4bbac42a55c32f05a,
         type: 3}
+    - target: {fileID: 5637036375432808397, guid: 793dbb2a3366cf24aa484750aaf82072,
+        type: 3}
+      propertyPath: numberOfMinions
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637036375432808397, guid: 793dbb2a3366cf24aa484750aaf82072,
+        type: 3}
+      propertyPath: timeBetweenSpawns
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 793dbb2a3366cf24aa484750aaf82072, type: 3}

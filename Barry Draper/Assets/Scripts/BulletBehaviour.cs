@@ -21,6 +21,8 @@ public class BulletBehaviour : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 direction;
 
+    private bool canHurtMinion = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -37,20 +39,25 @@ public class BulletBehaviour : MonoBehaviour
         rb.MovePosition(transform.position + direction * Time.fixedDeltaTime * bulletSpeed);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            //Note: Player hit SFX is handled in the GameControllerScript.
-            Destroy(gameObject);
-            GameControllerScript.instance.RemoveLivesFromPlayer(1);
-        }
-        else
-        {
-            //TODO: Play a bullet destroyed SFX.
-            Destroy(gameObject);
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D col)
+    //{
+    //    if (col.gameObject.CompareTag("Player"))
+    //    {
+    //        //Note: Player hit SFX is handled in the GameControllerScript.
+    //        GameControllerScript.instance.RemoveLivesFromPlayer(1);
+    //    }
+    //    else if (col.gameObject.CompareTag("Minion"))
+    //    {
+    //        col.gameObject.GetComponent<MinionHealthBehaviour>().TakeDamage(1);
+    //    }
+    //    else
+    //    {
+    //        //TODO: Play a bullet destroyed SFX.
+    //        print("Collided with an unknown collider: " + col.gameObject.name);
+    //    }
+
+    //    Destroy(gameObject);
+    //}
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -58,6 +65,25 @@ public class BulletBehaviour : MonoBehaviour
         {
             //TODO: Play a blocked SFX.
             direction = -direction;
+
+            //Once the bullet bounces off of the umbrella, it can hurt minions.
+            //This is to prevent minions from firing at each other.
+            canHurtMinion = true;
+        }
+        else if (col.gameObject.CompareTag("Player"))
+        {
+            //Note: Player hit SFX is handled in the GameControllerScript.
+            GameControllerScript.instance.RemoveLivesFromPlayer(1);
+            Destroy(gameObject);
+        }
+        else if (col.gameObject.CompareTag("Minion"))
+        {
+            //Play minion hurt SFX.
+            if (canHurtMinion)
+            {
+                col.gameObject.GetComponent<MinionHealthBehaviour>().TakeDamage(1);
+                Destroy(gameObject);
+            }
         }
         else if (col.gameObject.CompareTag("Turret"))
         {
@@ -65,9 +91,10 @@ public class BulletBehaviour : MonoBehaviour
             col.gameObject.GetComponent<TurretHealthBehaviour>().TakeDamage(damageDealt);
             Destroy(gameObject);
         }
-        else if (col.gameObject.CompareTag("Minion"))
+        else
         {
-            col.gameObject.GetComponent<MinionHealthBehaviour>().TakeDamage(damageDealt);
+            //TODO: Play a bullet destroyed SFX.
+            print("Collided with an unknown trigger: " + col.gameObject.name);
             Destroy(gameObject);
         }
     }
