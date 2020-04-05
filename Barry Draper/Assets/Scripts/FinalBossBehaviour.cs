@@ -13,6 +13,7 @@ using UnityEngine;
 public class FinalBossBehaviour : MonoBehaviour
 {
     private Transform player;
+    //The distance the player must be to the final boss to initiate the waves spawning.
     public float minDistanceToPlayer = 10f;
 
     public int wavesToSpawn = 3;
@@ -25,6 +26,8 @@ public class FinalBossBehaviour : MonoBehaviour
 
     public float timeBetweenWaves = 3f;
     private float currentTime = 0f;
+
+    private int currentRound = 0;
 
     void Start()
     {
@@ -42,6 +45,7 @@ public class FinalBossBehaviour : MonoBehaviour
             return;
         }
 
+        //Debugging purposes.
         if (Input.GetKeyDown(KeyCode.P))
         {
             DecreaseMinionCount();
@@ -104,12 +108,29 @@ public class FinalBossBehaviour : MonoBehaviour
         currentWave++;
         if (currentWave >= wavesToSpawn)
         {
+            //Increase currentRound to the round that just ended.
+            currentRound++;
             //TODO: Make boss run away AND fans turn on and stuff.
             print("THIS ROUND IS OVER. THE BOSS HAS MOVED!");
+            TurnOnInteractables();
             return;
         }
 
         waveFinished = false;
         waveStarted = false;
+    }
+
+    //Interactables with the tag "'Round ' + currentRound'" will be turned on after the final boss moves.
+    void TurnOnInteractables()
+    {
+        string tag = "Round " + currentRound;
+        GameObject[] interactableObjects = GameObject.FindGameObjectsWithTag(tag);
+        InteractableBehaviour[] interactables = new InteractableBehaviour[interactableObjects.Length];
+
+        for (int i = 0; i < interactables.Length; ++i)
+        {
+            interactables[i] = interactableObjects[i].GetComponent<InteractableBehaviour>();
+            interactables[i].PowerOn();
+        }
     }
 }

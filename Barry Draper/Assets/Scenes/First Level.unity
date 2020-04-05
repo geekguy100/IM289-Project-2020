@@ -271,6 +271,11 @@ PrefabInstance:
       propertyPath: offColor.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5372537326239994680, guid: a4bebd1a48a857a4dbc46746af887cb2,
+        type: 3}
+      propertyPath: isPowered
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5372537326239994681, guid: a4bebd1a48a857a4dbc46746af887cb2,
         type: 3}
       propertyPath: m_Name
@@ -4447,7 +4452,7 @@ SpriteRenderer:
   m_Size: {x: 15, y: 15}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1238739602
@@ -6001,7 +6006,7 @@ SpriteRenderer:
   m_Size: {x: 15, y: 15}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1827478915

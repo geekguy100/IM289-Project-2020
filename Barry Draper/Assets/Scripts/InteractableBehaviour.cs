@@ -54,15 +54,16 @@ public class InteractableBehaviour : MonoBehaviour
 
             if (isPowered)
             {
-                StartCoroutine(DoorAction());
+                //StartCoroutine(DoorAction());
+                PowerOn();
             }
         }
         else if (type == InteractableType.Fan)
         {
             if (isPowered)
-                FanAction();
+                PowerOn();
             else
-                FanOffAction();
+                PowerOff();
         }
 
 

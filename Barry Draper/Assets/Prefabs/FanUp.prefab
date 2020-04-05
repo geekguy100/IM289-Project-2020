@@ -203,6 +203,7 @@ MonoBehaviour:
   offColor: {r: 1, g: 1, b: 1, a: 1}
   drafts:
   - {fileID: 5310074043446171598}
+  - {fileID: 5947296593537936747}
   openSpeed: 1
   closeSpeed: 1
   openDistance: 5
