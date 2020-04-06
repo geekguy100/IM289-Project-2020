@@ -244,8 +244,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -360578479
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ec1a3d58600a39c4e8fd0436f057f876, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 8014409509974950882}
   - component: {fileID: 8014409509974950881}
   - component: {fileID: 8014409509974950880}
+  - component: {fileID: 1597467084}
   m_Layer: 0
   m_Name: TurretLeft
   m_TagString: Turret
@@ -352,8 +353,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -360578479
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 74b7ecfcf237bbf40835b2658dd6c196, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -395,6 +396,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLives: 5
+--- !u!70 &1597467084
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8014409509974950887}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.016260982, y: 0.31709683}
+  m_Size: {x: 1.3974779, y: 2.0641935}
+  m_Direction: 0
 --- !u!1 &8014409511099352778
 GameObject:
   m_ObjectHideFlags: 0

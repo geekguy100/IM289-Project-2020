@@ -16,6 +16,14 @@ public class InteractableBehaviour : MonoBehaviour
     public enum InteractableType { Fan, Door };
     private SpriteRenderer sr;
 
+    //CR
+    [Header("Movment System")]
+    public bool moving = false;
+    public bool xMove = false;
+    public bool yMove = false;
+    public int speed = 0;
+    public int time = 0;
+
     [Header("Power System")]
     public InteractableType type;
     public bool isPowered = false;
@@ -127,6 +135,10 @@ public class InteractableBehaviour : MonoBehaviour
         foreach(GameObject draft in drafts)
         {
             draft.SetActive(true);
+            if(moving) //CR
+            {
+                print("Works");
+            }
         }
     }
 
@@ -168,6 +180,25 @@ public class InteractableBehaviour : MonoBehaviour
             cPos.y -=  closeSpeed * Time.deltaTime;
             transform.position = cPos;
             yield return null;
+        }
+    }
+
+    /// <summary>
+    /// Handles the movement of fans. Takes in if the
+    /// fan is moving on the X or Y axis, and then 
+    /// moves it accordingly to the speed. 
+    /// CR
+    /// </summary>
+    private void move(bool moveX, bool moveY, int speed)
+    {
+        if(moveX)
+        {
+
+        }
+
+        if(moveY)
+        {
+
         }
     }
 }
