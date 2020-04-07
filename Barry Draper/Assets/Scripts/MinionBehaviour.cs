@@ -27,9 +27,12 @@ public class MinionBehaviour : MonoBehaviour
 
     private bool facingRight = false;
 
+    private Animator anim;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         shootingBehaviour = GetComponent<MinionShootingBehaviour>();
     }
 
@@ -49,8 +52,14 @@ public class MinionBehaviour : MonoBehaviour
         //Handle flipping here.
         HandleFlipping(direction);
 
+        if (currentDistanceToPlayer > assignedDistanceToPlayer)
+        {
+            anim.SetBool("IsRunning", true);
+        }
+
         if (currentDistanceToPlayer <= assignedDistanceToPlayer)
         {
+            anim.SetBool("IsRunning", false);
             if (newPos.x != 0)
             {
                 newPos.x = 0;
@@ -93,8 +102,11 @@ public class MinionBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         //Moving the rigidbody along x-axis.
-        Vector2 pos = rb.position;
-        pos.x += newPos.x * Time.fixedDeltaTime;
-        rb.position = pos;
+        if (!MinionHealthBehaviour.beenHit)
+        {
+            Vector2 pos = rb.position;
+            pos.x += newPos.x * Time.fixedDeltaTime;
+            rb.position = pos;
+        }
     }
 }

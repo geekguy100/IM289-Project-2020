@@ -19,15 +19,28 @@ public class MinionShootingBehaviour : MonoBehaviour
     private float currentShootTime = 0f;
     private bool canShoot = true;
 
+    private Animator anim;
+
     public void HandleShooting()
     {
-        if (!canShoot) return;
+        if (!canShoot || MinionHealthBehaviour.beenHit 
+                         || MinionHealthBehaviour.beenKilled)
+        {
+            anim.SetBool("IsShooting", false);
+            return;
+        }
 
         Instantiate(bullet, bulletSpawnPos.position, bulletSpawnPos.rotation);
+        anim.SetBool("IsShooting", true);
         canShoot = false;
     }
 
-    private void Update()
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+
+        private void Update()
     {
         //Updating whether or not the minion can shoot.
         if (!canShoot)
