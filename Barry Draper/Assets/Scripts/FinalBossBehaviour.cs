@@ -17,12 +17,14 @@ public class FinalBossBehaviour : MonoBehaviour
     public float minDistanceToPlayer = 10f;
 
     public int wavesToSpawn = 3;
+    public int maxRounds = 3;
     private int currentWave = 0;
     private int currentEnemyCount = 0;
 
     private bool playerInRange = false;
     private bool waveStarted = false;
     private bool waveFinished = false;
+    private bool roundOver = false;
 
     public float timeBetweenWaves = 3f;
     private float currentTime = 0f;
@@ -42,18 +44,17 @@ public class FinalBossBehaviour : MonoBehaviour
         {
             float dist = Vector2.Distance(transform.position, player.position);
             playerInRange = dist < minDistanceToPlayer;
+            print(dist);
             return;
-        }
-
-        //Debugging purposes.
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            DecreaseMinionCount();
         }
 
         //Start the wave
         if (!waveStarted)
         {
+            //If roundOver is true, make it false because there are still waves to spawn.
+            if (roundOver)
+                roundOver = false;
+
             StartWave();
         }
         //If the wave has started and the player has killed all of the spawned enemies, 
@@ -61,7 +62,6 @@ public class FinalBossBehaviour : MonoBehaviour
         else if (waveStarted && !waveFinished && currentEnemyCount <= 0)
         {
             print("WAVE " + (currentWave + 1) + " CLEARED!");
-            currentEnemyCount = 0; //Just in case by some random coincedence this goes below 0.
 
             waveFinished = true;
         }
@@ -71,7 +71,7 @@ public class FinalBossBehaviour : MonoBehaviour
         {
             currentTime += Time.deltaTime;
         }
-        else if (currentTime >= timeBetweenWaves)
+        else if (currentTime >= timeBetweenWaves && !roundOver)
         {
             //Finalize the current wave and start the new one.
             FinalizeWave();
@@ -81,7 +81,7 @@ public class FinalBossBehaviour : MonoBehaviour
     void StartWave()
     {
         //TODO: BLOW WHISTE HERE
-        print("WHISTLE BLOW!: Wave #" + (currentWave + 1));
+        print("WHISTLE BLOW!: Round #" + (currentRound + 1) + "     Wave #" + (currentWave + 1));
         waveStarted = true;
 
         //Get an array of all of the spawners in the scene.
@@ -90,6 +90,10 @@ public class FinalBossBehaviour : MonoBehaviour
         for (int i = 0; i < spawnerObjects.Length; ++i)
         {
             spawners[i] = spawnerObjects[i].GetComponent<MinionSpawner>();
+            //If the spawner is not supposed to be run this round, skip to the next available spawner.
+            if (spawners[i].roundActive != (currentRound + 1))
+                continue;
+
             spawners[i].SpawnMinions();
             currentEnemyCount += spawners[i].GetEnemyCount();
         }
@@ -97,6 +101,9 @@ public class FinalBossBehaviour : MonoBehaviour
 
     public void DecreaseMinionCount()
     {
+        //If the round is over or the wave hasn't started yet, don't decrease the enemy count.
+        if (roundOver || !waveStarted)
+            return;
         currentEnemyCount--;
         print("Current Enemy Count: " + currentEnemyCount);
     }
@@ -104,16 +111,29 @@ public class FinalBossBehaviour : MonoBehaviour
     void FinalizeWave()
     {
         currentTime = 0f;
+        if (currentEnemyCount != 0)
+            currentEnemyCount = 0;
+
         //If we reached the max number of waves for the level, perform transition operations.
         currentWave++;
         if (currentWave >= wavesToSpawn)
         {
             //Increase currentRound to the round that just ended.
             currentRound++;
+            if (currentRound >= maxRounds)
+            {
+                roundOver = true;
+                print("ALL ROUNDS HAVE BEEN COMPLETED!");
+                //TODO: Make the final boss jump down and attack the player.
+                return;
+            }
+            currentWave = 0;
             //TODO: Make boss run away AND fans turn on and stuff.
             print("THIS ROUND IS OVER. THE BOSS HAS MOVED!");
+            MoveBossPosition();
             TurnOnInteractables();
-            return;
+            playerInRange = false;
+            roundOver = true;
         }
 
         waveFinished = false;
@@ -132,5 +152,13 @@ public class FinalBossBehaviour : MonoBehaviour
             interactables[i] = interactableObjects[i].GetComponent<InteractableBehaviour>();
             interactables[i].PowerOn();
         }
+    }
+
+    void MoveBossPosition()
+    {
+        string name = "Boss Pos " + (currentRound + 1);
+        Transform newPos = GameObject.Find(name).transform;
+
+        transform.position = newPos.position;
     }
 }

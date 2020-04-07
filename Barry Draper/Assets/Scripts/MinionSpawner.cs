@@ -21,6 +21,7 @@ public class MinionSpawner : MonoBehaviour
     //The time between each minion spawn in seconds.
     public float timeBetweenSpawns = 1f;
 
+    public int roundActive = 1;
 
 
     public int GetEnemyCount()
@@ -37,8 +38,8 @@ public class MinionSpawner : MonoBehaviour
     {
         while (currentNum < numberOfMinions)
         {
-            Instantiate(minion, transform.position, Quaternion.identity);
             currentNum++;
+            Instantiate(minion, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
 

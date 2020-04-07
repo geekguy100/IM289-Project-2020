@@ -34,23 +34,19 @@ public class DraftBehaviour : MonoBehaviour
             //player's umbrella align.
             if (gameObject.tag == "up" && pc.umbrellaUp)
             {
-                print("up??");
                 ApplyForce(rb);
             }
             else if (gameObject.tag == "right" && pc.umbrellaRight)
             {
-                print("right??");
                 ApplyForce(rb);
             }
             else if (gameObject.tag == "left" && pc.umbrellaLeft)
             {
-                print("left??");
                 ApplyForce(rb);
             }
         }
         else if (!col.gameObject.CompareTag("Umbrella")) //if some other rigidbody enters the draft
         {
-            print("something else");
             ApplyForce(rb);
         }
     }

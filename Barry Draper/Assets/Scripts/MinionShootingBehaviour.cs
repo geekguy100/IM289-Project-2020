@@ -39,7 +39,6 @@ public class MinionShootingBehaviour : MonoBehaviour
         {
             canShoot = true;
             currentShootTime = 0f;
-            print("Can shoot");
         }
     }
 }

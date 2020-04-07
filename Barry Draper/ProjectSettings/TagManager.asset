@@ -52,9 +52,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background Interactables
+    uniqueID: 3934388817
+    locked: 0
+  - name: Enemies
+    uniqueID: 468081481
+    locked: 0
   - name: umbrella
     uniqueID: 66427331
     locked: 0
-  - name: Interactables
-    uniqueID: 3934388817
+  - name: Player
+    uniqueID: 3641589261
+    locked: 0
+  - name: Foreground Interactables
+    uniqueID: 3684195789
     locked: 0
