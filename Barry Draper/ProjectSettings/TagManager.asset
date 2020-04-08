@@ -15,6 +15,7 @@ TagManager:
   - Minion Spawner
   - Minion
   - Round 1
+  - progress
   layers:
   - Default
   - TransparentFX

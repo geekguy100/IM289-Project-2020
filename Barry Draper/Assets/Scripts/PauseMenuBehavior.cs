@@ -6,8 +6,6 @@
 // Brief Description :  Controls how the player can pause and unpause the game
                         as well as control menu options within the pause menu.
 *****************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -81,5 +79,14 @@ public class PauseMenuBehavior : MonoBehaviour
     public void QuitGame()
     {
         SceneManager.LoadScene("Main Menu");
+    }
+
+    /// <summary>
+    /// Loads a new scene, preferably the next level after a level is completed
+    /// </summary>
+    /// <param name="levelname"></param>
+    public void NextLevel(string levelname)
+    {
+        SceneManager.LoadScene(levelname);
     }
 }
