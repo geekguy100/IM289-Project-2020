@@ -130,8 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a92116e968d0344d8027316643f6d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLives: 3
-  hitAnimationTime: 0.5
+  maxLives: 2
+  hitAnimationTime: 2
+  beenHit: 0
+  beenKilled: 0
 --- !u!114 &5205805495906249042
 MonoBehaviour:
   m_ObjectHideFlags: 0

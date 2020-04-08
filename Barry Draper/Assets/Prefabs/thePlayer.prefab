@@ -205,8 +205,6 @@ MonoBehaviour:
   newPos: {x: 0, y: 0}
   minYVel: -4.9
   dashForce: 3
-  dashTime: 2
-  dashCooldownTime: 0.5
   maxXVel: 15
   groundPosition: {fileID: 1248221872877384231}
   whatIsGround:
@@ -529,7 +527,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -653378035
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 3778948002603646263, guid: 4fb6d30b253f0a547917c0a75a3d442a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

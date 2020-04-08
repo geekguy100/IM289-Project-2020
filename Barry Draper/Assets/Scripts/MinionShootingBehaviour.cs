@@ -42,7 +42,7 @@ public class MinionShootingBehaviour : MonoBehaviour
         canShoot = false;
     }
 
-        private void Update()
+    private void Update()
     {
         //Updating whether or not the minion can shoot.
         if (!canShoot)

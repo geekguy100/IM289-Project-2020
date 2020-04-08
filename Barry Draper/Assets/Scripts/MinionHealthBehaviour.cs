@@ -17,7 +17,7 @@ public class MinionHealthBehaviour : MonoBehaviour
 
     private Animator anim;
 
-    public float hitAnimationTime = 0.5f;
+    public float hitAnimationTime = 1f;
 
     [HideInInspector]
     public bool beenHit = false;
@@ -35,31 +35,29 @@ public class MinionHealthBehaviour : MonoBehaviour
     {
         currentLives -= damage;
 
-        anim.SetBool("IsHit", true);
-        beenHit = true;
-        Invoke("RemoveHitAnimation", hitAnimationTime);
-
         if (currentLives <= 0)
         {
+            //Make sure this doesn't run twice.
+            if (beenKilled)
+                return;
+
             anim.SetBool("IsKilled", true);
             beenKilled = true;
 
             //PLAY AUDIO EFFECT
             GameObject.FindObjectOfType<FinalBossBehaviour>().DecreaseMinionCount();
-            Destroy(gameObject);
-
-            Invoke("DestroyEnemy", 0.5f);
+            Destroy(gameObject, 1f);
+            return;
         }
+
+        anim.SetBool("IsHit", true);
+        beenHit = true;
+        Invoke("RemoveHitAnimation", hitAnimationTime);
     }
 
-    public void RemoveHitAnimation()
+    private void RemoveHitAnimation()
     {
         anim.SetBool("IsHit", false);
         beenHit = false;
-    }
-
-    public void DestroyEnemy()
-    {
-        Destroy(gameObject);
     }
 }

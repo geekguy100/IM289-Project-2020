@@ -47,6 +47,10 @@ public class MinionBehaviour : MonoBehaviour
 
     private void Update()
     {
+        //If the enemy has been hit or killed, don't make him move or shoot -- wait until he has recovered.
+        if (healthBehaviour.beenHit || healthBehaviour.beenKilled)
+            return;
+
         //Calculating distance and direction towards the player.
         currentDistanceToPlayer = Vector2.Distance(transform.position, player.position);
         Vector2 direction = (player.position - transform.position).normalized;
@@ -57,25 +61,20 @@ public class MinionBehaviour : MonoBehaviour
         if (currentDistanceToPlayer > assignedDistanceToPlayer)
         {
             anim.SetBool("IsRunning", true);
+            //Calculating the velocity for the minion.
+            newPos.x = direction.x * assignedMovementSpeed;
         }
-
-        if (currentDistanceToPlayer <= assignedDistanceToPlayer)
+        else
         {
             anim.SetBool("IsRunning", false);
             if (newPos.x != 0)
             {
                 newPos.x = 0;
-                assignedDistanceToPlayer = Random.Range(distanceToPlayer.x, distanceToPlayer.y);
             }
 
-            //Handle shooting. Time between shots, bullet prefab, etc., is all in the MinionShootingBehaviour script.
+            //Handle shooting. Time between shots, bullet prefab, etc., are all in the MinionShootingBehaviour script.
             shootingBehaviour.HandleShooting();
-
-            return; //Returning so we don't move the minion while he is supposed to be stationary.
         }
-
-        //Calculating the velocity for the minion.
-        newPos.x = direction.x * assignedMovementSpeed;
     }
 
     private void HandleFlipping(Vector2 direction)
@@ -103,12 +102,12 @@ public class MinionBehaviour : MonoBehaviour
     
     void FixedUpdate()
     {
+        //Don't move the minion if he's been hit or killed.
+        if (healthBehaviour.beenHit || healthBehaviour.beenKilled)
+            return;
         //Moving the rigidbody along x-axis.
-        if (!healthBehaviour.beenHit)
-        {
-            Vector2 pos = rb.position;
-            pos.x += newPos.x * Time.fixedDeltaTime;
-            rb.position = pos;
-        }
+        Vector2 pos = rb.position;
+        pos.x += newPos.x * Time.fixedDeltaTime;
+        rb.position = pos;
     }
 }

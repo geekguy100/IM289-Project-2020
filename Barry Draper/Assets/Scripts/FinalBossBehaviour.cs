@@ -38,13 +38,16 @@ public class FinalBossBehaviour : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+            FinalizeWave();
+
         //Make sure the player is in range before doing anything.
         //Only for the inital wave so the player finds the boss before the first wave starts.
         if (!playerInRange)
         {
             float dist = Vector2.Distance(transform.position, player.position);
             playerInRange = dist < minDistanceToPlayer;
-            print(dist);
+            //print(dist);
             return;
         }
 

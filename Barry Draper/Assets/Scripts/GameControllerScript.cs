@@ -23,6 +23,7 @@ public class GameControllerScript : MonoBehaviour
     //Is the player currently invincible (after taking damage)?
     private bool invincible;
 
+    [HideInInspector]
     public bool playerAlive = true;
 
     [Tooltip("How long the player has invinciblilty after being hit (in seconds).")]
@@ -57,6 +58,17 @@ public class GameControllerScript : MonoBehaviour
         playerLives -= livesToRemove;
         audioController.PlayClip(AudioController.GameManagerSFX.playerHit);
 
+        UpdateLives();
+    }
+
+    public void AwardLives(int lives)
+    {
+        if (lives + playerLives > maxPlayerLives)
+            playerLives = maxPlayerLives;
+        else
+            playerLives += lives;
+
+        //Play sound
         UpdateLives();
     }
 

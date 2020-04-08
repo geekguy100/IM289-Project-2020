@@ -20,6 +20,11 @@ public class PauseMenuBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!pauseMenu)
+            pauseMenu = GameObject.Find("Pause Menu Canvas");
+        if (!optionsMenu)
+            optionsMenu = GameObject.Find("Options Menu Canvas");
+
         isPaused = false;
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);

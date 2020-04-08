@@ -227,7 +227,6 @@ public class PlayerController : MonoBehaviour
             rb.velocity = vel;
         }
 
-        print("X velocity: " + rb.velocity.x + "\nnewPos.x: " + newPos.x);
         //Clamping the x velocity of the player so they cannot dash infinitely fast.
         Vector2 velocity = rb.velocity;
         velocity.x = Mathf.Clamp(rb.velocity.x, -maxXVel, maxXVel);
