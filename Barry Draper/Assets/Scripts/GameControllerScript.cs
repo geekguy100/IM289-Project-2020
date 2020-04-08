@@ -102,6 +102,8 @@ public class GameControllerScript : MonoBehaviour
         string levelName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         UnityEngine.SceneManagement.SceneManager.LoadScene(levelName);
         playerLives = maxPlayerLives;
+        playerAlive = true;
+        transform.GetChild(1).GetComponent<AudioController>().PlayBackgroundMusic();
         UpdateLives();
     }
 }

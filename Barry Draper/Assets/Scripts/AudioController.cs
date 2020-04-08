@@ -130,6 +130,10 @@ public class AudioController : MonoBehaviour
 
     }
 
+    public void PlayBackgroundMusic()
+    {
+        StartCoroutine(PlayBGMusic());
+    }
 
 
 
