@@ -18,6 +18,7 @@ public class InteractableBehaviour : MonoBehaviour
 
     //CR
     [Header("Movment System")]
+    public bool stayOn = false;
     public bool moving = false;
     public bool yMove = false;
     public bool xMove = false;
@@ -147,6 +148,7 @@ public class InteractableBehaviour : MonoBehaviour
         foreach(GameObject draft in drafts)
         {
             draft.SetActive(true);
+            moving = true;
         }
     }
 
@@ -157,7 +159,10 @@ public class InteractableBehaviour : MonoBehaviour
     {
         foreach(GameObject draft in drafts)
         {
-            draft.SetActive(false);
+            if(!stayOn)
+            {
+                draft.SetActive(false);
+            }
         }
     }
 
