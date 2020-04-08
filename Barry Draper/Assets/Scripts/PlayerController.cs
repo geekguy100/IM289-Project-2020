@@ -35,10 +35,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Dashing")]
     public float dashForce = 5.0f;
-    public float dashTime = 1f;
-    public float dashCooldownTime = 0.5f;
     public float maxXVel = 15f;
-    private bool canDash = true;
 
     [Header("Movement Dependencies")]
     public Transform groundPosition;
@@ -333,13 +330,13 @@ public class PlayerController : MonoBehaviour
             umbrellaShieldTrigger.enabled = true;
             audioController.PlayClip(AudioController.PlayerSFX.openUmbrella);
 
-            if (umbrellaLeft && canDash)
+            if (umbrellaLeft)
             {
                 rb.AddForce(new Vector2(1.0f, 0.0f) * dashForce, ForceMode2D.Impulse);
                 //StopCoroutine(ResetDash());
                 //StartCoroutine(ResetDash());
             }
-            else if (umbrellaRight && canDash)
+            else if (umbrellaRight)
             {
                 rb.AddForce(new Vector2(-1.0f, 0.0f) * dashForce, ForceMode2D.Impulse);
                 //StopCoroutine(ResetDash());
@@ -355,26 +352,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private int dashNum = 0;
-
-    IEnumerator ResetDash()
-    {
-        //print("Dashing: Starting " + dashNum);
-        dashNum++;
-
-        if (dashNum > 1)
-        {
-            dashNum--;
-            yield break;
-        }
-
-        yield return new WaitForSeconds(dashTime);
-        canDash = false;
-        yield return new WaitForSeconds(dashCooldownTime);
-        canDash = true;
-        //print("Dashing: finishing");
-        dashNum--;
-    }
 
     /// <summary>
     /// Switches the rotation of the players umbrella by pressing the

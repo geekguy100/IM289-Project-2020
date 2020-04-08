@@ -207,7 +207,7 @@ MonoBehaviour:
   dashForce: 3
   dashTime: 2
   dashCooldownTime: 0.5
-  canDash: 1
+  maxXVel: 15
   groundPosition: {fileID: 1248221872877384231}
   whatIsGround:
     serializedVersion: 2
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1384489d9e8f5ce46b9dec6638276277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breathTime: 10
+  breathTime: 5
 --- !u!1 &3182500187163598878
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +549,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6522544325178477615}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1

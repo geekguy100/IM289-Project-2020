@@ -568,21 +568,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2034070280315304172, guid: c260e93836926ce45a27d21892a28b49,
-        type: 3}
-      propertyPath: maxXVel
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3839771703079694008, guid: c260e93836926ce45a27d21892a28b49,
-        type: 3}
-      propertyPath: breathTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4131023055418618292, guid: c260e93836926ce45a27d21892a28b49,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c260e93836926ce45a27d21892a28b49, type: 3}
 --- !u!4 &208170796 stripped
