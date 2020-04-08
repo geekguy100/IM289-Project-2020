@@ -36,27 +36,7 @@ public class PauseMenuBehavior : MonoBehaviour
     {
         if (Input.GetKeyUp("escape"))
         {
-            //If you are on options menu and press escape, quit to pause menu
-            if (optionsMenu.activeInHierarchy)
-            {
-                pauseMenu.SetActive(true);
-                optionsMenu.SetActive(false);
-            }
-            else
-            {
-                isPaused = !isPaused;
-
-                if (isPaused)
-                {
-                    Time.timeScale = 0;
-                    pauseMenu.SetActive(true);
-                }
-                else
-                {
-                    Time.timeScale = 1;
-                    pauseMenu.SetActive(false);
-                }
-            }
+            HandlePausing();
         }
     }
 
@@ -89,9 +69,39 @@ public class PauseMenuBehavior : MonoBehaviour
     /// <summary>
     /// Loads a new scene, preferably the next level after a level is completed
     /// </summary>
-    /// <param name="levelname"></param>
+    /// <param name="levelname">the name of the level to load.</param>
     public void NextLevel(string levelname)
     {
         SceneManager.LoadScene(levelname);
+    }
+
+    private void HandlePausing()
+    {
+        //If you are on options menu and press escape, quit to pause menu
+        if (optionsMenu.activeInHierarchy)
+        {
+            pauseMenu.SetActive(true);
+            optionsMenu.SetActive(false);
+        }
+        else
+        {
+            isPaused = !isPaused;
+
+            if (isPaused)
+            {
+                Time.timeScale = 0;
+                pauseMenu.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1;
+                pauseMenu.SetActive(false);
+            }
+        }
+    }
+
+    public void ShowPauseAtGameEnd()
+    {
+        Invoke("HandlePausing", 2f);
     }
 }

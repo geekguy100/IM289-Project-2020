@@ -103,6 +103,7 @@ public class GameControllerScript : MonoBehaviour
 
             transform.GetChild(1).GetComponent<AudioController>().StopBackgroundMusic(); //Stop the background music.
             audioController.PlayClip(AudioController.GameManagerSFX.gameOver);
+            GameObject.Find("Menu Controller").GetComponent<PauseMenuBehavior>().ShowPauseAtGameEnd();
         }
 
         Invoke("RemoveInvincibility", invincibilityTime);
