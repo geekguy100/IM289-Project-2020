@@ -1265,7 +1265,7 @@ PrefabInstance:
         type: 3}
       propertyPath: minion
       value: 
-      objectReference: {fileID: 2655771054977823990, guid: ec12278c5292dfd4bbac42a55c32f05a,
+      objectReference: {fileID: 5205805495906249047, guid: 4b62532ea5538864094f7df0b0691516,
         type: 3}
     - target: {fileID: 5637036375432808397, guid: 793dbb2a3366cf24aa484750aaf82072,
         type: 3}
@@ -2219,7 +2219,7 @@ PrefabInstance:
         type: 3}
       propertyPath: minion
       value: 
-      objectReference: {fileID: 2655771054977823990, guid: ec12278c5292dfd4bbac42a55c32f05a,
+      objectReference: {fileID: 5205805495906249047, guid: 4b62532ea5538864094f7df0b0691516,
         type: 3}
     - target: {fileID: 5637036375432808397, guid: 793dbb2a3366cf24aa484750aaf82072,
         type: 3}

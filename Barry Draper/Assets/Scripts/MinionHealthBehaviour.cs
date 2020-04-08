@@ -19,8 +19,10 @@ public class MinionHealthBehaviour : MonoBehaviour
 
     public float hitAnimationTime = 0.5f;
 
-    public static bool beenHit = false;
-    public static bool beenKilled = false;
+    [HideInInspector]
+    public bool beenHit = false;
+    [HideInInspector]
+    public bool beenKilled = false;
 
     void Awake()
     {

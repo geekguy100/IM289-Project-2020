@@ -43,4 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369a2f2261cf760428382a32819e3747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minion: {fileID: 5205805495906249047, guid: 4b62532ea5538864094f7df0b0691516, type: 3}
   numberOfMinions: 5
+  timeBetweenSpawns: 1
+  roundActive: 1

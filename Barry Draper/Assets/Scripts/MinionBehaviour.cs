@@ -22,6 +22,7 @@ public class MinionBehaviour : MonoBehaviour
     private float currentDistanceToPlayer;
 
     private MinionShootingBehaviour shootingBehaviour;
+    private MinionHealthBehaviour healthBehaviour;
 
     private Rigidbody2D rb;
 
@@ -34,6 +35,7 @@ public class MinionBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         shootingBehaviour = GetComponent<MinionShootingBehaviour>();
+        healthBehaviour = GetComponent<MinionHealthBehaviour>();
     }
 
     void Start()
@@ -102,7 +104,7 @@ public class MinionBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         //Moving the rigidbody along x-axis.
-        if (!MinionHealthBehaviour.beenHit)
+        if (!healthBehaviour.beenHit)
         {
             Vector2 pos = rb.position;
             pos.x += newPos.x * Time.fixedDeltaTime;

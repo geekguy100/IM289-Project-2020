@@ -21,10 +21,17 @@ public class MinionShootingBehaviour : MonoBehaviour
 
     private Animator anim;
 
+    MinionHealthBehaviour healthBehaviour;
+
+    private void Awake()
+    {
+        healthBehaviour = GetComponent<MinionHealthBehaviour>();
+        anim = GetComponent<Animator>();
+    }
+
     public void HandleShooting()
     {
-        if (!canShoot || MinionHealthBehaviour.beenHit 
-                         || MinionHealthBehaviour.beenKilled)
+        if (!canShoot || healthBehaviour.beenHit || healthBehaviour.beenKilled)
         {
             anim.SetBool("IsShooting", false);
             return;
@@ -33,11 +40,6 @@ public class MinionShootingBehaviour : MonoBehaviour
         Instantiate(bullet, bulletSpawnPos.position, bulletSpawnPos.rotation);
         anim.SetBool("IsShooting", true);
         canShoot = false;
-    }
-
-    private void Awake()
-    {
-        anim = GetComponent<Animator>();
     }
 
         private void Update()
