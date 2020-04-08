@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameControllerScript : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class GameControllerScript : MonoBehaviour
 
     private void Awake()
     {
+        //Singleton behaviour
         if (instance == null)
             instance = this;
         else if (instance != null)
@@ -46,33 +48,40 @@ public class GameControllerScript : MonoBehaviour
         audioController = GetComponentInChildren<AudioController>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        invincible = false;
-        playerLives = maxPlayerLives;
-        UpdateLives();
-    }
-
     public void RemoveLivesFromPlayer(int livesToRemove)
     {
         if (invincible || !playerAlive)
             return;
 
+        invincible = true;
         playerLives -= livesToRemove;
         audioController.PlayClip(AudioController.GameManagerSFX.playerHit);
 
-        invincible = true;
         UpdateLives();
+    }
+
+    //This should run at the start of each level.
+    public void PrepareLevel()
+    {
+        invincible = false;
+        playerAlive = true;
+        playerLives = maxPlayerLives;
+
+        //If the livesText is null, find it and make sure it's active.
+        if (livesText == null)
+        {
+            livesText = GameObject.Find("LivesText");
+        }
+        if (!livesText.activeSelf)
+            livesText.SetActive(true);
+        UpdateLives();
+
+        transform.GetChild(1).GetComponent<AudioController>().PlayBackgroundMusic();
+        //print("GameController: Prepared the level");
     }
 
     public void UpdateLives()
     {
-        if (livesText == null)
-        {
-            livesText = GameObject.Find("LivesText"); ;
-        }
-
         livesText.GetComponent<Text>().text = "Lives: " + playerLives;
 
         if(playerLives <= 0 && playerAlive)
@@ -95,15 +104,13 @@ public class GameControllerScript : MonoBehaviour
     public void FinishLevel()
     {
         audioController.PlayClip(AudioController.GameManagerSFX.finishLevel);
+        livesText.SetActive(false);
     }
 
     public void RestartLevel()
     {
-        string levelName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(levelName);
-        playerLives = maxPlayerLives;
-        playerAlive = true;
-        transform.GetChild(1).GetComponent<AudioController>().PlayBackgroundMusic();
-        UpdateLives();
+        string levelName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(levelName);
+        PrepareLevel();
     }
 }

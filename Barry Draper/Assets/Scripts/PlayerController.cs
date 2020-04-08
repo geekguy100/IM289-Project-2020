@@ -32,12 +32,14 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Vector2 newPos;
     public float minYVel = -4.9f;
+
     [Header("Dashing")]
     public float dashForce = 5.0f;
     public float dashTime = 1f;
     public float dashCooldownTime = 0.5f;
-    [SerializeField]
+    public float maxXVel = 15f;
     private bool canDash = true;
+
     [Header("Movement Dependencies")]
     public Transform groundPosition;
     public LayerMask whatIsGround;
@@ -129,9 +131,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
         else if (!GameControllerScript.instance.playerAlive)
+        {
             return;
-
-
+        }
 
         if (Input.GetKey("`"))
         {
@@ -219,13 +221,20 @@ public class PlayerController : MonoBehaviour
             rb.velocity = vel;
         }
 
-        //If the player is grounded AND the x velocity does NOT equal 0 AND the player CANNOT dash, change it to 0.
-        if (isGrounded && rb.velocity.x != 0 && !canDash)
+        //If the x velocity's direction and desired position conflict, set the velocity to 0.
+        if ((rb.velocity.x < 0 && newPos.x > 0) || (rb.velocity.x > 0 && newPos.x < 0))
         {
+           // print("Conflict between velocity.x and newPos.x");
             Vector2 vel = rb.velocity;
             vel.x = 0;
             rb.velocity = vel;
         }
+
+        print("X velocity: " + rb.velocity.x + "\nnewPos.x: " + newPos.x);
+        //Clamping the x velocity of the player so they cannot dash infinitely fast.
+        Vector2 velocity = rb.velocity;
+        velocity.x = Mathf.Clamp(rb.velocity.x, -maxXVel, maxXVel);
+        rb.velocity = velocity;
 
         rb.position = pos;
     }
@@ -327,14 +336,14 @@ public class PlayerController : MonoBehaviour
             if (umbrellaLeft && canDash)
             {
                 rb.AddForce(new Vector2(1.0f, 0.0f) * dashForce, ForceMode2D.Impulse);
-                StopCoroutine(ResetDash());
-                StartCoroutine(ResetDash());
+                //StopCoroutine(ResetDash());
+                //StartCoroutine(ResetDash());
             }
             else if (umbrellaRight && canDash)
             {
                 rb.AddForce(new Vector2(-1.0f, 0.0f) * dashForce, ForceMode2D.Impulse);
-                StopCoroutine(ResetDash());
-                StartCoroutine(ResetDash());
+                //StopCoroutine(ResetDash());
+                //StartCoroutine(ResetDash());
             }
         }
         else if (Input.GetButtonDown("Jump") && umbrella == true)
