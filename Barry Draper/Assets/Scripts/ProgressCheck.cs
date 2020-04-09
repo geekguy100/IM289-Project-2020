@@ -33,9 +33,4 @@ public class ProgressCheck : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
     }
-
-    void Update()
-    {
-        PlayerPrefs.SetFloat("Game Progress", progress);
-    }
 }

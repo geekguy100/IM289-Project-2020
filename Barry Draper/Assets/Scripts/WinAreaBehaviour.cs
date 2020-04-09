@@ -27,6 +27,7 @@ public class WinAreaBehaviour : MonoBehaviour
             GameControllerScript.instance.FinishLevel();
             Time.timeScale = 0;
             ProgressCheck.progress += increaseprogress;
+            PlayerPrefs.SetFloat("Game Progress", ProgressCheck.progress);
             WinScreen.SetActive(true);
         }
     }

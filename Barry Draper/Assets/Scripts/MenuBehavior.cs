@@ -14,6 +14,7 @@ public class MenuBehavior : MonoBehaviour
 {
     public GameObject titleScreen;
     public GameObject levelSelect;
+    public GameObject tutorialScreen;
     public GameObject levelOneCanvas;
     public GameObject levelTwoCanvas;
     public GameObject levelTwoPicture;
@@ -33,6 +34,7 @@ public class MenuBehavior : MonoBehaviour
 
         titleScreen.SetActive(true);
         levelSelect.SetActive(false);
+        tutorialScreen.SetActive(false);
         levelOneCanvas.SetActive(false);
         levelTwoCanvas.SetActive(false);
         levelThreeCanvas.SetActive(false);
@@ -61,6 +63,14 @@ public class MenuBehavior : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyUp("escape"))
+        {
+            EscManagement();
+        }
+    }
+
     /// <summary>
     /// Loads into the level of your choosing
     /// </summary>
@@ -68,5 +78,38 @@ public class MenuBehavior : MonoBehaviour
     public void LoadLevel(string levelname)
     {
         SceneManager.LoadScene(levelname);
+    }
+
+
+    /// <summary>
+    /// Decides on what to do once the player hits Escape on the main menu
+    /// </summary>
+    private void EscManagement()
+    {
+        if (levelSelect.activeInHierarchy)
+        {
+            titleScreen.SetActive(true);
+            levelSelect.SetActive(false);
+        }
+        else if (tutorialScreen.activeInHierarchy)
+        {
+            titleScreen.SetActive(true);
+            tutorialScreen.SetActive(false);
+        }
+        else if (levelOneCanvas.activeInHierarchy ||
+                 levelTwoCanvas.activeInHierarchy ||
+                 levelThreeCanvas.activeInHierarchy ||
+                 LevelFourCanvas.activeInHierarchy)
+        {
+            levelOneCanvas.SetActive(false);
+            levelTwoCanvas.SetActive(false);
+            levelThreeCanvas.SetActive(false);
+            LevelFourCanvas.SetActive(false);
+            levelSelect.SetActive(true);
+        }
+        else if (titleScreen.activeInHierarchy)
+        {
+            Application.Quit();
+        }
     }
 }
