@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
     private bool isGrounded = false;
     private bool facingRight = true;
+    private float airTime = 0;
 
     [Header("Game Objects")]                                /*CD*/
     [Tooltip("The sprite for the player's umbrella.")]      /*CD*/
@@ -149,9 +150,23 @@ public class PlayerController : MonoBehaviour
 
         //Updating the x value accordingly.
         if (isGrounded)
+        {
             newPos.x = xMov * moveSpeed;
+            if(airTime >= 2f)
+            {
+                GameControllerScript.instance.RemoveLivesFromPlayer(1);
+            }
+            airTime = 0;
+        }
         else
+        {
             newPos.x = xMov * airSpeed;
+            if (!umbrellaUp)
+            {
+                airTime += Time.deltaTime;
+            }
+        }
+            
 
         anim.SetFloat("xMov", xMov);
         anim.SetBool("isGrounded", isGrounded);
