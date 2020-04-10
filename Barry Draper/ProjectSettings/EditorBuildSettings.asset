@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 031ada876eddcf3418f34642545ada71
+  - enabled: 1
+    path: Assets/Scenes/Final Boss/Kyle01.unity
+    guid: 44c0dcf042a276f47b4bbee396d3df47
   m_configObjects: {}

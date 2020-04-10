@@ -24,11 +24,17 @@ public class WinAreaBehaviour : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            GameControllerScript.instance.FinishLevel();
-            Time.timeScale = 0;
-            ProgressCheck.progress += increaseprogress;
-            PlayerPrefs.SetFloat("Game Progress", ProgressCheck.progress);
+            float currentProgress = PlayerPrefs.GetFloat("Game Progress");
+            if (currentProgress < increaseprogress)
+            {
+                ProgressCheck.progress = increaseprogress;
+                PlayerPrefs.SetFloat("Game Progress", ProgressCheck.progress);
+            }
+
             WinScreen.SetActive(true);
+            GameControllerScript.instance.FinishLevel();
+            PlayerPrefs.Save();
+            Time.timeScale = 0;
         }
     }
 }

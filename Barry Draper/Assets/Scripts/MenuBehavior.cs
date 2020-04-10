@@ -28,9 +28,9 @@ public class MenuBehavior : MonoBehaviour
 
     private void Start()
     {
-        SpriteRenderer sr2 = levelTwoPicture.GetComponent<SpriteRenderer>();
-        SpriteRenderer sr3 = levelThreePicture.GetComponent<SpriteRenderer>();
-        SpriteRenderer sr4 = levelFourPicture.GetComponent<SpriteRenderer>();
+        Image sr2 = levelTwoPicture.GetComponent<Image>();
+        Image sr3 = levelThreePicture.GetComponent<Image>();
+        Image sr4 = levelFourPicture.GetComponent<Image>();
 
         titleScreen.SetActive(true);
         levelSelect.SetActive(false);
@@ -40,25 +40,25 @@ public class MenuBehavior : MonoBehaviour
         levelThreeCanvas.SetActive(false);
         LevelFourCanvas.SetActive(false);
 
-        if (ProgressCheck.progress < 0.5f)
+        if (ProgressCheck.progress < 1f)
         {
-            Object.Destroy(LevelTwoButton);
+            Destroy(LevelTwoButton);
             sr2.color = Color.grey;
-            Object.Destroy(LevelThreeButton);
+            Destroy(LevelThreeButton);
             sr3.color = Color.grey;
-            Object.Destroy(LevelFourButton);
+            Destroy(LevelFourButton);
             sr4.color = Color.grey;
         }
-        else if (ProgressCheck.progress < 9.5f)
+        else if (ProgressCheck.progress < 2f)
         {
-            Object.Destroy(LevelThreeButton);
+            Destroy(LevelThreeButton);
             sr3.color = Color.grey;
-            Object.Destroy(LevelFourButton);
+            Destroy(LevelFourButton);
             sr4.color = Color.grey;
         }
-        else if (ProgressCheck.progress < 99.5f)
+        else if (ProgressCheck.progress < 3f)
         {
-            Object.Destroy(LevelFourButton);
+            Destroy(LevelFourButton);
             sr4.color = Color.grey;
         }
     }

@@ -80,13 +80,15 @@ public class GameControllerScript : MonoBehaviour
     //This should run at the start of each level.
     public void PrepareLevel()
     {
+        Time.timeScale = 1;
+
         invincible = false;
         playerAlive = true;
         playerLives = maxPlayerLives;
 
         //If the livesText is null, find it and make sure it's active.
-        if (livesText == null)
-            livesText = GameObject.Find("LivesText");
+        livesText = GameObject.Find("LivesText");
+
         if (!livesText.activeSelf)
             livesText.SetActive(true);
 
@@ -134,7 +136,6 @@ public class GameControllerScript : MonoBehaviour
     public void OnGameComplete(GameObject levelCompleteCanvas)
     {
         FinishLevel();
-        PlayerPrefs.SetFloat("Game Progress", ProgressCheck.progress);
         levelCompleteCanvas.SetActive(true);
     }
 }
