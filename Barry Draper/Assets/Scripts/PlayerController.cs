@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = false;
     private bool facingRight = true;
     private float airTime = 0;
+    public float fallDamageDistance = 10f;
+    private bool willTakeFallDamage = false;
+    private GameObject foundGround;
 
     [Header("Game Objects")]                                /*CD*/
     [Tooltip("The sprite for the player's umbrella.")]      /*CD*/
@@ -98,6 +101,8 @@ public class PlayerController : MonoBehaviour
     //Audio and SFX
     private AudioController audioController;
 
+
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -152,18 +157,42 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             newPos.x = xMov * moveSpeed;
-            if(airTime >= 2f)
+            if (willTakeFallDamage)
             {
+                print("You took fall damage!");
                 GameControllerScript.instance.RemoveLivesFromPlayer(1);
+                willTakeFallDamage = false;
+                foundGround = null;
             }
-            airTime = 0;
         }
         else
         {
             newPos.x = xMov * airSpeed;
-            if (!umbrellaUp)
+
+            if (!(umbrella && umbrellaUp))
             {
-                airTime += Time.deltaTime;
+                Vector2 fallPos = -transform.up * 100;
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up, 100, whatIsGround);
+                Debug.DrawRay(transform.position, fallPos, Color.red);
+
+                if (!willTakeFallDamage && hit && hit.distance >= fallDamageDistance)
+                {
+                    //TODO: play falling SFX
+                    print("Ur gonna take fall damage!");
+                    willTakeFallDamage = true;
+                    foundGround = hit.collider.gameObject;
+                }
+                else if (willTakeFallDamage && hit && hit.collider.gameObject != foundGround && hit.distance < fallDamageDistance)
+                {
+                    print("No more fall damage!");
+                    willTakeFallDamage = false;
+                }
+            }
+            else if (willTakeFallDamage)
+            {
+                print("You saved yourself from fall damage");
+                willTakeFallDamage = false;
+                foundGround = null;
             }
         }
             

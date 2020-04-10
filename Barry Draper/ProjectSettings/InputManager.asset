@@ -363,7 +363,7 @@ InputManager:
       free-move camera mode.
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: u
+    positiveButton: f
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -379,7 +379,7 @@ InputManager:
     descriptiveName: The button that allows the player to grab hold of an object.
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: f
+    positiveButton: e
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

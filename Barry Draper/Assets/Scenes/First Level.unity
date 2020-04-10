@@ -7229,6 +7229,11 @@ PrefabInstance:
       propertyPath: WinScreen
       value: 
       objectReference: {fileID: 8457027770484205525}
+    - target: {fileID: 2760167522466608027, guid: ca9c8e1e96df6ec4dac28005936d8932,
+        type: 3}
+      propertyPath: increaseprogress
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca9c8e1e96df6ec4dac28005936d8932, type: 3}
 --- !u!1 &8457027770484205525 stripped

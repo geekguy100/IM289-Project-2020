@@ -24,12 +24,11 @@ public class SceneLoadingController : MonoBehaviour
 
     private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        //Update player prefs
-        PlayerPrefs.SetFloat("Game Progress", ProgressCheck.progress);
-        print("Ur progress: " + ProgressCheck.progress);
+        print("Ur progress: " + PlayerPrefs.GetInt("Game Progress"));
 
         if (GameControllerScript.instance != null)
             GameControllerScript.instance.transform.GetChild(1).GetComponent<AudioController>().StopBackgroundMusic();
+
         if (scene.name != "Main Menu")
         {
             //print("Scene Preparer: Calling PrepareLevel()...");

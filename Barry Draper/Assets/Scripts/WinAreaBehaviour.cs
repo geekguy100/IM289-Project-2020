@@ -12,7 +12,7 @@ using UnityEngine;
 public class WinAreaBehaviour : MonoBehaviour
 {
 
-    public float increaseprogress;
+    public int increaseprogress;
     public GameObject WinScreen;
 
     private void Start()
@@ -24,16 +24,14 @@ public class WinAreaBehaviour : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            float currentProgress = PlayerPrefs.GetFloat("Game Progress");
+            int currentProgress = PlayerPrefs.GetInt("Game Progress");
             if (currentProgress < increaseprogress)
             {
-                ProgressCheck.progress = increaseprogress;
-                PlayerPrefs.SetFloat("Game Progress", ProgressCheck.progress);
+                PlayerPrefs.SetInt("Game Progress", increaseprogress);
+                PlayerPrefs.Save();
             }
-
             WinScreen.SetActive(true);
             GameControllerScript.instance.FinishLevel();
-            PlayerPrefs.Save();
             Time.timeScale = 0;
         }
     }

@@ -29,7 +29,7 @@ public class AudioController : MonoBehaviour
     public AudioClip intro;
     public AudioClip loop;
 
-
+    private bool bgMusic = false;
 
     void Awake()
     {
@@ -101,16 +101,18 @@ public class AudioController : MonoBehaviour
             yield break;
         }
 
+        if (!bgMusic)
+            yield break;
+
         audioSource.clip = intro;
         audioSource.loop = false;
         audioSource.Play();
 
         //Wait until the intro is over.
         yield return new WaitForSeconds(audioSource.clip.length);
-        //while(audioSource.time < audioSource.clip.length)
-        //{
-        //    yield return null;
-        //}
+
+        if (!bgMusic)
+            yield break;
 
         audioSource.clip = loop;
         audioSource.loop = true;
@@ -126,12 +128,15 @@ public class AudioController : MonoBehaviour
         }
 
         print("Stopping BG Music");
+        bgMusic = false;
         audioSource.Stop();
+        StopAllCoroutines();
 
     }
 
     public void PlayBackgroundMusic()
     {
+        bgMusic = true;
         StartCoroutine(PlayBGMusic());
     }
 

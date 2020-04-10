@@ -26,11 +26,12 @@ public class MenuBehavior : MonoBehaviour
     public Button LevelThreeButton;
     public Button LevelFourButton;
 
+    private int currentProgress;
+
     private void Start()
     {
-        Image sr2 = levelTwoPicture.GetComponent<Image>();
-        Image sr3 = levelThreePicture.GetComponent<Image>();
-        Image sr4 = levelFourPicture.GetComponent<Image>();
+        GameControllerScript.instance.transform.GetChild(1).GetComponent<AudioSource>().Stop();
+        currentProgress = PlayerPrefs.GetInt("Game Progress");
 
         titleScreen.SetActive(true);
         levelSelect.SetActive(false);
@@ -40,27 +41,7 @@ public class MenuBehavior : MonoBehaviour
         levelThreeCanvas.SetActive(false);
         LevelFourCanvas.SetActive(false);
 
-        if (ProgressCheck.progress < 1f)
-        {
-            Destroy(LevelTwoButton);
-            sr2.color = Color.grey;
-            Destroy(LevelThreeButton);
-            sr3.color = Color.grey;
-            Destroy(LevelFourButton);
-            sr4.color = Color.grey;
-        }
-        else if (ProgressCheck.progress < 2f)
-        {
-            Destroy(LevelThreeButton);
-            sr3.color = Color.grey;
-            Destroy(LevelFourButton);
-            sr4.color = Color.grey;
-        }
-        else if (ProgressCheck.progress < 3f)
-        {
-            Destroy(LevelFourButton);
-            sr4.color = Color.grey;
-        }
+        UpdateProgress();
     }
 
     private void Update()
@@ -68,6 +49,46 @@ public class MenuBehavior : MonoBehaviour
         if (Input.GetKeyUp("escape"))
         {
             EscManagement();
+        }
+        
+        //Cheat codes.
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            ++currentProgress;
+            PlayerPrefs.SetInt("Game Progress", currentProgress);
+            GameControllerScript.instance.transform.GetChild(0).GetComponent<AudioController>().PlayClip(AudioController.GameManagerSFX.finishLevel);
+            UpdateProgress();
+        }
+    }
+
+    //Updates menu items according to player progression
+    private void UpdateProgress()
+    {
+        Image sr2 = levelTwoPicture.GetComponent<Image>();
+        Image sr3 = levelThreePicture.GetComponent<Image>();
+        Image sr4 = levelFourPicture.GetComponent<Image>();
+
+        print(currentProgress);
+        if (currentProgress > 2)
+        {
+            LevelFourButton.interactable = true;
+            sr4.color = Color.white;
+            LevelThreeButton.interactable = true;
+            sr3.color = Color.white;
+            LevelTwoButton.interactable = true;
+            sr2.color = Color.white;
+        }
+        else if (currentProgress > 1)
+        {
+            LevelThreeButton.interactable = true;
+            sr3.color = Color.white;
+            LevelTwoButton.interactable = true;
+            sr2.color = Color.white;
+        }
+        else if (currentProgress > 0)
+        {
+            LevelTwoButton.interactable = true;
+            sr2.color = Color.white;
         }
     }
 
@@ -109,7 +130,12 @@ public class MenuBehavior : MonoBehaviour
         }
         else if (titleScreen.activeInHierarchy)
         {
-            Application.Quit();
+            ExitGame();
         }
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

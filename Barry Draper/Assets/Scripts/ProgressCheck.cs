@@ -14,11 +14,11 @@ using UnityEngine;
 public class ProgressCheck : MonoBehaviour
 {
 
-    public static float progress;
+    public static int progress;
 
     private void Start()
     {
-        progress = PlayerPrefs.GetFloat("Game Progress");
+        progress = PlayerPrefs.GetInt("Game Progress");
     }
 
     // Start is called before the first frame update
