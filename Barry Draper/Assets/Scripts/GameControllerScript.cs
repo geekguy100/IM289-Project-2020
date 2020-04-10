@@ -61,15 +61,20 @@ public class GameControllerScript : MonoBehaviour
         UpdateLives();
     }
 
-    public void AwardLives(int lives)
+    public bool AwardLives(int lives)
     {
-        if (lives + playerLives > maxPlayerLives)
-            playerLives = maxPlayerLives;
+        if (playerLives >= maxPlayerLives)
+            return false;
         else
             playerLives += lives;
 
+        if (playerLives > maxPlayerLives)
+            playerLives = maxPlayerLives;
+
         //Play sound
         UpdateLives();
+
+        return true;
     }
 
     //This should run at the start of each level.
@@ -81,11 +86,10 @@ public class GameControllerScript : MonoBehaviour
 
         //If the livesText is null, find it and make sure it's active.
         if (livesText == null)
-        {
             livesText = GameObject.Find("LivesText");
-        }
         if (!livesText.activeSelf)
             livesText.SetActive(true);
+
         UpdateLives();
 
         transform.GetChild(1).GetComponent<AudioController>().PlayBackgroundMusic();
@@ -125,5 +129,12 @@ public class GameControllerScript : MonoBehaviour
         string levelName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(levelName);
         PrepareLevel();
+    }
+
+    public void OnGameComplete(GameObject levelCompleteCanvas)
+    {
+        FinishLevel();
+        PlayerPrefs.SetFloat("Game Progress", ProgressCheck.progress);
+        levelCompleteCanvas.SetActive(true);
     }
 }

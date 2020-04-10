@@ -24,8 +24,9 @@ public class HealthPowerupBehaviour : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            GameControllerScript.instance.AwardLives(health);
-            Destroy(gameObject);
+            //If lives have been awarded, destroy the power up.
+            if (GameControllerScript.instance.AwardLives(health))
+                Destroy(gameObject);
         }
     }
 }

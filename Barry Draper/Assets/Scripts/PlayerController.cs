@@ -132,12 +132,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (Input.GetKey("`"))
-        {
-            death();
-        }
-
-
 
 
         //Updating the newPos x value (where the player will move to)

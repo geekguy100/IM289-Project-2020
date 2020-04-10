@@ -94,7 +94,7 @@ public class BulletBehaviour : MonoBehaviour
         else
         {
             //TODO: Play a bullet destroyed SFX.
-            print("Collided with an unknown trigger: " + col.gameObject.name);
+            //print("Collided with another trigger: " + col.gameObject.name);
             Destroy(gameObject);
         }
     }

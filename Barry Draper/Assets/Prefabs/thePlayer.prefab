@@ -633,6 +633,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerDamageandDeath_5
       objectReference: {fileID: 0}
+    - target: {fileID: 4337317213211039803, guid: 2b863dce5d288e94ca1e54107055e117,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b863dce5d288e94ca1e54107055e117, type: 3}
 --- !u!1 &2716078453710946617 stripped
