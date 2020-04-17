@@ -440,25 +440,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1961360006571504470, guid: b4eaa93dc3c6a2d42b4d431af3bdc3f1,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: -0.039621748
-      objectReference: {fileID: 0}
-    - target: {fileID: 1961360006571504470, guid: b4eaa93dc3c6a2d42b4d431af3bdc3f1,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.43472952
-      objectReference: {fileID: 0}
     - target: {fileID: 1961360006571504474, guid: b4eaa93dc3c6a2d42b4d431af3bdc3f1,
         type: 3}
       propertyPath: m_Name
       value: Updraft
-      objectReference: {fileID: 0}
-    - target: {fileID: 1961360006571504475, guid: b4eaa93dc3c6a2d42b4d431af3bdc3f1,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4eaa93dc3c6a2d42b4d431af3bdc3f1, type: 3}

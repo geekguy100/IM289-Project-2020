@@ -210,6 +210,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1280
+  fallDamageDistance: 10
   umbrellaObject: {fileID: 6522544325178477615}
   umbrella: 0
   umbrellaUp: 1

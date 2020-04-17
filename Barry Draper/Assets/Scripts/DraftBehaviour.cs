@@ -17,6 +17,13 @@ public class DraftBehaviour : MonoBehaviour
 
     public float force;
 
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerStay2D(Collider2D col)
     {
         Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
@@ -54,5 +61,12 @@ public class DraftBehaviour : MonoBehaviour
     private void ApplyForce(Rigidbody2D rb)
     {
         rb.AddForce(direction * force, ForceMode2D.Force);
+        if (audioSource.isPlaying)
+            return;
+        else
+        {
+            audioSource.Play();
+            print("Playing!!");
+        }
     }
 }

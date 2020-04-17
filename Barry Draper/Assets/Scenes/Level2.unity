@@ -920,10 +920,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1136251954, guid: 7831f28fd0dc7ae43ade7eb346fb68b9, type: 3}
-      propertyPath: m_Volume
-      value: 0.528
-      objectReference: {fileID: 0}
     - target: {fileID: 4873748756721177172, guid: 7831f28fd0dc7ae43ade7eb346fb68b9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1757,6 +1753,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 949954587112619283, guid: 7bd1b9fd3aded444385838965d47720a,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 949954587112619283, guid: 7bd1b9fd3aded444385838965d47720a,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 949954587112619283, guid: 7bd1b9fd3aded444385838965d47720a,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.479
+      objectReference: {fileID: 0}
     - target: {fileID: 5310074043446171598, guid: 7bd1b9fd3aded444385838965d47720a,
         type: 3}
       propertyPath: m_TagString
@@ -4350,6 +4361,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: up
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310074043446171599, guid: 7bd1b9fd3aded444385838965d47720a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5947296593995461336, guid: 7bd1b9fd3aded444385838965d47720a,
         type: 3}
