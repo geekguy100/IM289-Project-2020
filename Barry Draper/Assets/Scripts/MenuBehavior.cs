@@ -14,6 +14,7 @@ public class MenuBehavior : MonoBehaviour
 {
     public GameObject titleScreen;
     public GameObject levelSelect;
+    public GameObject creditsScreen;
     public GameObject tutorialScreen;
     public GameObject levelOneCanvas;
     public GameObject levelTwoCanvas;
@@ -35,6 +36,7 @@ public class MenuBehavior : MonoBehaviour
 
         titleScreen.SetActive(true);
         levelSelect.SetActive(false);
+        creditsScreen.SetActive(false);
         tutorialScreen.SetActive(false);
         levelOneCanvas.SetActive(false);
         levelTwoCanvas.SetActive(false);
@@ -116,6 +118,11 @@ public class MenuBehavior : MonoBehaviour
         {
             titleScreen.SetActive(true);
             tutorialScreen.SetActive(false);
+        }
+        else if (creditsScreen.activeInHierarchy)
+        {
+            titleScreen.SetActive(true);
+            creditsScreen.SetActive(false);
         }
         else if (levelOneCanvas.activeInHierarchy ||
                  levelTwoCanvas.activeInHierarchy ||
