@@ -14,6 +14,7 @@ public class TurretHealthBehaviour : MonoBehaviour
 {
     public int maxLives = 5;
     private int currentLives;
+    public GameObject deadTurret;
 
     AudioController audioController;
 
@@ -29,7 +30,8 @@ public class TurretHealthBehaviour : MonoBehaviour
         if (currentLives <= 0)
         {
             //TODO: Add particle effects or maybe an animation of the turret falling apart.
-            audioController.PlayClip(AudioController.TurretSFX.die);
+            deadTurret.SetActive(true);
+            deadTurret.transform.SetParent(null);
             Destroy(gameObject);
         }
     }

@@ -28,9 +28,11 @@ public class ButtonBehaviour : MonoBehaviour
     public Sprite onSprite; //Button's pressed sprite.
 
     private SpriteRenderer sr;
+    private AudioController audioController;
 
     private void Awake()
     {
+        audioController = GetComponentInChildren<AudioController>();
         sr = GetComponent<SpriteRenderer>();
         sr.color = offColor;
         sr.sprite = offSprite;
@@ -67,7 +69,7 @@ public class ButtonBehaviour : MonoBehaviour
         isPowered = true;
         sr.color = onColor;
         sr.sprite = onSprite;
-        //TODO: Play sound.
+        audioController.PlayClip(AudioController.ButtonSFX.buttonOn);
 
         foreach (InteractableBehaviour interactable in interactables)
         {
@@ -88,7 +90,7 @@ public class ButtonBehaviour : MonoBehaviour
         isPowered = false;
         sr.color = offColor;
         sr.sprite = offSprite;
-        //TODO: Play sound.
+        audioController.PlayClip(AudioController.ButtonSFX.buttonOff);
 
         foreach (InteractableBehaviour interactable in interactables)
         {

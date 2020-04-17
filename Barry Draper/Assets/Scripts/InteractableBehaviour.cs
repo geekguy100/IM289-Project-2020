@@ -48,9 +48,12 @@ public class InteractableBehaviour : MonoBehaviour
     private Vector2 closedPos = Vector2.zero;
     private Vector2 openedPos = Vector2.zero;
 
+    private AudioController audioController;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        audioController = GetComponentInChildren<AudioController>();
     }
 
     private void Start()
@@ -150,6 +153,8 @@ public class InteractableBehaviour : MonoBehaviour
             draft.SetActive(true);
             moving = true;
         }
+
+        audioController.PlayClip(AudioController.FanSFX.fanWhir, true);
     }
 
     /// <summary>
@@ -164,6 +169,8 @@ public class InteractableBehaviour : MonoBehaviour
                 draft.SetActive(false);
             }
         }
+
+        audioController.StopPlayingLoop();
     }
 
     /// <summary>

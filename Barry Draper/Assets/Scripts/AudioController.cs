@@ -13,16 +13,19 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioController : MonoBehaviour
 {
-    [Header("SFX")]
     private AudioSource audioSource;
 
-    public enum Type {PlayerAudio, GameManagerAudio, turretAudio, backgroundMusic};
+    public enum Type {PlayerAudio, GameManagerAudio, turretAudio, backgroundMusic, fanAudio, buttonAudio};
+
+    [Header("SFX")]
     public Type audioType;
 
 
     public enum PlayerSFX {playerWalk, pickupBox, dropBox, openUmbrella, closeUmbrella};
     public enum GameManagerSFX { playerHit, gameOver, finishLevel };
-    public enum TurretSFX { targetFound, shoot, die};
+    public enum TurretSFX { targetFound, shoot};
+    public enum FanSFX { fanWhir };
+    public enum ButtonSFX { buttonOn, buttonOff };
     public AudioClip[] sfxClips;
 
     [Header("Background Music")]
@@ -56,6 +59,16 @@ public class AudioController : MonoBehaviour
             if (sfxClips.Length != System.Enum.GetValues(typeof(TurretSFX)).Length)
                 warning = true;
         }
+        else if (audioType == Type.fanAudio)
+        {
+            if (sfxClips.Length != System.Enum.GetValues(typeof(FanSFX)).Length)
+                warning = true;
+        }
+        else if (audioType == Type.buttonAudio)
+        {
+            if (sfxClips.Length != System.Enum.GetValues(typeof(ButtonSFX)).Length)
+                warning = true;
+        }
         else if (audioType == Type.backgroundMusic)
         {
             StartCoroutine(PlayBGMusic());
@@ -66,6 +79,7 @@ public class AudioController : MonoBehaviour
             Debug.LogWarning("WARNING: The number of audio clips does not match the number of desired SFX -- " + transform.parent.name);
     }
 
+    //Internal use only. Public functions are listen at the bottom of the script.
     private void PlayClip(int clip, bool loop = false, bool randomTime = false)
     {
         if (audioSource.isPlaying && loop)
@@ -154,6 +168,16 @@ public class AudioController : MonoBehaviour
     }
 
     public void PlayClip(TurretSFX clip, bool loop = false, bool randomTime = false)
+    {
+        PlayClip((int)clip, loop, randomTime);
+    }
+
+    public void PlayClip(FanSFX clip, bool loop = false, bool randomTime = false)
+    {
+        PlayClip((int)clip, loop, randomTime);
+    }
+
+    public void PlayClip(ButtonSFX clip, bool loop = false, bool randomTime = false)
     {
         PlayClip((int)clip, loop, randomTime);
     }
