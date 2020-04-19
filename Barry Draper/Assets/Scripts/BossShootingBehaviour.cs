@@ -19,26 +19,26 @@ public class BossShootingBehaviour : MonoBehaviour
     private float currentShootTime = 0f;
     private bool canShoot = true;
 
-    //private Animator anim;
+    private Animator anim;
 
     BossHealthBehaviour healthBehaviour;
 
     private void Awake()
     {
         healthBehaviour = GetComponent<BossHealthBehaviour>();
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     public void HandleShooting()
     {
         if (!canShoot || healthBehaviour.beenHit || healthBehaviour.beenKilled)
         {
-           // anim.SetBool("IsShooting", false);
+           anim.SetBool("IsShooting", false);
             return;
         }
 
         Instantiate(bullet, bulletSpawnPos.position, bulletSpawnPos.rotation);
-        //anim.SetBool("IsShooting", true);
+        anim.SetBool("IsShooting", true);
         canShoot = false;
     }
 

@@ -38,12 +38,15 @@ public class FinalBossBehaviour : MonoBehaviour
     //private Animator anim;
     private BossShootingBehaviour shootingBehaviour;
 
+    private Animator anim;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         healthBehaviour = GetComponent<BossHealthBehaviour>();
         //anim = GetComponent<Animator>();
         shootingBehaviour = GetComponent<BossShootingBehaviour>();
+        anim = GetComponent<Animator>();
     }
 
     void Start()
@@ -221,19 +224,28 @@ public class FinalBossBehaviour : MonoBehaviour
 
         //Don't move if he's been hit, killed, or knocked down.
         if (!runBoss || jumped || knockedDown || healthBehaviour.beenHit || healthBehaviour.beenKilled || knockedDown)
+        {
+            anim.SetBool("IsRunning", false);
             return;
+        }
 
         //Moving the rigidbody along x-axis.
         Vector2 pos = rb.position;
         pos.x += newPos.x * Time.fixedDeltaTime;
         rb.position = pos;
+
     }
 
     void HandleBossBehaviour()
     {
         //If the enemy has been hit or killed, don't make him move or shoot -- wait until he has recovered.
         if (healthBehaviour.beenHit || healthBehaviour.beenKilled)
+        {
+            anim.SetBool("IsRunning", false);
+            anim.SetBool("IsShooting", false);
             return;
+        }
+            
 
         //Don't do anything while he recovers -- hence why we return.
         if (knockedDown && currentRecoveryTime < knockDownRecoveryTime)
@@ -257,7 +269,11 @@ public class FinalBossBehaviour : MonoBehaviour
         isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, whatIsGround);
         //If the enemy has jumped and they are now grounded, they have recovered from the jump so set jumped to true.
         if (isGrounded && jumped)
+        {
             jumped = false;
+            anim.SetBool("IsJumping", false);
+        }
+            
 
         //Smashing down.
         if (jumped && transform.position.y > -21f)
@@ -271,17 +287,18 @@ public class FinalBossBehaviour : MonoBehaviour
 
         if (distToPlayer > shootingDistance)
         {
-            //anim.SetBool("IsRunning", true);
+            anim.SetBool("IsRunning", true);
             //Calculating the velocity for the minion.
             newPos.x = direction.x * movementSpeed;
         }
         else if (distToPlayer < shootingDistance && distToPlayer > jumpAttackDistance) //shoot the player.
         {
             //Don't shoot in air.
-            if (!isGrounded)
-                return;
+            //if (!isGrounded)
+               // return;
 
-            //anim.SetBool("IsRunning", false);
+            anim.SetBool("IsShooting", true);
+            anim.SetBool("IsRunning", false);
             if (newPos.x != 0)
             {
                 newPos.x = 0;
@@ -292,7 +309,7 @@ public class FinalBossBehaviour : MonoBehaviour
         }
         else //Perform jump attack
         {
-           // anim.SetBool("IsRunning", false);
+            anim.SetBool("IsRunning", false);
             if (newPos.x != 0)
             {
                 newPos.x = 0;
@@ -303,7 +320,7 @@ public class FinalBossBehaviour : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
+                anim.SetBool("IsJumping", true);
                 jumped = true;
             }
 
