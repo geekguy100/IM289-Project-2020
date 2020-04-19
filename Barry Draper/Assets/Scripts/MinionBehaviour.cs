@@ -30,12 +30,15 @@ public class MinionBehaviour : MonoBehaviour
 
     private Animator anim;
 
+    private AudioController audioController;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         shootingBehaviour = GetComponent<MinionShootingBehaviour>();
         healthBehaviour = GetComponent<MinionHealthBehaviour>();
+        audioController = GetComponentInChildren<AudioController>();
     }
 
     void Start()
@@ -63,10 +66,12 @@ public class MinionBehaviour : MonoBehaviour
             anim.SetBool("IsRunning", true);
             //Calculating the velocity for the minion.
             newPos.x = direction.x * assignedMovementSpeed;
+            audioController.PlayClip(AudioController.MinionSFX.minionWalk, true, true);
         }
         else
         {
             anim.SetBool("IsRunning", false);
+            audioController.StopPlayingLoop();
             if (newPos.x != 0)
             {
                 newPos.x = 0;

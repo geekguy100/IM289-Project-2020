@@ -43,12 +43,12 @@ public class GameControllerScript : MonoBehaviour
 
     private void Update()
     {
-        if(player.transform.position.y >= 13.0f &&
-            player.transform.position.x >= 79 && 
-            sceneName == "First Level")
-        {
-            checkpoint1 = true;
-        }
+        //if (player.transform.position.y >= 13.0f &&
+        //    player.transform.position.x >= 79 &&
+        //    sceneName == "First Level")
+        //{
+        //    checkpoint1 = true;
+        //}
     }
 
     private void Awake()
@@ -75,6 +75,7 @@ public class GameControllerScript : MonoBehaviour
 
         invincible = true;
         playerLives -= livesToRemove;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().StartFlash();
         audioController.PlayClip(AudioController.GameManagerSFX.playerHit);
 
         UpdateLives();
@@ -137,6 +138,7 @@ public class GameControllerScript : MonoBehaviour
     void RemoveInvincibility()
     {
         invincible = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().StopFlash();
     }
 
     public void FinishLevel()

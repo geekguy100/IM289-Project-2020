@@ -27,6 +27,8 @@ public class WaterBehaviour : MonoBehaviour
         //If the player didn't enter don't bother running the code.
         if (!col.CompareTag("Player"))
             return;
+        else if (col.GetType() == typeof(CircleCollider2D))
+            return;
 
         PlayerController pc = col.gameObject.GetComponent<PlayerController>();
         Rigidbody2D rb2d = col.gameObject.GetComponent<Rigidbody2D>();
@@ -36,6 +38,7 @@ public class WaterBehaviour : MonoBehaviour
         pc.moveSpeed = waterWalkSpeed;
 
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+        print("Entered");
     }
 
 
@@ -43,6 +46,9 @@ public class WaterBehaviour : MonoBehaviour
     {
         if (!col.CompareTag("Player"))
             return;
+        else if (col.GetType() == typeof(CircleCollider2D))
+            return;
+
 
         PlayerController pc = col.gameObject.GetComponent<PlayerController>();
         DrowningBehaviour playerDrowning = col.gameObject.GetComponent<DrowningBehaviour>();
@@ -69,6 +75,9 @@ public class WaterBehaviour : MonoBehaviour
     {
         if (!col.CompareTag("Player"))
             return;
+        else if (col.GetType() == typeof(CircleCollider2D))
+            return;
+
 
         Rigidbody2D rb2d = col.gameObject.GetComponent<Rigidbody2D>();
         PlayerController pc = col.gameObject.GetComponent<PlayerController>();
@@ -78,6 +87,8 @@ public class WaterBehaviour : MonoBehaviour
         pc.moveSpeed = previousMoveSpeed;
         pc.airSpeed = previousAirSpeed;
         Destroy(instantiation);
+
+        print("Player exit");
     }
 
 

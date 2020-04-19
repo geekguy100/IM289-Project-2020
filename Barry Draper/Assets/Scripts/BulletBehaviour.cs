@@ -73,8 +73,14 @@ public class BulletBehaviour : MonoBehaviour
         else if (col.gameObject.CompareTag("Player"))
         {
             //Note: Player hit SFX is handled in the GameControllerScript.
-            GameControllerScript.instance.RemoveLivesFromPlayer(1);
-            Destroy(gameObject);
+
+            //Only interact with the BoxCollider2D of the player; the CircleCollider2D trigger is used for
+            //detecting when objects are in range.
+            if (col.GetType() == typeof (BoxCollider2D))
+            {
+                GameControllerScript.instance.RemoveLivesFromPlayer(1);
+                Destroy(gameObject);
+            }
         }
         else if (col.gameObject.CompareTag("Minion"))
         {
@@ -94,7 +100,7 @@ public class BulletBehaviour : MonoBehaviour
         else
         {
             //TODO: Play a bullet destroyed SFX.
-            //print("Collided with another trigger: " + col.gameObject.name);
+            print("Collided with another trigger: GameObject named \'" + col.gameObject.name + "\'");
             Destroy(gameObject);
         }
     }

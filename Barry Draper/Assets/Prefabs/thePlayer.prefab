@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3182500187501956187}
   - component: {fileID: 2034070280315304172}
   - component: {fileID: 3839771703079694008}
+  - component: {fileID: 242820698}
   m_Layer: 11
   m_Name: thePlayer
   m_TagString: Player
@@ -108,7 +109,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -653378035
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2501913417140440427, guid: 8e230006b0f70ca46ba995f9cf20e41d,
     type: 3}
@@ -250,6 +251,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breathTime: 5
+--- !u!58 &242820698
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248221873385897668}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06868088, y: 0.06}
+  serializedVersion: 2
+  m_Radius: 2.99
 --- !u!1 &3182500187163598878
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +544,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -653378035
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 3778948002603646263, guid: 4fb6d30b253f0a547917c0a75a3d442a,
     type: 3}

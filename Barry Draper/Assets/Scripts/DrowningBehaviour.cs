@@ -9,7 +9,7 @@ public class DrowningBehaviour : MonoBehaviour
 
     public void CheckHeight(Transform maxHeight)
     {
-        print(transform.position.y - maxHeight.position.y);
+        //print(transform.position.y - maxHeight.position.y);
 
         //If the player is below the water level, drown.
         if (transform.position.y - maxHeight.position.y < 0f)

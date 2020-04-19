@@ -24,10 +24,12 @@ public class MinionHealthBehaviour : MonoBehaviour
     [HideInInspector]
     public bool beenKilled = false;
 
+    private AudioController audioController;
+
     void Awake()
     {
         anim = GetComponent<Animator>();
-
+        audioController = GetComponentInChildren<AudioController>();
         currentLives = maxLives;
     }
 
@@ -46,10 +48,12 @@ public class MinionHealthBehaviour : MonoBehaviour
 
             //PLAY AUDIO EFFECT
             GameObject.FindObjectOfType<FinalBossBehaviour>().DecreaseMinionCount();
+            audioController.PlayClip(AudioController.MinionSFX.minionDie);
             Destroy(gameObject, 1f);
             return;
         }
 
+        audioController.PlayClip(AudioController.MinionSFX.minionHit);
         anim.SetBool("IsHit", true);
         beenHit = true;
         Invoke("RemoveHitAnimation", hitAnimationTime);

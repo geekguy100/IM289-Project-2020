@@ -20,6 +20,7 @@ public class MinionShootingBehaviour : MonoBehaviour
     private bool canShoot = true;
 
     private Animator anim;
+    private AudioController audioController;
 
     MinionHealthBehaviour healthBehaviour;
 
@@ -27,6 +28,7 @@ public class MinionShootingBehaviour : MonoBehaviour
     {
         healthBehaviour = GetComponent<MinionHealthBehaviour>();
         anim = GetComponent<Animator>();
+        audioController = GetComponentInChildren<AudioController>();
     }
 
     public void HandleShooting()
@@ -39,6 +41,7 @@ public class MinionShootingBehaviour : MonoBehaviour
 
         Instantiate(bullet, bulletSpawnPos.position, bulletSpawnPos.rotation);
         anim.SetBool("IsShooting", true);
+        audioController.PlayClip(AudioController.MinionSFX.minionShoot);
         canShoot = false;
     }
 

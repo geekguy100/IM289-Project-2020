@@ -30,6 +30,10 @@ public class ButtonBehaviour : MonoBehaviour
     private SpriteRenderer sr;
     private AudioController audioController;
 
+    [Header("Wire")]
+    //The first wire in the possible string of wires.
+    public WireBehaviour firstWire;
+
     private void Awake()
     {
         audioController = GetComponentInChildren<AudioController>();
@@ -38,14 +42,28 @@ public class ButtonBehaviour : MonoBehaviour
         sr.sprite = offSprite;
     }
 
-    private void OnTriggerEnter2D()
+    private void Start()
     {
+        if (firstWire)
+            firstWire.ChangeColor(offColor);
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+            if (col.GetType() == typeof(CircleCollider2D))
+                return;
+
         contacts++;
     }
 
     //Used for weighted buttons.
     private void OnTriggerStay2D(Collider2D col)
     {
+        if (col.gameObject.CompareTag("Player"))
+            if (col.GetType() == typeof(CircleCollider2D))
+                return;
+
         if (weighted && !isPowered)
         {
             PowerOnButton();
@@ -69,6 +87,10 @@ public class ButtonBehaviour : MonoBehaviour
         isPowered = true;
         sr.color = onColor;
         sr.sprite = onSprite;
+
+        if (firstWire)
+            firstWire.ChangeColor(onColor);
+
         audioController.PlayClip(AudioController.ButtonSFX.buttonOn);
 
         foreach (InteractableBehaviour interactable in interactables)
@@ -90,6 +112,8 @@ public class ButtonBehaviour : MonoBehaviour
         isPowered = false;
         sr.color = offColor;
         sr.sprite = offSprite;
+        if (firstWire)
+         firstWire.ChangeColor(offColor);
         audioController.PlayClip(AudioController.ButtonSFX.buttonOff);
 
         foreach (InteractableBehaviour interactable in interactables)

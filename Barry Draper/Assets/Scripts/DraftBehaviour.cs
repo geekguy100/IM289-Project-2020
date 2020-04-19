@@ -30,6 +30,9 @@ public class DraftBehaviour : MonoBehaviour
 
         if (col.gameObject.CompareTag("Player"))
         {
+            if (col.GetType() == typeof(CircleCollider2D))
+                return;
+
             PlayerController pc = col.gameObject.GetComponent<PlayerController>();
 
             //If the player's umbrella is NOT open, don't bother applying
@@ -64,9 +67,6 @@ public class DraftBehaviour : MonoBehaviour
         if (audioSource.isPlaying)
             return;
         else
-        {
             audioSource.Play();
-            print("Playing!!");
-        }
     }
 }

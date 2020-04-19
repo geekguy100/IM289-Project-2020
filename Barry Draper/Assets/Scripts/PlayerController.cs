@@ -1,15 +1,6 @@
 /*****************************************************************************
 // File Name :         PlayerController.cs
-// Author :            Connor Riley (60%):
-                            Implemented umbrella behaviours such as rotation,
-                            checking which direction the umbrella is in,
-                            changing air speed depending on what orientation
-                            the umbrella is in the air.
-                       Kyle Grenier (30%):
-                             Implemented character movement, getting
-                             important components on the character.
-                       Connor Dunn (10%):
-                              Implemented spike interaction with the player.
+// Author :            Connor Riley
 // Creation Date :     February 8, 2020
 //
 // Brief Description : Script that translates player input into actual movement
@@ -74,7 +65,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask interactableLayer;
     public Transform objHoldPos;
     public Transform rayStart;
-    private Rigidbody2D theObjectInRange;
+    private Rigidbody2D theRigidbodyInRange;
+    private GameObject objectInRange;
 
     [Header("Umbrella Shield Properties")]
     public BoxCollider2D umbrellaShieldTrigger;
@@ -97,6 +89,9 @@ public class PlayerController : MonoBehaviour
     GameObject umbrellaSprite;
     private int currentIndex;
 
+    //Sprite renderer for upperbody. Used to make the player flash upon taking damage.
+    private SpriteRenderer sr;
+
     //Audio and SFX
     private AudioController audioController;
 
@@ -107,6 +102,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         audioController = GetComponentInChildren<AudioController>();
+        sr = transform.GetChild(3).GetComponent<SpriteRenderer>();
 
         umbrellaShieldTrigger.enabled = false;
 
@@ -176,7 +172,6 @@ public class PlayerController : MonoBehaviour
 
                 if (!willTakeFallDamage && hit && hit.distance >= fallDamageDistance)
                 {
-                    //TODO: play falling SFX
                     print("Ur gonna take fall damage!");
                     willTakeFallDamage = true;
                     foundGround = hit.collider.gameObject;
@@ -208,21 +203,16 @@ public class PlayerController : MonoBehaviour
         ActivateUmbrella();
         PointUmbrella();
 
-
-        //Checking to see if the player is in range of a grabbable object.
-        RaycastHit2D objectInRange = Physics2D.Raycast(rayStart.position, transform.right, grabDistance, interactableLayer);
-        Debug.DrawRay(rayStart.position, transform.right * grabDistance, Color.green);
-
         if (objectInRange || objectGrabbed)
         {
             if (objectGrabbed)
             {
-                HandleGrabbing(theObjectInRange);
+                HandleGrabbing(theRigidbodyInRange);
             }
             else if (!objectGrabbed)
             {
-                theObjectInRange = objectInRange.transform.GetComponent<Rigidbody2D>();
-                HandleGrabbing(theObjectInRange);
+                theRigidbodyInRange = objectInRange.transform.GetComponent<Rigidbody2D>();
+                HandleGrabbing(theRigidbodyInRange);
             }
         }
     }
@@ -492,6 +482,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        //If the gameobject is an interactable, be able to pick it up.
+        if (col.gameObject.CompareTag("Grabbable"))
+        {
+            print("Object in range!");
+            objectInRange = col.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        //If the gameobject is an interactable, don't be able to pick it up.
+        if (col.gameObject.CompareTag("Grabbable"))
+        {
+            objectInRange = null;
+        }
+    }
+
     void HandleGrabbing(Rigidbody2D obj)
     {
         //If the player presses 'F' and the object is NOT already grabbed, freeze it and update its movement to move with the player.
@@ -506,9 +515,10 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetButtonDown("Grab Object") && objectGrabbed)
         {
             obj.constraints = RigidbodyConstraints2D.None;
-            objectGrabbed = false;
             audioController.PlayClip(AudioController.PlayerSFX.dropBox);
             obj.GetComponent<BoxCollider2D>().enabled = true;
+            objectGrabbed = false;
+            objectInRange = null;
         }
         else if (objectGrabbed)
         {
@@ -579,6 +589,30 @@ public class PlayerController : MonoBehaviour
     }
 
     public GameObject deathAnim;
+
+    public void StartFlash()
+    {
+        StartCoroutine("Flash");
+    }
+
+    private IEnumerator Flash()
+    {
+        float t = 0.05f;
+        while (true)
+        {
+            sr.color = Color.red;
+            yield return new WaitForSeconds(t);
+            sr.color = Color.white;
+            yield return new WaitForSeconds(t);
+        }
+    }
+
+    public void StopFlash()
+    {
+        StopCoroutine("Flash");
+        sr.color = Color.white;
+    }
+
     void death()
     {
         GameControllerScript.instance.playerAlive = false;
