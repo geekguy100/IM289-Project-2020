@@ -36,6 +36,21 @@ public class GameControllerScript : MonoBehaviour
 
     private AudioController audioController;
 
+    [Header("For tracking if player hit checkpoint")]
+    public GameObject player;
+    bool checkpoint1 = false;
+    string sceneName;
+
+    private void Update()
+    {
+        if(player.transform.position.y >= 13.0f &&
+            player.transform.position.x >= 79 && 
+            sceneName == "First Level")
+        {
+            checkpoint1 = true;
+        }
+    }
+
     private void Awake()
     {
         //Singleton behaviour
@@ -47,6 +62,10 @@ public class GameControllerScript : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         audioController = GetComponentInChildren<AudioController>();
+
+        //Getting the current scene and it's name
+        Scene currentScene = SceneManager.GetActiveScene();
+       sceneName = currentScene.name;
     }
 
     public void RemoveLivesFromPlayer(int livesToRemove)
@@ -131,6 +150,10 @@ public class GameControllerScript : MonoBehaviour
         string levelName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(levelName);
         PrepareLevel();
+        if(checkpoint1)
+        {
+            player.transform.position = new Vector3(79.5f, 13.0f, 0f);
+        }
     }
 
     public void OnGameComplete(GameObject levelCompleteCanvas)
