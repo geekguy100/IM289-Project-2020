@@ -1,0 +1,1087 @@
+fileFormatVersion: 2
+guid: 04926976a95082a48aff5454b53f619d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1266880390165116757
+    second: JoeAnimationSpriteStuff_0
+  - first:
+      213: -1474011138636170599
+    second: JoeAnimationSpriteStuff_1
+  - first:
+      213: -5059505994549022535
+    second: JoeAnimationSpriteStuff_2
+  - first:
+      213: -6672852777267225425
+    second: JoeAnimationSpriteStuff_3
+  - first:
+      213: 1532892553771329221
+    second: JoeAnimationSpriteStuff_4
+  - first:
+      213: 3858647419993119187
+    second: JoeAnimationSpriteStuff_5
+  - first:
+      213: 5023814680407556509
+    second: JoeAnimationSpriteStuff_6
+  - first:
+      213: 633655681090395152
+    second: JoeAnimationSpriteStuff_7
+  - first:
+      213: 3486163125555382616
+    second: JoeAnimationSpriteStuff_8
+  - first:
+      213: 2252453183117383442
+    second: JoeAnimationSpriteStuff_9
+  - first:
+      213: 6084501453051541423
+    second: JoeAnimationSpriteStuff_10
+  - first:
+      213: 1584538763800395970
+    second: JoeAnimationSpriteStuff_12
+  - first:
+      213: 1248633948839266383
+    second: JoeAnimationSpriteStuff_14
+  - first:
+      213: 1534268415888887355
+    second: JoeAnimationSpriteStuff_16
+  - first:
+      213: 3944287114312769615
+    second: JoeAnimationSpriteStuff_18
+  - first:
+      213: 4224542368755587605
+    second: JoeAnimationSpriteStuff_20
+  - first:
+      213: 4559582204031754591
+    second: JoeAnimationSpriteStuff_21
+  - first:
+      213: 6174736441323737019
+    second: JoeAnimationSpriteStuff_22
+  - first:
+      213: -3361217181509375389
+    second: JoeAnimationSpriteStuff_23
+  - first:
+      213: 3004687569958157394
+    second: JoeAnimationSpriteStuff_24
+  - first:
+      213: -8102046756205143935
+    second: JoeAnimationSpriteStuff_25
+  - first:
+      213: 8848391663134355676
+    second: JoeAnimationSpriteStuff_26
+  - first:
+      213: 527552336966041133
+    second: JoeAnimationSpriteStuff_27
+  - first:
+      213: -6494664572233565845
+    second: JoeAnimationSpriteStuff_28
+  - first:
+      213: -8720997329253291371
+    second: JoeAnimationSpriteStuff_29
+  - first:
+      213: 8255663008996046311
+    second: JoeAnimationSpriteStuff_30
+  - first:
+      213: 3655206190654784530
+    second: JoeAnimationSpriteStuff_31
+  - first:
+      213: -4233543064847887075
+    second: JoeAnimationSpriteStuff_32
+  - first:
+      213: 5007756952637503198
+    second: JoeAnimationSpriteStuff_33
+  - first:
+      213: 4179743727938502712
+    second: JoeAnimationSpriteStuff_34
+  - first:
+      213: -614605516348645628
+    second: JoeAnimationSpriteStuff_35
+  - first:
+      213: -3687717904150517208
+    second: JoeAnimationSpriteStuff_36
+  - first:
+      213: 2283975677697936637
+    second: JoeAnimationSpriteStuff_37
+  - first:
+      213: -7558047529383106861
+    second: JoeAnimationSpriteStuff_38
+  - first:
+      213: 443864459797361839
+    second: JoeAnimationSpriteStuff_39
+  - first:
+      213: 4098331866298182528
+    second: JoeAnimationSpriteStuff_40
+  - first:
+      213: -1049694270987151070
+    second: JoeAnimationSpriteStuff_41
+  - first:
+      213: -5974399424839662396
+    second: JoeAnimationSpriteStuff_42
+  - first:
+      213: -2420928153497378769
+    second: JoeAnimationSpriteStuff_43
+  - first:
+      213: -8670118992180046993
+    second: JoeAnimationSpriteStuff_44
+  - first:
+      213: -4029717117754135392
+    second: JoeAnimationSpriteStuff_45
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 130
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 865
+        width: 136
+        height: 309
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a406dab7e8128643a2127b4c487e345
+      internalID: 1266880390165116757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_1
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 866
+        width: 106
+        height: 309
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b269d8299bd5c6e47a93f02f0dfdd0f3
+      internalID: -1474011138636170599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_2
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 866
+        width: 137
+        height: 292
+      alignment: 9
+      pivot: {x: 0.46142712, y: 0.5100543}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfa42d300836fff49a4c21591d5d31dd
+      internalID: -5059505994549022535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_3
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 867
+        width: 135
+        height: 292
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47bf21fb32fc5dc439ce0225fa24ef78
+      internalID: -6672852777267225425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_4
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 865
+        width: 238
+        height: 306
+      alignment: 9
+      pivot: {x: 0.24441887, y: 0.49783903}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd4ae7bac3a3bb3488593ff29873df5d
+      internalID: 1532892553771329221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_5
+      rect:
+        serializedVersion: 2
+        x: 1167
+        y: 865
+        width: 342
+        height: 309
+      alignment: 9
+      pivot: {x: 0.22547671, y: 0.5128381}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a297ed3726c42a74ca66728e041620d1
+      internalID: 3858647419993119187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_6
+      rect:
+        serializedVersion: 2
+        x: 1884
+        y: 866
+        width: 138
+        height: 289
+      alignment: 9
+      pivot: {x: 0.48166203, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76a983163cc14d144bac3f645494b42b
+      internalID: 5023814680407556509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_7
+      rect:
+        serializedVersion: 2
+        x: 2122
+        y: 865
+        width: 169
+        height: 286
+      alignment: 9
+      pivot: {x: 0.31612167, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd31e9d8327b3874a9d45a0661836a94
+      internalID: 633655681090395152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_8
+      rect:
+        serializedVersion: 2
+        x: 2321
+        y: 865
+        width: 200
+        height: 278
+      alignment: 9
+      pivot: {x: 0.29503417, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d0d52ddd7f656f44bf7eed142f84699
+      internalID: 3486163125555382616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_9
+      rect:
+        serializedVersion: 2
+        x: 2524
+        y: 865
+        width: 215
+        height: 269
+      alignment: 9
+      pivot: {x: 0.28439835, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebfd88f30abd18b42bcd1854a43054f2
+      internalID: 2252453183117383442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_10
+      rect:
+        serializedVersion: 2
+        x: 2749
+        y: 865
+        width: 279
+        height: 269
+      alignment: 9
+      pivot: {x: 0.21214077, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 631fc7890357b8f4d8b220243e994ea2
+      internalID: 6084501453051541423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_12
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 866
+        width: 360
+        height: 261
+      alignment: 9
+      pivot: {x: 0.17124838, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0947276fa6d9cb048adf525c1ef21752
+      internalID: 1584538763800395970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_14
+      rect:
+        serializedVersion: 2
+        x: 3472
+        y: 865
+        width: 371
+        height: 261
+      alignment: 9
+      pivot: {x: 0.177431, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aa1ceb92b24e664ba8a783673b8c8a2
+      internalID: 1248633948839266383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_16
+      rect:
+        serializedVersion: 2
+        x: 3951
+        y: 865
+        width: 428
+        height: 219
+      alignment: 9
+      pivot: {x: 0.23073857, y: 0.5825045}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e929021bbbd9cfa4da27366b92b46446
+      internalID: 1534268415888887355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_18
+      rect:
+        serializedVersion: 2
+        x: 4448
+        y: 865
+        width: 424
+        height: 183
+      alignment: 9
+      pivot: {x: 0.35484803, y: 0.69276804}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cfc15042b2807c45afb7f93d550735d
+      internalID: 3944287114312769615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_20
+      rect:
+        serializedVersion: 2
+        x: 4932
+        y: 865
+        width: 428
+        height: 137
+      alignment: 9
+      pivot: {x: 0.3801395, y: 0.91390926}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a33713a56c3b2b46bc5777b32e3c6eb
+      internalID: 4224542368755587605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_21
+      rect:
+        serializedVersion: 2
+        x: 5455
+        y: 856
+        width: 423
+        height: 150
+      alignment: 9
+      pivot: {x: 0.38433275, y: 0.9121601}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfcd7dfc4d626114f8d4d719ed088509
+      internalID: 4559582204031754591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_22
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 494
+        width: 281
+        height: 295
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c6e786db38e0664ea6f81c24bc762c4
+      internalID: 6174736441323737019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_23
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 496
+        width: 241
+        height: 292
+      alignment: 9
+      pivot: {x: 0.51829344, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 982dd2138bd546c4b9f0a87c70810ba2
+      internalID: -3361217181509375389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_24
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 492
+        width: 169
+        height: 295
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb3d98ba62600ee4e90e0d703f9364d2
+      internalID: 3004687569958157394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_25
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 489
+        width: 186
+        height: 298
+      alignment: 9
+      pivot: {x: 0.51422155, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e9e7807a1279ac46a66eba02bda44e0
+      internalID: -8102046756205143935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_26
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 492
+        width: 217
+        height: 295
+      alignment: 9
+      pivot: {x: 0.5853322, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9068ef283fbf9444dbdcc92503eb391f
+      internalID: 8848391663134355676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_27
+      rect:
+        serializedVersion: 2
+        x: 1327
+        y: 486
+        width: 264
+        height: 301
+      alignment: 9
+      pivot: {x: 0.54342, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 005dbb838f4549344a87ee7013f52df1
+      internalID: 527552336966041133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_28
+      rect:
+        serializedVersion: 2
+        x: 1643
+        y: 492
+        width: 281
+        height: 295
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12b41972dad8f634c87c06e2b7507595
+      internalID: -6494664572233565845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_29
+      rect:
+        serializedVersion: 2
+        x: 1993
+        y: 495
+        width: 241
+        height: 292
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 767d28d09a3a937438c64cfa1ce7ebfe
+      internalID: -8720997329253291371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_30
+      rect:
+        serializedVersion: 2
+        x: 2286
+        y: 492
+        width: 166
+        height: 295
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6bf257e67960cc458ea0f1f989fbe99
+      internalID: 8255663008996046311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_31
+      rect:
+        serializedVersion: 2
+        x: 2507
+        y: 489
+        width: 184
+        height: 298
+      alignment: 9
+      pivot: {x: 0.5239603, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c95e407f31c7c947a35d22657c32e36
+      internalID: 3655206190654784530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_32
+      rect:
+        serializedVersion: 2
+        x: 2742
+        y: 492
+        width: 218
+        height: 295
+      alignment: 9
+      pivot: {x: 0.6011201, y: 0.49701095}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8354e2234a56cd244aa7fac5f92f4466
+      internalID: -4233543064847887075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_33
+      rect:
+        serializedVersion: 2
+        x: 3015
+        y: 486
+        width: 264
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5334001, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 007311bcfe4ef004a9a6dc6b4d22ca51
+      internalID: 5007756952637503198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_34
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 93
+        width: 318
+        height: 316
+      alignment: 9
+      pivot: {x: 0.43086448, y: 0.51679343}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9ae793493d0c6e46a5f9c7122847330
+      internalID: 4179743727938502712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_35
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 93
+        width: 367
+        height: 319
+      alignment: 9
+      pivot: {x: 0.27690586, y: 0.5071296}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32d96c3c764fdff42b3f1ad8fc251938
+      internalID: -614605516348645628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_36
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 90
+        width: 247
+        height: 319
+      alignment: 9
+      pivot: {x: 0.2728751, y: 0.5142591}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae4567e1680d1d34494c3da99dfe0d35
+      internalID: -3687717904150517208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_37
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 93
+        width: 349
+        height: 319
+      alignment: 9
+      pivot: {x: 0.23498885, y: 0.50475305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04cdc582f38bd544fbc1aa3b20d88875
+      internalID: 2283975677697936637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_38
+      rect:
+        serializedVersion: 2
+        x: 1581
+        y: 90
+        width: 310
+        height: 319
+      alignment: 9
+      pivot: {x: 0.42174426, y: 0.5071296}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 912f229d3cff3234b9e6ed2cac4cc41a
+      internalID: -7558047529383106861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_39
+      rect:
+        serializedVersion: 2
+        x: 1927
+        y: 93
+        width: 396
+        height: 319
+      alignment: 9
+      pivot: {x: 0.33153188, y: 0.5261417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2e49b768d364f149b0332e93420b75c
+      internalID: 443864459797361839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_40
+      rect:
+        serializedVersion: 2
+        x: 2382
+        y: 93
+        width: 314
+        height: 313
+      alignment: 9
+      pivot: {x: 0.42515534, y: 0.51695454}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14daad26068d1a040be3c28768622ba6
+      internalID: 4098331866298182528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_41
+      rect:
+        serializedVersion: 2
+        x: 2797
+        y: 93
+        width: 366
+        height: 319
+      alignment: 9
+      pivot: {x: 0.26801172, y: 0.48574096}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8568e08d0c519bd4e984ec02b86ed9e6
+      internalID: -1049694270987151070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_42
+      rect:
+        serializedVersion: 2
+        x: 3276
+        y: 93
+        width: 247
+        height: 316
+      alignment: 9
+      pivot: {x: 0.25139073, y: 0.5143944}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6928e284940e0454fbc6ba3d14bdd39e
+      internalID: -5974399424839662396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_43
+      rect:
+        serializedVersion: 2
+        x: 3655
+        y: 93
+        width: 347
+        height: 319
+      alignment: 9
+      pivot: {x: 0.22035274, y: 0.4928705}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb9ea41ef4452b0488b02a959e83b236
+      internalID: -2420928153497378769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_44
+      rect:
+        serializedVersion: 2
+        x: 4068
+        y: 90
+        width: 307
+        height: 319
+      alignment: 9
+      pivot: {x: 0.42838806, y: 0.5023766}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dda10d7b81cf2b4db7765f69f1df505
+      internalID: -8670118992180046993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JoeAnimationSpriteStuff_45
+      rect:
+        serializedVersion: 2
+        x: 4453
+        y: 90
+        width: 401
+        height: 322
+      alignment: 9
+      pivot: {x: 0.33363247, y: 0.49293688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84ed4cfccd283b64e9e95d19e68c937e
+      internalID: -4029717117754135392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

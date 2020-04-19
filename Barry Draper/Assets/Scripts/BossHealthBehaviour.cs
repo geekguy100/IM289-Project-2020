@@ -16,7 +16,7 @@ public class BossHealthBehaviour : MonoBehaviour
     private int currentLives;
     public GameObject levelCompleteCanvas;
 
-    //private Animator anim;
+    private Animator anim;
 
     public float hitAnimationTime = 1f;
 
@@ -27,7 +27,7 @@ public class BossHealthBehaviour : MonoBehaviour
 
     void Awake()
     {
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
 
         currentLives = maxLives;
     }
@@ -43,7 +43,7 @@ public class BossHealthBehaviour : MonoBehaviour
             if (beenKilled)
                 return;
 
-            //anim.SetBool("IsKilled", true);
+            anim.SetBool("IsKilled", true);
             beenKilled = true;
             GameControllerScript.instance.OnGameComplete(levelCompleteCanvas);
             //PLAY AUDIO EFFECT
@@ -51,14 +51,14 @@ public class BossHealthBehaviour : MonoBehaviour
             return;
         }
 
-        //anim.SetBool("IsHit", true);
+        anim.SetBool("IsHit", true);
         beenHit = true;
         Invoke("RemoveHitAnimation", hitAnimationTime);
     }
 
     private void RemoveHitAnimation()
     {
-        //anim.SetBool("IsHit", false);
+        anim.SetBool("IsHit", false);
         beenHit = false;
     }
 }
