@@ -17,8 +17,8 @@ public class GameControllerScript : MonoBehaviour
     public static GameControllerScript instance;
 
     [Header("Player Life Management")]
-    private int playerLives = 3;
-    public int maxPlayerLives = 3;
+    private float playerLives = 5;
+    public float maxPlayerLives = 5;
 
     //Is the player currently invincible (after taking damage)?
     private bool invincible;
@@ -40,6 +40,9 @@ public class GameControllerScript : MonoBehaviour
     public GameObject player;
     bool checkpoint1 = false;
     string sceneName;
+
+    [Header("Used to create life bar")]
+    public Slider healthBar;
 
     private void Update()
     {
@@ -66,6 +69,13 @@ public class GameControllerScript : MonoBehaviour
         //Getting the current scene and it's name
         Scene currentScene = SceneManager.GetActiveScene();
        sceneName = currentScene.name;
+
+        playerLives = maxPlayerLives;
+        Debug.Log("health = " + playerLives);
+        healthBar.maxValue = maxPlayerLives;
+        Debug.Log("max value = " + maxPlayerLives);
+        healthBar.value = playerLives;
+        Debug.Log("Value = " + healthBar.value);
     }
 
     public void RemoveLivesFromPlayer(int livesToRemove)
@@ -77,6 +87,7 @@ public class GameControllerScript : MonoBehaviour
         playerLives -= livesToRemove;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().StartFlash();
         audioController.PlayClip(AudioController.GameManagerSFX.playerHit);
+        healthBar.value -= 1;
 
         UpdateLives();
     }
@@ -109,8 +120,8 @@ public class GameControllerScript : MonoBehaviour
         //If the livesText is null, find it and make sure it's active.
         livesText = GameObject.Find("LivesText");
 
-        if (!livesText.activeSelf)
-            livesText.SetActive(true);
+        /*if (!livesText.activeSelf)
+            livesText.SetActive(true);*/
 
         UpdateLives();
 
@@ -120,7 +131,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void UpdateLives()
     {
-        livesText.GetComponent<Text>().text = "Lives: " + playerLives;
+        //livesText.GetComponent<Text>().text = "Lives: " + playerLives;
 
         if(playerLives <= 0 && playerAlive)
         {
