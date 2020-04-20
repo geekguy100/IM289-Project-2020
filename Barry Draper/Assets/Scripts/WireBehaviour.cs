@@ -12,6 +12,9 @@ public class WireBehaviour : MonoBehaviour
 {
     private SpriteRenderer sr;
 
+    //Is the wire a wire circle? If so, then the alpha channel in the color will be 100%.
+    public bool wireCircle;
+
     //The next wire in the string of wires. Used if bends in the wire are desired.
     public WireBehaviour nextWire;
 
@@ -22,7 +25,15 @@ public class WireBehaviour : MonoBehaviour
 
     public void ChangeColor(Color color)
     {
-        sr.color = color;
+        if (wireCircle)
+        {
+            Color c = color;
+            c.a = 1;
+            sr.color = c;
+        }
+        else
+            sr.color = color;
+
 
         //If there is a next wire in the string, change its color as well.
         if (nextWire != null)

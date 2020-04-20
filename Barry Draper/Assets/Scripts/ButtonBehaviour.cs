@@ -45,7 +45,12 @@ public class ButtonBehaviour : MonoBehaviour
     private void Start()
     {
         if (firstWire)
-            firstWire.ChangeColor(offColor);
+        {
+            Color c = offColor;
+            c.a = c.a / 2;
+            firstWire.ChangeColor(c);
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -89,7 +94,11 @@ public class ButtonBehaviour : MonoBehaviour
         sr.sprite = onSprite;
 
         if (firstWire)
-            firstWire.ChangeColor(onColor);
+        {
+            Color c = onColor;
+            c.a = c.a / 2;
+            firstWire.ChangeColor(c);
+        }
 
         audioController.PlayClip(AudioController.ButtonSFX.buttonOn);
 
@@ -112,8 +121,14 @@ public class ButtonBehaviour : MonoBehaviour
         isPowered = false;
         sr.color = offColor;
         sr.sprite = offSprite;
+
         if (firstWire)
-         firstWire.ChangeColor(offColor);
+        {
+            Color c = offColor;
+            c.a = c.a / 2;
+            firstWire.ChangeColor(c);
+        }
+
         audioController.PlayClip(AudioController.ButtonSFX.buttonOff);
 
         foreach (InteractableBehaviour interactable in interactables)

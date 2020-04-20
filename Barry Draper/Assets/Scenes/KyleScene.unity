@@ -1596,37 +1596,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6477683674193885222, guid: 874568e1bf309f940869ba6b71a7b4ce,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e7c62b1664c087c4588aaff734a7cf0e,
-        type: 3}
-    - target: {fileID: 6477683674193885222, guid: 874568e1bf309f940869ba6b71a7b4ce,
-        type: 3}
-      propertyPath: m_DrawMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6477683674193885222, guid: 874568e1bf309f940869ba6b71a7b4ce,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 7.3436675
-      objectReference: {fileID: 0}
-    - target: {fileID: 6477683674193885222, guid: 874568e1bf309f940869ba6b71a7b4ce,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.63503915
-      objectReference: {fileID: 0}
-    - target: {fileID: 6477683674193885222, guid: 874568e1bf309f940869ba6b71a7b4ce,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 363624571
-      objectReference: {fileID: 0}
-    - target: {fileID: 6477683674193885222, guid: 874568e1bf309f940869ba6b71a7b4ce,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6477683674193885223, guid: 874568e1bf309f940869ba6b71a7b4ce,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1681,16 +1650,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6477683674193885223, guid: 874568e1bf309f940869ba6b71a7b4ce,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6477683674193885223, guid: 874568e1bf309f940869ba6b71a7b4ce,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6477683674193885224, guid: 874568e1bf309f940869ba6b71a7b4ce,
         type: 3}
