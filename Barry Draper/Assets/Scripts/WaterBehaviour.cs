@@ -81,12 +81,19 @@ public class WaterBehaviour : MonoBehaviour
 
         Rigidbody2D rb2d = col.gameObject.GetComponent<Rigidbody2D>();
         PlayerController pc = col.gameObject.GetComponent<PlayerController>();
+        DrowningBehaviour db = col.gameObject.GetComponent<DrowningBehaviour>();
 
         //rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         pc.moveSpeed = previousMoveSpeed;
         pc.airSpeed = previousAirSpeed;
         Destroy(instantiation);
+
+        db.drownbar.gameObject.SetActive(false);
+        db.health = db.breathTime;
+        db.drownbar.maxValue = db.breathTime;
+        db.drownbar.value = db.health;
+
 
         print("Player exit");
     }
