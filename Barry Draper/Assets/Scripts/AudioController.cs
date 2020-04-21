@@ -27,7 +27,7 @@ public class AudioController : MonoBehaviour
     public enum TurretSFX { targetFound, shoot};
     public enum FanSFX { fanWhir };
     public enum ButtonSFX { buttonOn, buttonOff };
-    public enum BossSFX { hit, whistleBlow, shoot, jump, smash};
+    public enum BossSFX { hit, whistleBlow, shoot, jump, smash, die};
     public AudioClip[] sfxClips;
 
     [Header("Background Music")]

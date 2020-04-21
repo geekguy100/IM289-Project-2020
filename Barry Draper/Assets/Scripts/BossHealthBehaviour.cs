@@ -47,7 +47,7 @@ public class BossHealthBehaviour : MonoBehaviour
             anim.SetBool("IsKilled", true);
             beenKilled = true;
             GameControllerScript.instance.OnGameComplete(levelCompleteCanvas);
-            //PLAY AUDIO EFFECT
+            audioController.PlayClip(AudioController.BossSFX.die);
             Destroy(gameObject, 1f);
             return;
         }

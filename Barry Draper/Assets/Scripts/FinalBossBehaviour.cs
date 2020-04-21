@@ -6,8 +6,6 @@
 // Brief Description : Code that controls the mechanics of the final boss, including spawning minion waves and transitioning to the next stage.
 *****************************************************************************/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FinalBossBehaviour : MonoBehaviour
@@ -359,14 +357,17 @@ public class FinalBossBehaviour : MonoBehaviour
     {
         //If the enemy collides with the player while he is in his jumping attack, damage the player.
         if (col.gameObject.CompareTag("Player"))
-        { 
+        {
+            if (col.GetType() == typeof(CircleCollider2D))
+                return;
+            
             if (col.gameObject.GetComponentInParent<PlayerController>().umbrellaUp && col.gameObject.GetComponentInParent<PlayerController>().umbrella && !knockedDown && jumped)
             {
                 print("Boss knocked down!");
                 healthBehaviour.TakeDamage(1);
                 knockedDown = true;
             }
-            else if (!knockedDown) //if the boss collides with the player any other time je's not knocked down.
+            else if (!knockedDown) //if the boss collides with the player any other time he's not knocked down.
             {
                 GameControllerScript.instance.RemoveLivesFromPlayer(1);
             }

@@ -59,6 +59,13 @@ public class GameControllerScript : MonoBehaviour
         healthBar.value = playerLives;
     }
 
+    private void Start()
+    {
+
+
+
+    }
+
     public void RemoveLivesFromPlayer(int livesToRemove)
     {
         if (invincible || !playerAlive)
@@ -100,6 +107,7 @@ public class GameControllerScript : MonoBehaviour
 
         //If the livesText is null, find it and make sure it's active.
         livesText = GameObject.Find("LivesText");
+        healthBar = GameObject.Find("Health Bar").GetComponent<Slider>();
 
         /*if (!livesText.activeSelf)
             livesText.SetActive(true);*/
@@ -117,8 +125,10 @@ public class GameControllerScript : MonoBehaviour
     public void UpdateLives()
     {
         //livesText.GetComponent<Text>().text = "Lives: " + playerLives;
+        healthBar.maxValue = maxPlayerLives;
+        healthBar.value = playerLives;
 
-        if(playerLives <= 0 && playerAlive)
+        if (playerLives <= 0 && playerAlive)
         {
             print("*You are dead, de-de-dead.*");
             playerAlive = false;
@@ -140,7 +150,7 @@ public class GameControllerScript : MonoBehaviour
     public void FinishLevel()
     {
         audioController.PlayClip(AudioController.GameManagerSFX.finishLevel);
-        livesText.SetActive(false);
+        //livesText.SetActive(false);
     }
 
     public void RestartLevel()
