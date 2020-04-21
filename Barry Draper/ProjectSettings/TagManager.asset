@@ -18,6 +18,7 @@ TagManager:
   - progress
   - Round 2
   - Grabbable
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

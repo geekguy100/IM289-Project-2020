@@ -37,8 +37,10 @@ public class GameControllerScript : MonoBehaviour
     private AudioController audioController;
 
     [Header("For tracking if player hit checkpoint")]
-    public GameObject player;
-    bool checkpoint1 = false;
+    public GameObject checkpoint;
+    public Vector2 checkpointPosition;
+    public bool checkpointPassed = false;
+    private Animator anim;
     string sceneName;
 
     [Header("Used to create life bar")]
@@ -70,12 +72,21 @@ public class GameControllerScript : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
        sceneName = currentScene.name;
 
+        checkpointPosition = checkpoint.transform.position;
+
         playerLives = maxPlayerLives;
         Debug.Log("health = " + playerLives);
         healthBar.maxValue = maxPlayerLives;
         Debug.Log("max value = " + maxPlayerLives);
         healthBar.value = playerLives;
         Debug.Log("Value = " + healthBar.value);
+
+        if(!checkpoint)
+        {
+            Debug.Log("penis");
+            checkpoint = GameObject.FindGameObjectWithTag("Checkpoint");
+        }
+        anim = checkpoint.GetComponent<Animator>();
     }
 
     public void RemoveLivesFromPlayer(int livesToRemove)
@@ -162,16 +173,27 @@ public class GameControllerScript : MonoBehaviour
     {
         string levelName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(levelName);
+
+        /*if (checkpointPassed)
+        {
+            GameObject.FindGameObjectWithTag("Player").transform.position = checkpoint.transform.position;
+        }*/
         PrepareLevel();
-        if(checkpoint1)
+
+        /*if (checkpoint1)
         {
             player.transform.position = new Vector3(79.5f, 13.0f, 0f);
-        }
+        }*/
     }
 
     public void OnGameComplete(GameObject levelCompleteCanvas)
     {
         FinishLevel();
         levelCompleteCanvas.SetActive(true);
+    }
+
+    public void flipFlag()
+    {
+        anim.SetBool("flip", true);
     }
 }

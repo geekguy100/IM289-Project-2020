@@ -96,6 +96,13 @@ public class PlayerController : MonoBehaviour
     private AudioController audioController;
 
 
+    private void Start()
+    {
+            if(GameControllerScript.instance.checkpointPassed)
+        {
+            transform.position = GameControllerScript.instance.checkpointPosition;
+        }
+    }
 
     void Awake()
     {
@@ -489,6 +496,12 @@ public class PlayerController : MonoBehaviour
         {
             print("Object in range!");
             objectInRange = col.gameObject;
+        }
+
+        if(col.gameObject.CompareTag("Checkpoint"))
+        {
+            GameControllerScript.instance.flipFlag();
+            GameControllerScript.instance.checkpointPassed = true;
         }
     }
 

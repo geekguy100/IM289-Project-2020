@@ -6,7 +6,7 @@ public class tutorialBehaviour : MonoBehaviour
 {
     public bool enter = false;
 
-    private Animator anim;
+    private Animator anim; 
 
     // Start is called before the first frame update
     void Start()
