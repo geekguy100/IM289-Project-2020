@@ -81,10 +81,6 @@ public class AudioController : MonoBehaviour
             if (sfxClips.Length != System.Enum.GetValues(typeof(BossSFX)).Length)
                 warning = true;
         }
-        else if (audioType == Type.backgroundMusic)
-        {
-            StartCoroutine(PlayBGMusic());
-        }
         
 
         if (warning)
@@ -116,8 +112,6 @@ public class AudioController : MonoBehaviour
         if (audioSource.isPlaying && audioSource.loop)
             audioSource.Stop();
     }
-
-
 
     private IEnumerator PlayBGMusic()
     {

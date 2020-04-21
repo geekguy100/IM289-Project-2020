@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameControllerScript : MonoBehaviour
 {
@@ -54,17 +55,9 @@ public class GameControllerScript : MonoBehaviour
 
         audioController = GetComponentInChildren<AudioController>();
 
-        playerLives = maxPlayerLives;
-        healthBar.maxValue = maxPlayerLives;
-        healthBar.value = playerLives;
+        //playerLives = maxPlayerLives;
     }
 
-    private void Start()
-    {
-
-
-
-    }
 
     public void RemoveLivesFromPlayer(int livesToRemove)
     {

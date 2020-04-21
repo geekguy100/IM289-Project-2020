@@ -24,10 +24,8 @@ public class SceneLoadingController : MonoBehaviour
 
     private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        print("Ur progress: " + PlayerPrefs.GetInt("Game Progress"));
-
-        if (GameControllerScript.instance != null)
-            GameControllerScript.instance.transform.GetChild(1).GetComponent<AudioController>().StopBackgroundMusic();
+        //if (GameControllerScript.instance != null)
+        //    GameControllerScript.instance.transform.GetChild(1).GetComponent<AudioController>().StopBackgroundMusic();
 
         if (scene.name != "Main Menu")
         {

@@ -50,10 +50,16 @@ public class InteractableBehaviour : MonoBehaviour
 
     private AudioController audioController;
 
+    private Animator anim;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         audioController = GetComponentInChildren<AudioController>();
+
+        //Animation only relevent to the fans
+        if (type == InteractableType.Fan)
+            anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -155,6 +161,7 @@ public class InteractableBehaviour : MonoBehaviour
         }
 
         audioController.PlayClip(AudioController.FanSFX.fanWhir, true);
+        anim.SetBool("Powered", true);
     }
 
     /// <summary>
@@ -171,6 +178,7 @@ public class InteractableBehaviour : MonoBehaviour
         }
 
         audioController.StopPlayingLoop();
+        anim.SetBool("Powered", false);
     }
 
     /// <summary>

@@ -70,7 +70,6 @@ public class MenuBehavior : MonoBehaviour
         Image sr3 = levelThreePicture.GetComponent<Image>();
         Image sr4 = levelFourPicture.GetComponent<Image>();
 
-        print(currentProgress);
         if (currentProgress > 2)
         {
             LevelFourButton.interactable = true;
