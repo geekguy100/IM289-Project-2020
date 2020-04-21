@@ -143,7 +143,13 @@ public class GameControllerScript : MonoBehaviour
     public void FinishLevel()
     {
         audioController.PlayClip(AudioController.GameManagerSFX.finishLevel);
+        hasCheckpoint = false;
         //livesText.SetActive(false);
+    }
+
+    public void ResetCheckpointStatus()
+    {
+        hasCheckpoint = false;
     }
 
     public void RestartLevel()

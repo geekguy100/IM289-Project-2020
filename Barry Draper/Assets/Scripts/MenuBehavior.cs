@@ -43,6 +43,8 @@ public class MenuBehavior : MonoBehaviour
         levelThreeCanvas.SetActive(false);
         LevelFourCanvas.SetActive(false);
 
+        GameControllerScript.instance.ResetCheckpointStatus();
+        
         UpdateProgress();
     }
 

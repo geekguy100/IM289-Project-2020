@@ -5,8 +5,7 @@
 //
 // Brief Description : Bullets fly forward and impact the player and turrets upon reflection from shield.
 *****************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour

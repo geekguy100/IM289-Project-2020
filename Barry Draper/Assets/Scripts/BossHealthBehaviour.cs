@@ -6,8 +6,6 @@
 // Brief Description : Controls the final boss's health.
 *****************************************************************************/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossHealthBehaviour : MonoBehaviour

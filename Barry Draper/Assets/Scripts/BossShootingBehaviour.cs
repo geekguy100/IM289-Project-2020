@@ -6,8 +6,6 @@
 // Brief Description : Controls the boss's shooting
 *****************************************************************************/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossShootingBehaviour : MonoBehaviour
