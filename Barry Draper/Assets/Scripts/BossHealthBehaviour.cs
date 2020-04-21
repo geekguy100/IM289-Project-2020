@@ -25,17 +25,18 @@ public class BossHealthBehaviour : MonoBehaviour
     [HideInInspector]
     public bool beenKilled = false;
 
+    private AudioController audioController;
+
     void Awake()
     {
         anim = GetComponent<Animator>();
-
+        audioController = GetComponentInChildren<AudioController>();
         currentLives = maxLives;
     }
 
     public void TakeDamage(int damage)
     {
         currentLives -= damage;
-        GetComponent<AudioSource>().Play();
 
         if (currentLives <= 0)
         {
@@ -53,6 +54,7 @@ public class BossHealthBehaviour : MonoBehaviour
 
         anim.SetBool("IsHit", true);
         beenHit = true;
+        audioController.PlayClip(AudioController.BossSFX.hit);
         Invoke("RemoveHitAnimation", hitAnimationTime);
     }
 

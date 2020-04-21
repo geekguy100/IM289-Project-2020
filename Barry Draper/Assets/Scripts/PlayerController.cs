@@ -95,15 +95,6 @@ public class PlayerController : MonoBehaviour
     //Audio and SFX
     private AudioController audioController;
 
-
-    private void Start()
-    {
-            if(GameControllerScript.instance.checkpointPassed)
-        {
-            transform.position = GameControllerScript.instance.checkpointPosition;
-        }
-    }
-
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -496,12 +487,6 @@ public class PlayerController : MonoBehaviour
         {
             print("Object in range!");
             objectInRange = col.gameObject;
-        }
-
-        if(col.gameObject.CompareTag("Checkpoint"))
-        {
-            GameControllerScript.instance.flipFlag();
-            GameControllerScript.instance.checkpointPassed = true;
         }
     }
 

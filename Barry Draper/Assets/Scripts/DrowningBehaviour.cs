@@ -16,8 +16,6 @@ public class DrowningBehaviour : MonoBehaviour
         health = breathTime;
         drownbar.maxValue = breathTime;
         drownbar.value = health;
-        Debug.Log("max value " + drownbar.maxValue);
-        Debug.Log("value " + drownbar.value);
     }
 
     public void CheckHeight(Transform maxHeight)

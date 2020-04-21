@@ -15,7 +15,7 @@ public class AudioController : MonoBehaviour
 {
     private AudioSource audioSource;
 
-    public enum Type {PlayerAudio, GameManagerAudio, turretAudio, backgroundMusic, fanAudio, buttonAudio, minionAudio};
+    public enum Type {PlayerAudio, GameManagerAudio, turretAudio, backgroundMusic, fanAudio, buttonAudio, minionAudio, bossAudio};
 
     [Header("SFX")]
     public Type audioType;
@@ -27,6 +27,7 @@ public class AudioController : MonoBehaviour
     public enum TurretSFX { targetFound, shoot};
     public enum FanSFX { fanWhir };
     public enum ButtonSFX { buttonOn, buttonOff };
+    public enum BossSFX { hit, whistleBlow, shoot, jump, smash};
     public AudioClip[] sfxClips;
 
     [Header("Background Music")]
@@ -73,6 +74,11 @@ public class AudioController : MonoBehaviour
         else if (audioType == Type.minionAudio)
         {
             if (sfxClips.Length != System.Enum.GetValues(typeof(MinionSFX)).Length)
+                warning = true;
+        }
+        else if (audioType == Type.bossAudio)
+        {
+            if (sfxClips.Length != System.Enum.GetValues(typeof(BossSFX)).Length)
                 warning = true;
         }
         else if (audioType == Type.backgroundMusic)
@@ -189,6 +195,11 @@ public class AudioController : MonoBehaviour
     }
 
     public void PlayClip(ButtonSFX clip, bool loop = false, bool randomTime = false)
+    {
+        PlayClip((int)clip, loop, randomTime);
+    }
+
+    public void PlayClip(BossSFX clip, bool loop = false, bool randomTime = false)
     {
         PlayClip((int)clip, loop, randomTime);
     }
