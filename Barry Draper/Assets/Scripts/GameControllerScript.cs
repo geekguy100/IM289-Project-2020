@@ -36,25 +36,11 @@ public class GameControllerScript : MonoBehaviour
 
     private AudioController audioController;
 
-    [Header("For tracking if player hit checkpoint")]
-    public GameObject checkpoint;
-    public Vector2 checkpointPosition;
-    public bool checkpointPassed = false;
-    private Animator anim;
-    string sceneName;
-
     [Header("Used to create life bar")]
     public Slider healthBar;
 
-    private void Update()
-    {
-        //if (player.transform.position.y >= 13.0f &&
-        //    player.transform.position.x >= 79 &&
-        //    sceneName == "First Level")
-        //{
-        //    checkpoint1 = true;
-        //}
-    }
+    private Vector2 checkpointPos;
+    private bool hasCheckpoint = false;
 
     private void Awake()
     {
@@ -68,25 +54,9 @@ public class GameControllerScript : MonoBehaviour
 
         audioController = GetComponentInChildren<AudioController>();
 
-        //Getting the current scene and it's name
-        Scene currentScene = SceneManager.GetActiveScene();
-       sceneName = currentScene.name;
-
-        checkpointPosition = checkpoint.transform.position;
-
         playerLives = maxPlayerLives;
-        Debug.Log("health = " + playerLives);
         healthBar.maxValue = maxPlayerLives;
-        Debug.Log("max value = " + maxPlayerLives);
         healthBar.value = playerLives;
-        Debug.Log("Value = " + healthBar.value);
-
-        if(!checkpoint)
-        {
-            Debug.Log("penis");
-            checkpoint = GameObject.FindGameObjectWithTag("Checkpoint");
-        }
-        anim = checkpoint.GetComponent<Animator>();
     }
 
     public void RemoveLivesFromPlayer(int livesToRemove)
@@ -137,7 +107,11 @@ public class GameControllerScript : MonoBehaviour
         UpdateLives();
 
         transform.GetChild(1).GetComponent<AudioController>().PlayBackgroundMusic();
-        //print("GameController: Prepared the level");
+
+        if (hasCheckpoint)
+        {
+            MovePlayerToCheckpoint();
+        }
     }
 
     public void UpdateLives()
@@ -192,8 +166,14 @@ public class GameControllerScript : MonoBehaviour
         levelCompleteCanvas.SetActive(true);
     }
 
-    public void flipFlag()
+    public void UpdateCheckpointPos(Vector2 pos)
     {
-        anim.SetBool("flip", true);
+        checkpointPos = pos;
+        hasCheckpoint = true;
+    }
+
+    private void MovePlayerToCheckpoint()
+    {
+        GameObject.FindGameObjectWithTag("Player").transform.position = checkpointPos;
     }
 }

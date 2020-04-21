@@ -44,9 +44,9 @@ public class FinalBossBehaviour : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         healthBehaviour = GetComponent<BossHealthBehaviour>();
-        //anim = GetComponent<Animator>();
         shootingBehaviour = GetComponent<BossShootingBehaviour>();
         anim = GetComponent<Animator>();
+        audioController = GetComponentInChildren<AudioController>();
     }
 
     void Start()
@@ -106,7 +106,7 @@ public class FinalBossBehaviour : MonoBehaviour
 
     void StartWave()
     {
-        //TODO: BLOW WHISTE HERE
+        audioController.PlayClip(AudioController.BossSFX.whistleBlow);
         print("WHISTLE BLOW!: Round #" + (currentRound + 1) + "     Wave #" + (currentWave + 1));
         waveStarted = true;
 
@@ -210,6 +210,8 @@ public class FinalBossBehaviour : MonoBehaviour
 
     public Transform[] tpPositions;
 
+    private AudioController audioController;
+
     //Sets up the battle with the boss.
     void ActivateBoss()
     {
@@ -278,6 +280,7 @@ public class FinalBossBehaviour : MonoBehaviour
         //Smashing down.
         if (jumped && transform.position.y > -21f)
         {
+            audioController.PlayClip(AudioController.BossSFX.smash);
             rb.velocity = Vector2.zero;
             rb.AddForce(-Vector2.up * smashForce, ForceMode2D.Impulse);
         }
@@ -322,6 +325,7 @@ public class FinalBossBehaviour : MonoBehaviour
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 anim.SetBool("IsJumping", true);
                 jumped = true;
+                audioController.PlayClip(AudioController.BossSFX.jump);
             }
 
         }
