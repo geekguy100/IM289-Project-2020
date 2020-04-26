@@ -14,7 +14,7 @@ public class PopUpBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        anim = GetComponentInChildren<Animator>();
+        anim = transform.parent.GetChild(0).GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)

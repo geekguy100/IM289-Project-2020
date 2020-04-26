@@ -1,6 +1,6 @@
 /*****************************************************************************
 // File Name :         PlayerController.cs
-// Author :            Connor Riley
+// Author :            Kyle Grenier, Connor Riley
 // Creation Date :     February 8, 2020
 //
 // Brief Description : Script that translates player input into actual movement
@@ -485,8 +485,8 @@ public class PlayerController : MonoBehaviour
         //If the gameobject is an interactable, be able to pick it up.
         if (col.gameObject.CompareTag("Grabbable"))
         {
-            print("Object in range!");
-            objectInRange = col.gameObject;
+            print("Object in range! " + col.transform.parent.name);
+            objectInRange = col.transform.parent.gameObject;
         }
     }
 

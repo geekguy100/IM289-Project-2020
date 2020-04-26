@@ -17,6 +17,8 @@ public class FinalBossBehaviour : MonoBehaviour
 
     public int wavesToSpawn = 3;
     public int maxRounds = 3;
+
+    public GameObject smokeParticle;
     private int currentWave = 0;
     private int currentEnemyCount = 0;
 
@@ -179,6 +181,9 @@ public class FinalBossBehaviour : MonoBehaviour
 
     void MoveBossPosition()
     {
+        //Instantiate the smoke effect and move the boss.
+        Instantiate(smokeParticle, transform.position, Quaternion.identity);
+
         string name = "Boss Pos " + (currentRound + 1);
         Transform newPos = GameObject.Find(name).transform;
 
