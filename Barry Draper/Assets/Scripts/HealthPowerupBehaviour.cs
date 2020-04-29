@@ -14,6 +14,7 @@ public class HealthPowerupBehaviour : MonoBehaviour
 {
     public int health = 1;
     public float rotationSpeed = 500;
+    public ParticleSystem healthParticle;
 
     private void Update()
     {
@@ -26,7 +27,29 @@ public class HealthPowerupBehaviour : MonoBehaviour
         {
             //If lives have been awarded, destroy the power up.
             if (GameControllerScript.instance.AwardLives(health))
-                Destroy(gameObject);
+                Instantiate(healthParticle, gameObject.transform.position,    
+                gameObject.transform.rotation);
+
+            Explode();
         }
+    }
+
+    void Explode()
+    {
+        //Instantiate our one-off particle system
+        ParticleSystem explosionEffect = Instantiate(healthParticle)
+                                         as ParticleSystem;
+        explosionEffect.transform.position = transform.position;
+        //play it
+        explosionEffect.Play();
+
+
+        float duration = explosionEffect.main.duration;
+        //destroy the particle system when its duration is up, right
+        //it would play a second time.
+        Destroy(explosionEffect.gameObject, duration);
+        //destroy our game object
+        Destroy(this.gameObject);
+
     }
 }

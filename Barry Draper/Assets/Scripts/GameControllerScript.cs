@@ -142,6 +142,9 @@ public class GameControllerScript : MonoBehaviour
 
         UpdateLives();
         hearts = 3;
+        Heart3 = GameObject.Find("Heart3");
+        Heart2 = GameObject.Find("Heart2");
+        Heart1 = GameObject.Find("Heart1");
 
         transform.GetChild(1).GetComponent<AudioController>().PlayBackgroundMusic();
 
