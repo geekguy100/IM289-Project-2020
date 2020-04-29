@@ -20,6 +20,7 @@ public class GameControllerScript : MonoBehaviour
     [Header("Player Life Management")]
     private float playerLives = 5;
     public float maxPlayerLives = 5;
+    public int hearts = 3;
 
     //Is the player currently invincible (after taking damage)?
     private bool invincible;
@@ -34,6 +35,9 @@ public class GameControllerScript : MonoBehaviour
     [Header("General Player Attributes")]
     [Tooltip("UI text to display lives count.")]
     public GameObject livesText;
+    public GameObject Heart3;
+    public GameObject Heart2;
+    public GameObject Heart1;
 
     private AudioController audioController;
 
@@ -71,6 +75,37 @@ public class GameControllerScript : MonoBehaviour
         healthBar.value -= 1;
 
         UpdateLives();
+
+        if(playerLives <= 0)
+        {
+            --hearts;
+            switch (hearts)
+            {
+                case (2):
+                    {
+                        Heart3.SetActive(false);
+                        break;
+                    }
+                case (1):
+                    {
+                        Heart2.SetActive(false);
+                        break;
+                    }
+                case (0):
+                    {
+                        Heart1.SetActive(false);
+                        break;
+                    }
+
+                default:
+                break;
+            }
+            if(hearts >= 0)
+            {
+                healthBar.value = maxPlayerLives;
+                AwardLives(3);
+            }
+        }
     }
 
     public bool AwardLives(int lives)
@@ -106,6 +141,7 @@ public class GameControllerScript : MonoBehaviour
             livesText.SetActive(true);*/
 
         UpdateLives();
+        hearts = 3;
 
         transform.GetChild(1).GetComponent<AudioController>().PlayBackgroundMusic();
 
@@ -121,7 +157,7 @@ public class GameControllerScript : MonoBehaviour
         healthBar.maxValue = maxPlayerLives;
         healthBar.value = playerLives;
 
-        if (playerLives <= 0 && playerAlive)
+        if (playerLives <= 0 && playerAlive && hearts <= 0)
         {
             print("*You are dead, de-de-dead.*");
             playerAlive = false;
