@@ -2571,6 +2571,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3014222829310172387, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_Text
+      value: "Of all the places for the chase to end, you\u2019re at the docks, and
+        there\u2019s a giant whale at the end of the docks. The culprit is planning
+        to lose you by taking a detour inside of the whale, but you\u2019ve gone through
+        worse things before, so you chase him into the belly of the whale, where the
+        culprit has nowhere left to turn."
+      objectReference: {fileID: 0}
     - target: {fileID: 7743827398488971349, guid: 2183f2fa7d738d249beb23643b8c7d27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2680,6 +2689,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Level Complete Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743827398488971353, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7743827399923990308, guid: 2183f2fa7d738d249beb23643b8c7d27,
         type: 3}
@@ -3639,6 +3653,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pause Menu Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178944968305014769, guid: 2e687177f1c5e174f84b874631dab817,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9178944968705422262, guid: 2e687177f1c5e174f84b874631dab817,
         type: 3}
