@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.BoxCast(groundPosition.position, new Vector2(Mathf.Abs(transform.localScale.x), boxCastYScale), 0f, Vector3.zero, 0f, whatIsGround);
 
         //Updating the x value accordingly.
-        if (isGrounded)
+        if (isGrounded && rb.velocity.y == 0)
         {
             newPos.x = xMov * moveSpeed;
             if (willTakeFallDamage)
@@ -483,7 +483,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         //If the gameobject is an interactable, be able to pick it up.
-        if (col.gameObject.CompareTag("Grabbable"))
+        if (col.gameObject.CompareTag("Grabbable") && !objectGrabbed)
         {
             print("Object in range! " + col.transform.parent.name);
             objectInRange = col.transform.parent.gameObject;

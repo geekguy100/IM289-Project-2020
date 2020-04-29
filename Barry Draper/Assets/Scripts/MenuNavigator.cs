@@ -25,11 +25,19 @@ public class MenuNavigator : MonoBehaviour
     public GameObject levelThreeScreen;
     public GameObject levelFourScreen;
 
+    private int currentProgress;
+
+    private void Start()
+    {
+        currentProgress = PlayerPrefs.GetInt("Game Progress");
+    }
+
     // Update is called once per frame
     void Update()
     {
         if ((Input.GetKeyDown("space")) || (Input.GetKeyDown("return")))
         {
+            currentProgress = PlayerPrefs.GetInt("Game Progress");
             Select();
         }
         else if ((Input.GetKeyDown("up") || Input.GetKeyDown("w")) && updownmenu.activeInHierarchy)
@@ -108,17 +116,17 @@ public class MenuNavigator : MonoBehaviour
                 leftrightmenu.SetActive(false);
                 levelOneScreen.SetActive(true);
             }
-            else if (index == 1)
+            else if (index == 1 && currentProgress > 0)
             {
                 leftrightmenu.SetActive(false);
                 levelTwoScreen.SetActive(true);
             }
-            else if (index == 2)
+            else if (index == 2 && currentProgress > 1)
             {
                 leftrightmenu.SetActive(false);
                 levelThreeScreen.SetActive(true);
             }
-            else if (index == 3)
+            else if (index == 3 && currentProgress > 2)
             {
                 leftrightmenu.SetActive(false);
                 levelFourScreen.SetActive(true);

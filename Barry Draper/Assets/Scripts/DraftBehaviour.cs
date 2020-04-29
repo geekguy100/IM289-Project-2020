@@ -27,6 +27,8 @@ public class DraftBehaviour : MonoBehaviour
     private void OnTriggerStay2D(Collider2D col)
     {
         Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
+        if (!rb)
+            return;
 
         if (col.gameObject.CompareTag("Player"))
         {

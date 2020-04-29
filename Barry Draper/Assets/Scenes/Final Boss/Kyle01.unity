@@ -5238,15 +5238,45 @@ PrefabInstance:
         roaming the streets, and as long as there\u2019s crime and mystery in Shmicago,
         Barry will be there to uncover the truth!\r\n"
       objectReference: {fileID: 0}
+    - target: {fileID: 3014222829310172387, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4360746659888475766, guid: 2183f2fa7d738d249beb23643b8c7d27,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50.62
+      value: 763.8
       objectReference: {fileID: 0}
     - target: {fileID: 4360746659888475766, guid: 2183f2fa7d738d249beb23643b8c7d27,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 246.2
+      value: 3006.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360746659888475766, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360746659888475766, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360746659888475766, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.12957612
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360746659888475766, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.12957612
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360746659888475766, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.08638409
       objectReference: {fileID: 0}
     - target: {fileID: 7743827398488971349, guid: 2183f2fa7d738d249beb23643b8c7d27,
         type: 3}
@@ -5362,6 +5392,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743827398647444896, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743827398647444896, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743827398647444896, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743827398647444897, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 59.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743827398647444897, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 770
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743827398647444897, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 71.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743827398647444897, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 132.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743827398647444897, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.32949537
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743827398647444897, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.32949537
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743827398647444897, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.21966359
       objectReference: {fileID: 0}
     - target: {fileID: 7743827399923990308, guid: 2183f2fa7d738d249beb23643b8c7d27,
         type: 3}
