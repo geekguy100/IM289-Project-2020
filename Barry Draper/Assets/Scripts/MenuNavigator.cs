@@ -28,7 +28,7 @@ public class MenuNavigator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space") || Input.GetKeyDown("enter"))
+        if ((Input.GetKeyDown("space")) || (Input.GetKeyDown("return")))
         {
             Select();
         }

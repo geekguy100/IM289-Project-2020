@@ -5229,6 +5229,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3014222829310172387, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_Text
+      value: "Joe and his goons were no match for you and your tactical umbrella.
+        You\u2019re able to turn Joe into the cops, and that adds another case to
+        the history books for Barry Draper. Although Joe wasn\u2019t the only criminal
+        roaming the streets, and as long as there\u2019s crime and mystery in Shmicago,
+        Barry will be there to uncover the truth!\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360746659888475766, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 4360746659888475766, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 246.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7743827398488971349, guid: 2183f2fa7d738d249beb23643b8c7d27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5353,6 +5372,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743827399923990309, guid: 2183f2fa7d738d249beb23643b8c7d27,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -144.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2183f2fa7d738d249beb23643b8c7d27, type: 3}
