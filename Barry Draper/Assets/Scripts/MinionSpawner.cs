@@ -24,6 +24,8 @@ public class MinionSpawner : MonoBehaviour
     public float timeTillFirstSpawn = 1f;
 
     public int roundActive = 1;
+    public GameObject smokeEffect;
+    public float timeToWaitAfterSmoke = 1f;
 
 
     public int GetEnemyCount()
@@ -45,6 +47,8 @@ public class MinionSpawner : MonoBehaviour
         while (currentNum < numberOfMinions)
         {
             currentNum++;
+            Instantiate(smokeEffect, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(timeToWaitAfterSmoke);
             Instantiate(minion, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }

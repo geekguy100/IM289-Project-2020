@@ -46,4 +46,8 @@ MonoBehaviour:
   minion: {fileID: 5205805495906249047, guid: 4b62532ea5538864094f7df0b0691516, type: 3}
   numberOfMinions: 5
   timeBetweenSpawns: 1
+  timeTillFirstSpawn: 1
   roundActive: 1
+  smokeEffect: {fileID: 496498882166677832, guid: e76f0057a92063f4c8f9f5eecea1a614,
+    type: 3}
+  timeToWaitAfterSmoke: 1

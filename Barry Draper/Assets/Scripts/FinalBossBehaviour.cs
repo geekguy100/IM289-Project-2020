@@ -193,7 +193,7 @@ public class FinalBossBehaviour : MonoBehaviour
 
 
 
-
+//Start of final boss attacking behaviour
     [Header("Final boss attributes")]
     public float shootingDistance = 10f;
     public float jumpAttackDistance = 3f;
@@ -263,6 +263,7 @@ public class FinalBossBehaviour : MonoBehaviour
             knockedDown = false;
             currentRecoveryTime = 0f;
 
+            Instantiate(smokeParticle, transform.position, Quaternion.identity);
             int r = Random.Range(0, tpPositions.Length);
             transform.position = tpPositions[r].position;
         }

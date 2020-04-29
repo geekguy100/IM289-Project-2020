@@ -62,7 +62,7 @@ public class CameraBehaviour : MonoBehaviour
             ft.m_LookaheadSmoothing = initialLookaheadSmoothing;
         }
 
-        HandleOffsetChanges();
+        //HandleOffsetChanges();
         
         //If the 'U' key is pressed, handle free cam mode.
         if (Input.GetButtonDown("Free Cam Mode"))
@@ -86,38 +86,38 @@ public class CameraBehaviour : MonoBehaviour
         }
     }
 
-    void HandleOffsetChanges()
-    {
-        if (freeMode)
-            return;
+    //void HandleOffsetChanges()
+    //{
+    //    if (freeMode)
+    //        return;
 
-        //If the player is moving to the left, set the cameraX in that direction.
-        //if (player.newPos.x < 0)
-        //{
-        //    ft.m_ScreenX = leftOffset;
-        //}
-        //else if (player.newPos.x > 0)
-        //{
-        //    ft.m_ScreenX = rightOffset;
-        //}
-        //else
-        //{
-        //    ft.m_ScreenX = 0.5f;
-        //}
+    //    //If the player is moving to the left, set the cameraX in that direction.
+    //    //if (player.newPos.x < 0)
+    //    //{
+    //    //    ft.m_ScreenX = leftOffset;
+    //    //}
+    //    //else if (player.newPos.x > 0)
+    //    //{
+    //    //    ft.m_ScreenX = rightOffset;
+    //    //}
+    //    //else
+    //    //{
+    //    //    ft.m_ScreenX = 0.5f;
+    //    //}
 
-        //if (player.umbrellaUp || playerRb.velocity.y > 0)
-        //{
-        //    ft.m_ScreenY = upOffset;
-        //}
-        //else if (player.umbrellaDown || playerRb.velocity.y < 0)
-        //{
-        //    ft.m_ScreenY = downOffset;
-        //}
-        //else
-        //{
-        //    ft.m_ScreenY = 0.5f;
-        //}
-    }
+    //    //if (player.umbrellaUp || playerRb.velocity.y > 0)
+    //    //{
+    //    //    ft.m_ScreenY = upOffset;
+    //    //}
+    //    //else if (player.umbrellaDown || playerRb.velocity.y < 0)
+    //    //{
+    //    //    ft.m_ScreenY = downOffset;
+    //    //}
+    //    //else
+    //    //{
+    //    //    ft.m_ScreenY = 0.5f;
+    //    //}
+    //}
 
     void HandleFreeCamMode()
     {
