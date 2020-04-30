@@ -31,11 +31,13 @@ public class CameraBehaviour : MonoBehaviour
     public Vector2 minPosClamp;
     public Vector2 maxPosClamp;
 
-    [Header("Player Movement Offsets")]
-    public float leftOffset = 0.7f;
-    public float rightOffset = 0.3f;
-    public float upOffset = 0.7f;
-    public float downOffset = 0.3f;
+    //[Header("Player Movement Offsets")]
+    //public float leftOffset = 0.7f;
+    //public float rightOffset = 0.3f;
+    //public float upOffset = 0.7f;
+    //public float downOffset = 0.3f;
+
+    private Vector3 newPos;
 
     private void Awake()
     {
@@ -67,12 +69,22 @@ public class CameraBehaviour : MonoBehaviour
         //If the 'U' key is pressed, handle free cam mode.
         if (Input.GetButtonDown("Free Cam Mode"))
         {
-            HandleFreeCamMode();
+            ToggleFreeCamMode();
         }
 
         if (freeMode)
         {
-            transform.position = Vector3.Lerp(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), freeCamSpeed * Time.deltaTime);
+            //Get input axes.
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
+
+            //Assign the direction the camera should pan in 'newPos.'
+            newPos.x = h;
+            newPos.y = v;
+            newPos.z = 0;
+
+            //Move the camera's current position to the new position with speed 'freeCamSpeed' over Time.deltaTime.
+            transform.position += newPos * freeCamSpeed * Time.deltaTime;
 
             //Clamp the camera's position if it should be clamped.
             if (clampInFreeMode)
@@ -119,17 +131,18 @@ public class CameraBehaviour : MonoBehaviour
     //    //}
     //}
 
-    void HandleFreeCamMode()
+    void ToggleFreeCamMode()
     {
         freeMode = !freeMode;
+        GameControllerScript.instance.SetFreeCamMode(freeMode);
 
         if (freeMode)
         {
+            //Initiate the current newPos to the camera's current position.
+            newPos = transform.position;
+
             vcam.m_Lens.OrthographicSize = freeModeOrthoSize;
             vcam.Follow = null;
-
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.lockState = CursorLockMode.None;
         }
         else
         {

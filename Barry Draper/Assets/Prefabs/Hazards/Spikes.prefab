@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5649620474944387321}
   - component: {fileID: 4083850902180926924}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Harmless Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

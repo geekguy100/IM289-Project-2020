@@ -1924,6 +1924,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4460190570592114537, guid: 56145b284cd017e478efb76a69efbc09,
+        type: 3}
+      propertyPath: freeModeOrthoSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460190570592114537, guid: 56145b284cd017e478efb76a69efbc09,
+        type: 3}
+      propertyPath: freeCamSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460190570592114537, guid: 56145b284cd017e478efb76a69efbc09,
+        type: 3}
+      propertyPath: minPosClamp.x
+      value: -53.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460190570592114537, guid: 56145b284cd017e478efb76a69efbc09,
+        type: 3}
+      propertyPath: minPosClamp.y
+      value: -20.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460190570592114537, guid: 56145b284cd017e478efb76a69efbc09,
+        type: 3}
+      propertyPath: maxPosClamp.x
+      value: -6.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460190570592114537, guid: 56145b284cd017e478efb76a69efbc09,
+        type: 3}
+      propertyPath: maxPosClamp.y
+      value: 18.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460190570592114537, guid: 56145b284cd017e478efb76a69efbc09,
+        type: 3}
+      propertyPath: clampInFreeMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4460190570592114538, guid: 56145b284cd017e478efb76a69efbc09,
         type: 3}
       propertyPath: m_LocalPosition.x

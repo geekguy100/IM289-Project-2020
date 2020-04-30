@@ -102,7 +102,14 @@ public class PlayerController : MonoBehaviour
         audioController = GetComponentInChildren<AudioController>();
         sr = transform.GetChild(3).GetComponent<SpriteRenderer>();
 
+        //Initial values for player direction.
         umbrellaShieldTrigger.enabled = false;
+        umbrellaUp = false;
+        umbrellaDown = false;
+        umbrellaLeft = false;
+        umbrellaRight = true;
+        ChangeUmbrellaSprite("Right");
+        umbrellaShieldTrigger.offset = shieldOffsetLow;
 
         deathAnim.SetActive(false);
     }
@@ -120,6 +127,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //If the player is in free camera mode, don't run because the player should be unable to move.
+        if (GameControllerScript.instance.GetFreeCamMode())
+        {
+            anim.SetBool("isGrounded", false);
+            audioController.StopPlayingLoop();
+            return;
+        }
+
         //If the player is not alive don't bother running the code in this function.
         if (!GameControllerScript.instance.playerAlive && !deathAnimRan)
         {
@@ -130,8 +145,6 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-
-
 
         //Updating the newPos x value (where the player will move to)
         //based on if the player is grounded or not. KG
@@ -221,7 +234,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //If the player is not alive don't bother running the code in this function.
-        if (!GameControllerScript.instance.playerAlive)
+        //If the player is in free camera mode, don't let them move -- the WASD keys are used for moving the camera!
+        if (!GameControllerScript.instance.playerAlive || GameControllerScript.instance.GetFreeCamMode())
             return;
 
         //Moving the rigidbody along x-axis.
@@ -347,6 +361,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void ActivateUmbrella()
     {
+        //Don't allow the player to use the umbrella while in free cam mode.
+        if (GameControllerScript.instance.GetFreeCamMode())
+            return;
+
         if (Input.GetButtonDown("Jump") && umbrella == false)
         {
             umbrella = true;
@@ -385,6 +403,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void PointUmbrella()
     {
+        //Don't allow the player to point the umbrella while in free cam mode.
+        if (GameControllerScript.instance.GetFreeCamMode())
+            return;
+
         SpriteRenderer bustSpriteRenderer = umbrellaObject.GetComponent<SpriteRenderer>();
 
         if (Input.GetButtonDown("UmbrellaRight") && facingRight)

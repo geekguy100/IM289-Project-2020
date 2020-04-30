@@ -6,8 +6,6 @@
 // Brief Description : Controls how much health the powerup will give the player. Also controls rotation of the object.
 *****************************************************************************/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthPowerupBehaviour : MonoBehaviour
@@ -27,10 +25,10 @@ public class HealthPowerupBehaviour : MonoBehaviour
         {
             //If lives have been awarded, destroy the power up.
             if (GameControllerScript.instance.AwardLives(health))
-                Instantiate(healthParticle, gameObject.transform.position,    
-                gameObject.transform.rotation);
-
-            Explode();
+            {
+                Instantiate(healthParticle, gameObject.transform.position, gameObject.transform.rotation);
+                Explode();
+            }
         }
     }
 

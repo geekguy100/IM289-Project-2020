@@ -5,12 +5,9 @@
 //
 // Brief Description : Manages player lives, score, and other global values.
 *****************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System;
 
 public class GameControllerScript : MonoBehaviour
 {
@@ -47,6 +44,8 @@ public class GameControllerScript : MonoBehaviour
     private Vector2 checkpointPos;
     private bool hasCheckpoint = false;
 
+    private bool freeCamMode = false;
+
     private void Awake()
     {
         //Singleton behaviour
@@ -63,7 +62,7 @@ public class GameControllerScript : MonoBehaviour
     }
 
 
-    public void RemoveLivesFromPlayer(int livesToRemove)
+    public void RemoveLivesFromPlayer(float livesToRemove)
     {
         if (invincible || !playerAlive)
             return;
@@ -72,7 +71,9 @@ public class GameControllerScript : MonoBehaviour
         playerLives -= livesToRemove;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().StartFlash();
         audioController.PlayClip(AudioController.GameManagerSFX.playerHit);
-        healthBar.value -= 1;
+        //healthBar.value -= 1;
+        healthBar.value -= livesToRemove;
+        print(playerLives);
 
         UpdateLives();
 
@@ -132,6 +133,7 @@ public class GameControllerScript : MonoBehaviour
         invincible = false;
         playerAlive = true;
         playerLives = maxPlayerLives;
+        SetFreeCamMode(false);
 
         //If the livesText is null, find it and make sure it's active.
         livesText = GameObject.Find("LivesText");
@@ -146,12 +148,12 @@ public class GameControllerScript : MonoBehaviour
         Heart2 = GameObject.Find("Heart2");
         Heart1 = GameObject.Find("Heart1");
 
-        transform.GetChild(1).GetComponent<AudioController>().PlayBackgroundMusic();
-
         if (hasCheckpoint)
         {
             MovePlayerToCheckpoint();
         }
+
+        transform.GetChild(1).GetComponent<AudioController>().PlayBackgroundMusic();
     }
 
     public void UpdateLives()
@@ -182,8 +184,7 @@ public class GameControllerScript : MonoBehaviour
     public void FinishLevel()
     {
         audioController.PlayClip(AudioController.GameManagerSFX.finishLevel);
-        hasCheckpoint = false;
-        //livesText.SetActive(false);
+        ResetCheckpointStatus();
     }
 
     public void ResetCheckpointStatus()
@@ -206,6 +207,18 @@ public class GameControllerScript : MonoBehaviour
         {
             player.transform.position = new Vector3(79.5f, 13.0f, 0f);
         }*/
+    }
+
+    //CameraBehaviour.cs toggles the freeCamMode boolean between true and false.
+    //In this script, freeCamMode is used to determine if the player can move or not. In free cam mode, they should NOT be able to.
+    public void SetFreeCamMode(bool freeCam)
+    {
+        freeCamMode = freeCam;
+    }
+
+    public bool GetFreeCamMode()
+    {
+        return freeCamMode;
     }
 
     public void OnGameComplete(GameObject levelCompleteCanvas)
