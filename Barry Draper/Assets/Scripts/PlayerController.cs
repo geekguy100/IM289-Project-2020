@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
             if (willTakeFallDamage)
             {
                 print("You took fall damage!");
-                GameControllerScript.instance.RemoveLivesFromPlayer(1);
+                GameControllerScript.instance.RemoveLivesFromPlayer(0.5f);
                 willTakeFallDamage = false;
             }
         }
