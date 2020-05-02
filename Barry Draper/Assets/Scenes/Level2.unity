@@ -791,6 +791,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a409315acd87b664aafbc4becee9a911, type: 3}
+--- !u!1 &150587564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 150587565}
+  m_Layer: 0
+  m_Name: max height
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &150587565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150587564}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.45, y: -2.83, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 628472481}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &187728027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1660,17 +1690,17 @@ PrefabInstance:
     - target: {fileID: 4873748756721177172, guid: 7831f28fd0dc7ae43ade7eb346fb68b9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.260494
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4873748756721177172, guid: 7831f28fd0dc7ae43ade7eb346fb68b9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.2477326
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4873748756721177172, guid: 7831f28fd0dc7ae43ade7eb346fb68b9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -241.32123
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4873748756721177172, guid: 7831f28fd0dc7ae43ade7eb346fb68b9,
         type: 3}
@@ -2602,11 +2632,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8637858108336245416, guid: c7f7655f831394e488fead11610ff17d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c12710183d0cf5e41890fc197f898148, type: 2}
     - target: {fileID: 8637858108336245417, guid: c7f7655f831394e488fead11610ff17d,
         type: 3}
       propertyPath: maxHeight
       value: 
-      objectReference: {fileID: 628472481}
+      objectReference: {fileID: 150587565}
     - target: {fileID: 8637858108336245418, guid: c7f7655f831394e488fead11610ff17d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2615,7 +2650,7 @@ PrefabInstance:
     - target: {fileID: 8637858108336245418, guid: c7f7655f831394e488fead11610ff17d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.62
+      value: -1.7
       objectReference: {fileID: 0}
     - target: {fileID: 8637858108336245418, guid: c7f7655f831394e488fead11610ff17d,
         type: 3}
@@ -2675,12 +2710,12 @@ PrefabInstance:
     - target: {fileID: 8637858108336245419, guid: c7f7655f831394e488fead11610ff17d,
         type: 3}
       propertyPath: m_SortingLayerID
-      value: -360578479
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8637858108336245419, guid: c7f7655f831394e488fead11610ff17d,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8637858108336245419, guid: c7f7655f831394e488fead11610ff17d,
         type: 3}
@@ -2690,6 +2725,16 @@ PrefabInstance:
     - target: {fileID: 8637858108336245419, guid: c7f7655f831394e488fead11610ff17d,
         type: 3}
       propertyPath: m_Size.x
+      value: 15.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8637858108336245420, guid: c7f7655f831394e488fead11610ff17d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8637858108336245420, guid: c7f7655f831394e488fead11610ff17d,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
       value: 15.14
       objectReference: {fileID: 0}
     - target: {fileID: 8637858108336245421, guid: c7f7655f831394e488fead11610ff17d,

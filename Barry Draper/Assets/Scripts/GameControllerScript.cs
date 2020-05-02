@@ -73,7 +73,7 @@ public class GameControllerScript : MonoBehaviour
         audioController.PlayClip(AudioController.GameManagerSFX.playerHit);
         //healthBar.value -= 1;
         healthBar.value -= livesToRemove;
-        print(playerLives);
+        //print(playerLives);
 
         UpdateLives();
 

@@ -33,9 +33,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
     private bool isGrounded = false;
     private bool facingRight = true;
-    public float fallDamageDistance = 10f;
+    public float fallDamageVelocity = -10f;
     private bool willTakeFallDamage = false;
-    private GameObject foundGround;
 
     [Header("Game Objects")]                                /*CD*/
     [Tooltip("The sprite for the player's umbrella.")]      /*CD*/
@@ -168,7 +167,6 @@ public class PlayerController : MonoBehaviour
                 print("You took fall damage!");
                 GameControllerScript.instance.RemoveLivesFromPlayer(1);
                 willTakeFallDamage = false;
-                foundGround = null;
             }
         }
         else
@@ -177,17 +175,12 @@ public class PlayerController : MonoBehaviour
 
             if (!(umbrella && umbrellaUp))
             {
-                Vector2 fallPos = -transform.up * 100;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up, 100, whatIsGround);
-                Debug.DrawRay(transform.position, fallPos, Color.red);
-
-                if (!willTakeFallDamage && hit && hit.distance >= fallDamageDistance)
+                if (!willTakeFallDamage && rb.velocity.y <= fallDamageVelocity)
                 {
                     print("Ur gonna take fall damage!");
                     willTakeFallDamage = true;
-                    foundGround = hit.collider.gameObject;
                 }
-                else if (willTakeFallDamage && hit && hit.collider.gameObject != foundGround && hit.distance < fallDamageDistance)
+                else if (willTakeFallDamage && rb.velocity.y > fallDamageVelocity)
                 {
                     print("No more fall damage!");
                     willTakeFallDamage = false;
@@ -197,7 +190,6 @@ public class PlayerController : MonoBehaviour
             {
                 print("You saved yourself from fall damage");
                 willTakeFallDamage = false;
-                foundGround = null;
             }
         }
             
@@ -507,7 +499,7 @@ public class PlayerController : MonoBehaviour
         //If the gameobject is an interactable, be able to pick it up.
         if (col.gameObject.CompareTag("Grabbable") && !objectGrabbed)
         {
-            print("Object in range! " + col.transform.parent.name);
+            //print("Object in range! " + col.transform.parent.name);
             objectInRange = col.transform.parent.gameObject;
         }
     }
