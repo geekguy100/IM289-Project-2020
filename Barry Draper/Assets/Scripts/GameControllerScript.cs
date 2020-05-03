@@ -35,6 +35,7 @@ public class GameControllerScript : MonoBehaviour
     public GameObject Heart3;
     public GameObject Heart2;
     public GameObject Heart1;
+    public GameObject Heart0;
 
     private AudioController audioController;
 
@@ -55,7 +56,6 @@ public class GameControllerScript : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-
         audioController = GetComponentInChildren<AudioController>();
 
         //playerLives = maxPlayerLives;
@@ -85,16 +85,19 @@ public class GameControllerScript : MonoBehaviour
                 case (2):
                     {
                         Heart3.SetActive(false);
+                        Heart2.SetActive(true);
                         break;
                     }
                 case (1):
                     {
                         Heart2.SetActive(false);
+                        Heart1.SetActive(true);
                         break;
                     }
                 case (0):
                     {
                         Heart1.SetActive(false);
+                        Heart0.SetActive(true);
                         break;
                     }
 
@@ -147,6 +150,10 @@ public class GameControllerScript : MonoBehaviour
         Heart3 = GameObject.Find("Heart3");
         Heart2 = GameObject.Find("Heart2");
         Heart1 = GameObject.Find("Heart1");
+
+        Heart2.SetActive(false);
+        Heart1.SetActive(false);
+        Heart0.SetActive(false);
 
         if (hasCheckpoint)
         {
