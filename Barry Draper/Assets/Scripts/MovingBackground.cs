@@ -20,9 +20,9 @@ public class MovingBackground : MonoBehaviour
 
     public void Update()
     {
-        Vector3 pos = bg.position;
+        Vector3 pos = bg.anchoredPosition;
 
-        if (bg.position.x < minX)
+        if (bg.anchoredPosition.x < minX)
             moveRight = true;
         else if (bg.position.x > maxX)
             moveRight = false;
@@ -32,6 +32,6 @@ public class MovingBackground : MonoBehaviour
         else
             pos.x -= movementSpeed * Time.deltaTime;
 
-        bg.position = pos;
+        bg.anchoredPosition = pos;
     }
 }
