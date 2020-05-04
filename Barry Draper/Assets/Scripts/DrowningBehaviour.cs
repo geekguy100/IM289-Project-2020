@@ -1,5 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+/*****************************************************************************
+// File Name : DrowningBehaviour
+// Author : Connor Riley (90%)
+            Implemented the Drowning Bar (4/30/2020)
+            Kyle Grenier(10%)
+                Implemented the actual Drowning (2/29/2020)
+// Creation Date : February 12, 2020
+//
+// Brief Description : Script to control drowning under water as well as 
+                       the bar that shows how much air you have left. 
+*****************************************************************************/
 using UnityEngine;
 using UnityEngine.UI;
 

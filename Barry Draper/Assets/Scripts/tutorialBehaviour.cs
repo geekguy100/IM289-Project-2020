@@ -1,3 +1,11 @@
+/*****************************************************************************
+// File Name : tutorialBehaviour
+// Author : Connor Riley (100%)
+                Implemented full functionality. (2/29/2020)
+// Creation Date : February 12, 2020
+//
+// Brief Description : Script to control behaviour of the pop up tutorial
+*****************************************************************************/
 using UnityEngine;
 
 public class tutorialBehaviour : MonoBehaviour

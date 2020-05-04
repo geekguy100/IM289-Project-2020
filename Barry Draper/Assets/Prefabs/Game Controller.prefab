@@ -145,7 +145,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0f9cf910f1823d94a88faa3e88b98cc5, type: 3}
   - {fileID: 8300000, guid: 98c14d89c2365104d84e768832629dbd, type: 3}
   - {fileID: 8300000, guid: 2ef2a020e2e84a642ab00cbc75a276df, type: 3}
-  titleLoop: {fileID: 0}
   intro: {fileID: 0}
   loop: {fileID: 0}
 --- !u!1 &1198074856
@@ -290,7 +289,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioType: 3
   sfxClips: []
-  titleLoop: {fileID: 8300000, guid: 51c0d9e2d4f48894586e5eab24e02677, type: 3}
   intro: {fileID: 8300000, guid: 591aadcacb14ffc4f929f57dbfa1a139, type: 3}
   loop: {fileID: 8300000, guid: 4316795c8cd434b4b89df184e47a2553, type: 3}
 --- !u!1 &4873748756721177174
@@ -339,7 +337,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxPlayerLives: 3
+  hearts: 3
   playerAlive: 1
   invincibilityTime: 2
-  livesText: {fileID: 0}
+  Heart3: {fileID: 0}
+  Heart2: {fileID: 0}
+  Heart1: {fileID: 0}
+  Heart0: {fileID: 0}
   healthBar: {fileID: 0}

@@ -31,11 +31,11 @@ public class GameControllerScript : MonoBehaviour
 
     [Header("General Player Attributes")]
     [Tooltip("UI text to display lives count.")]
-    public GameObject livesText;
     public GameObject Heart3;
     public GameObject Heart2;
     public GameObject Heart1;
     public GameObject Heart0;
+    static bool first = true;
 
     private AudioController audioController;
 
@@ -58,6 +58,12 @@ public class GameControllerScript : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         audioController = GetComponentInChildren<AudioController>();
 
+        if(first)
+        {
+            PrepareLevel();
+            first = false;
+        }
+        
         //playerLives = maxPlayerLives;
     }
 
@@ -139,25 +145,45 @@ public class GameControllerScript : MonoBehaviour
         SetFreeCamMode(false);
 
         //If the livesText is null, find it and make sure it's active.
-        livesText = GameObject.Find("LivesText");
-        healthBar = GameObject.Find("Health Bar").GetComponent<Slider>();
+        //livesText = GameObject.Find("LivesText");
+
 
         /*if (!livesText.activeSelf)
             livesText.SetActive(true);*/
 
-        UpdateLives();
         hearts = 3;
-        Heart3 = GameObject.Find("Heart3");
-        Heart2 = GameObject.Find("Heart2");
-        Heart1 = GameObject.Find("Heart1");
 
-        Heart2.SetActive(false);
-        Heart1.SetActive(false);
-        Heart0.SetActive(false);
+        UpdateLives();
+
+        Heart3 = GameObject.Find("Heart3");
+
+        if (Heart2 == null)
+        {
+            print("happened");
+            Heart2 = GameObject.Find("Heart2");
+            Heart2.SetActive(false);
+        }
+
+        if (Heart1 == null)
+        {
+            Heart1 = GameObject.Find("Heart1");
+            Heart1.SetActive(false);
+        }
+
+        if (Heart0 == null)
+        {
+            Heart0 = GameObject.Find("Heart0");
+            Heart0.SetActive(false);
+        }
 
         if (hasCheckpoint)
         {
             MovePlayerToCheckpoint();
+        }
+
+        if(healthBar == null)
+        {
+            healthBar = GameObject.Find("Health Bar").GetComponent<Slider>();
         }
 
         transform.GetChild(1).GetComponent<AudioController>().PlayBackgroundMusic();
@@ -203,17 +229,6 @@ public class GameControllerScript : MonoBehaviour
     {
         string levelName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(levelName);
-
-        /*if (checkpointPassed)
-        {
-            GameObject.FindGameObjectWithTag("Player").transform.position = checkpoint.transform.position;
-        }*/
-        PrepareLevel();
-
-        /*if (checkpoint1)
-        {
-            player.transform.position = new Vector3(79.5f, 13.0f, 0f);
-        }*/
     }
 
     //CameraBehaviour.cs toggles the freeCamMode boolean between true and false.
