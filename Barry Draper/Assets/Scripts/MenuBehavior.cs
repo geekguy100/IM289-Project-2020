@@ -104,6 +104,12 @@ public class MenuBehavior : MonoBehaviour
         SceneManager.LoadScene(levelname);
     }
 
+    //Used to load a level using the keyboard.
+    public static void LoadLevelKeyboard(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
+    }
+
 
     /// <summary>
     /// Decides on what to do once the player hits Escape on the main menu

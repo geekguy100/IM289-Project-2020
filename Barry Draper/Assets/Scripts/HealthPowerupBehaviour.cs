@@ -11,13 +11,8 @@ using UnityEngine;
 public class HealthPowerupBehaviour : MonoBehaviour
 {
     public int health = 1;
-    public float rotationSpeed = 500;
     public ParticleSystem healthParticle;
-
-    private void Update()
-    {
-        transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
-    }
+    public float destroyTime = 2f;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -27,27 +22,8 @@ public class HealthPowerupBehaviour : MonoBehaviour
             if (GameControllerScript.instance.AwardLives(health))
             {
                 Instantiate(healthParticle, gameObject.transform.position, gameObject.transform.rotation);
-                Explode();
+                Destroy(gameObject, destroyTime);
             }
         }
-    }
-
-    void Explode()
-    {
-        //Instantiate our one-off particle system
-        ParticleSystem explosionEffect = Instantiate(healthParticle)
-                                         as ParticleSystem;
-        explosionEffect.transform.position = transform.position;
-        //play it
-        explosionEffect.Play();
-
-
-        float duration = explosionEffect.main.duration;
-        //destroy the particle system when its duration is up, right
-        //it would play a second time.
-        Destroy(explosionEffect.gameObject, duration);
-        //destroy our game object
-        Destroy(this.gameObject);
-
     }
 }

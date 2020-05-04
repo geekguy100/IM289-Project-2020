@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8584131177869838870}
   - component: {fileID: 8584131177869838872}
   - component: {fileID: 8584131177869838875}
+  - component: {fileID: 555169141}
   m_Layer: 0
   m_Name: HealthPowerup
   m_TagString: Untagged
@@ -71,8 +72,8 @@ SpriteRenderer:
   m_SortingLayerID: -360578479
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: bf88ca3089cc669448436e638228dfb2, type: 3}
-  m_Color: {r: 0, g: 0.060203552, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a7372aef4b203064daaeb54274035b81, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,7 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
-  rotationSpeed: 500
+  healthParticle: {fileID: 8642427377241127279, guid: afd4a8eb06a08dc40aff8e3618d5f590,
+    type: 3}
+  destroyTime: 0.5
 --- !u!61 &8584131177869838875
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -113,12 +116,31 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.48, y: 0.86}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.47, y: 0.88}
   m_EdgeRadius: 0
+--- !u!95 &555169141
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8584131177869838871}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: be64e1bb39ab09447aea658694dad88b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

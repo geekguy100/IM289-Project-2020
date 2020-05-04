@@ -6,9 +6,8 @@
 // Brief Description :  Allows you to navigate the main menu using the arrow
                         keys or WASD.
 *****************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuNavigator : MonoBehaviour
 {
@@ -25,7 +24,26 @@ public class MenuNavigator : MonoBehaviour
     public GameObject levelThreeScreen;
     public GameObject levelFourScreen;
 
+    private RectTransform rectTransform;
+    private CanvasScaler canvasScalar;
+    private Vector2 screenScale;
+
     private int currentProgress;
+
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+
+        //Setting the screenScale vector. Will be used to scale x- and y-offset according to the resolution of the game.
+        if (canvasScalar == null)
+            canvasScalar = GetComponentInParent<CanvasScaler>();
+        if (canvasScalar)
+            screenScale = new Vector2(canvasScalar.referenceResolution.x / Screen.width, canvasScalar.referenceResolution.y / Screen.height);
+        else
+            screenScale = Vector2.one;
+
+        print(screenScale);
+    }
 
     private void Start()
     {
@@ -35,51 +53,54 @@ public class MenuNavigator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Space and enter mimic left clicking.
         if ((Input.GetKeyDown("space")) || (Input.GetKeyDown("return")))
         {
             currentProgress = PlayerPrefs.GetInt("Game Progress");
             Select();
         }
+        //Navigate up the appropriate menu.
         else if ((Input.GetKeyDown("up") || Input.GetKeyDown("w")) && updownmenu.activeInHierarchy)
         {
             if (index > 0)
             {
                 index--;
-                Vector2 position = transform.position;
+                Vector2 position = rectTransform.position;
                 position.y += yOffset;
-                transform.position = position;
+                rectTransform.position = position;
             }
         }
+        //Navigate down the approriate menu.
         else if ((Input.GetKeyDown("down") || Input.GetKeyDown("s")) && updownmenu.activeInHierarchy)
         {
             if (index <= (totalOptions - 1))
             {
                 index++;
-                Vector2 position = transform.position;
+                Vector2 position = rectTransform.position;
                 position.y -= yOffset;
-                transform.position = position;
+                rectTransform.position = position;
             }
         }
+        //Navigate left on the appropriate menu.
         else if ((Input.GetKeyDown("left") || Input.GetKeyDown("a")) && leftrightmenu.activeInHierarchy)
         {
-
             if (index > 0)
             {
                 index--;
-                Vector2 position = transform.position;
+                Vector2 position = rectTransform.position;
                 position.x -= xOffset;
-                transform.position = position;
+                rectTransform.position = position;
             }
         }
+        //Navigate right on the appropriate menu.
         else if ((Input.GetKeyDown("right") || Input.GetKeyDown("d")) && leftrightmenu.activeInHierarchy)
         {
-
-            if (index <= (totalOptions -1))
+            if (index <= (totalOptions - 1))
             {
                 index++;
-                Vector2 position = transform.position;
+                Vector2 position = rectTransform.position;
                 position.x += xOffset;
-                transform.position = position;
+                rectTransform.position = position;
             }
         }
     }
