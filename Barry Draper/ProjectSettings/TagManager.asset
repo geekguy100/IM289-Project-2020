@@ -19,6 +19,7 @@ TagManager:
   - Round 2
   - Grabbable
   - Checkpoint
+  - NPC
   layers:
   - Default
   - TransparentFX

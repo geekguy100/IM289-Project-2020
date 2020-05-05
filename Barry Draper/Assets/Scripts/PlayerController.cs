@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = false;
     private bool facingRight = true;
     public float fallDamageVelocity = -10f;
+    public float fallDamageAmnt = 1f;
     private bool willTakeFallDamage = false;
 
     [Header("Game Objects")]                                /*CD*/
@@ -165,7 +166,7 @@ public class PlayerController : MonoBehaviour
             if (willTakeFallDamage)
             {
                 print("You took fall damage!");
-                GameControllerScript.instance.RemoveLivesFromPlayer(0.5f);
+                GameControllerScript.instance.RemoveLivesFromPlayer(fallDamageAmnt);
                 willTakeFallDamage = false;
             }
         }
@@ -504,12 +505,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private NpcInteraction NPC;
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        //If the player is within the range of an NPC and wants to interact with them.
+        if (col.gameObject.CompareTag("NPC") && !NPC)
+        {
+            NPC = col.gameObject.GetComponent<NpcInteraction>();
+            NPC.HandleInteraction();
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D col)
     {
         //If the gameobject is an interactable, don't be able to pick it up.
         if (col.gameObject.CompareTag("Grabbable"))
-        {
             objectInRange = null;
+        else if (col.gameObject.CompareTag("NPC"))
+        {
+            NPC.StopInteraction();
+            NPC = null;
         }
     }
 
