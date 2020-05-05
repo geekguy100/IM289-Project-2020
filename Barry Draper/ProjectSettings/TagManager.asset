@@ -63,6 +63,9 @@ TagManager:
   - name: Wires
     uniqueID: 363624571
     locked: 0
+  - name: SetDressing
+    uniqueID: 3061980395
+    locked: 0
   - name: Background Interactables
     uniqueID: 3934388817
     locked: 0
