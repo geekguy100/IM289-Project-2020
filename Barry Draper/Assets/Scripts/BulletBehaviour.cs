@@ -44,6 +44,10 @@ public class BulletBehaviour : MonoBehaviour
         {
             direction = -direction;
 
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+
             //Once the bullet bounces off of the umbrella, it can hurt minions.
             //This is to prevent minions from firing at each other.
             canHurtMinion = true;

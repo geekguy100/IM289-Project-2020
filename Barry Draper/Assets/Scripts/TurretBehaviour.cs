@@ -44,10 +44,22 @@ public class TurretBehaviour : MonoBehaviour
     AudioController audioController;
     private bool targetFoundPlayed = false;
 
+    [Header("Other")]
+    public Sprite guardHead;
+    public Sprite attackHead;
+    private SpriteRenderer rend;
+
+    private void Awake()
+    {
+        rend = GetComponent<SpriteRenderer>();
+    }
+
     private void Start()
     {
         audioController = transform.parent.parent.GetComponentInChildren<AudioController>();
         defRot = transform.parent.localRotation;
+
+        rend.sprite = guardHead;
     }
 
     private void Update()
@@ -62,6 +74,9 @@ public class TurretBehaviour : MonoBehaviour
         RaycastHit2D foundTarget = Physics2D.Raycast(bulletSpawnPos.position, direction, maxDistance, shootLayer);
         if (foundTarget)
         {
+            if (rend.sprite != attackHead)
+                rend.sprite = attackHead;
+
             //Rotate head towards target
             target = foundTarget.transform;
 
@@ -120,6 +135,9 @@ public class TurretBehaviour : MonoBehaviour
                 canShoot = false;
                 currentShootTime = 0f;
                 targetFoundPlayed = false;
+
+                if (rend.sprite != guardHead)
+                    rend.sprite = guardHead;
             }
         }
     }
