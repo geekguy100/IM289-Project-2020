@@ -34,8 +34,6 @@ public class AudioController : MonoBehaviour
     public AudioClip intro;
     public AudioClip loop;
 
-    private bool bgMusic = false;
-
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -121,18 +119,13 @@ public class AudioController : MonoBehaviour
             yield break;
         }
 
-        if (!bgMusic)
-            yield break;
 
         audioSource.clip = intro;
         audioSource.loop = false;
         audioSource.Play();
 
         //Wait until the intro is over.
-        yield return new WaitForSeconds(audioSource.clip.length);
-
-        if (!bgMusic)
-            yield break;
+        yield return new WaitForSecondsRealtime(audioSource.clip.length + 0.08f);
 
         audioSource.clip = loop;
         audioSource.loop = true;
@@ -148,19 +141,19 @@ public class AudioController : MonoBehaviour
         }
 
         print("Stopping BG Music");
-        bgMusic = false;
         audioSource.Stop();
-        StopAllCoroutines();
+
+        if (lastRoutine != null)
+            StopCoroutine(lastRoutine);
 
     }
+
+    private Coroutine lastRoutine;
 
     public void PlayBackgroundMusic()
     {
-        bgMusic = true;
-        StartCoroutine(PlayBGMusic());
+        lastRoutine = StartCoroutine(PlayBGMusic());
     }
-
-
 
 
     public void PlayClip(PlayerSFX clip, bool loop = false, bool randomTime = false)

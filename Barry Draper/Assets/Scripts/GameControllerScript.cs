@@ -137,6 +137,9 @@ public class GameControllerScript : MonoBehaviour
     //This should run at the start of each level.
     public void PrepareLevel()
     {
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Main Menu"))
+            return;
+
         Time.timeScale = 1;
 
         invincible = false;
@@ -152,8 +155,6 @@ public class GameControllerScript : MonoBehaviour
             livesText.SetActive(true);*/
 
         hearts = 3;
-
-        UpdateLives();
 
         Heart3 = GameObject.Find("Heart3");
 
@@ -185,6 +186,9 @@ public class GameControllerScript : MonoBehaviour
         {
             healthBar = GameObject.Find("Health Bar").GetComponent<Slider>();
         }
+
+        UpdateLives();
+
 
         transform.GetChild(1).GetComponent<AudioController>().PlayBackgroundMusic();
     }

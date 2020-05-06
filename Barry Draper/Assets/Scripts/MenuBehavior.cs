@@ -31,7 +31,7 @@ public class MenuBehavior : MonoBehaviour
 
     private void Start()
     {
-        GameControllerScript.instance.transform.GetChild(1).GetComponent<AudioSource>().Stop();
+        GameControllerScript.instance.transform.GetChild(1).GetComponent<AudioController>().StopBackgroundMusic();
         currentProgress = PlayerPrefs.GetInt("Game Progress");
 
         titleScreen.SetActive(true);
@@ -44,7 +44,9 @@ public class MenuBehavior : MonoBehaviour
         LevelFourCanvas.SetActive(false);
 
         GameControllerScript.instance.ResetCheckpointStatus();
-        
+
+        Time.timeScale = 1;
+
         UpdateProgress();
     }
 
