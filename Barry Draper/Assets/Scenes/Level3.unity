@@ -1394,7 +1394,7 @@ PrefabInstance:
         type: 3}
       propertyPath: optionsMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 705213338}
     - target: {fileID: 259921285263415063, guid: bd377539217b9e747b9b073d629ef5fe,
         type: 3}
       propertyPath: m_Name
@@ -7702,6 +7702,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -18.76}
+--- !u!1 &705213338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 415569517851220718, guid: 34533cafdc58f06418ce20b151c2508b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1680874787}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &723436872 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5372537326239994680, guid: a4bebd1a48a857a4dbc46746af887cb2,
@@ -50724,6 +50730,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3426891614365948656, guid: 2e687177f1c5e174f84b874631dab817,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 705213338}
+    - target: {fileID: 3426891614365948656, guid: 2e687177f1c5e174f84b874631dab817,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 9178944968180374211, guid: 2e687177f1c5e174f84b874631dab817,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -53160,6 +53176,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 415569516554632595, guid: 34533cafdc58f06418ce20b151c2508b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1911620171}
+    - target: {fileID: 415569516554632595, guid: 34533cafdc58f06418ce20b151c2508b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 415569517851220706, guid: 34533cafdc58f06418ce20b151c2508b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -53269,6 +53295,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Options Menu Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 415569517851220718, guid: 34533cafdc58f06418ce20b151c2508b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34533cafdc58f06418ce20b151c2508b, type: 3}
