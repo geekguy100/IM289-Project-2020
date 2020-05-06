@@ -1021,7 +1021,7 @@ MonoBehaviour:
 
     Pick Up Object - E-Key
 
-    Enable Free camera - F-key (use mouse)'
+    Enable Free camera - F-key (use WASD)'
 --- !u!222 &155643312
 CanvasRenderer:
   m_ObjectHideFlags: 0

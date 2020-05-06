@@ -52,6 +52,8 @@ public class MenuBehavior : MonoBehaviour
 
     private void Update()
     {
+        Cursor.visible = true;
+
         if (Input.GetKeyUp("escape"))
         {
             EscManagement();
