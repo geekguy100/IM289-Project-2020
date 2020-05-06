@@ -21,6 +21,13 @@ public class WaterBehaviour : MonoBehaviour
     private float previousMoveSpeed;
     private float previousAirSpeed;
 
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -33,12 +40,20 @@ public class WaterBehaviour : MonoBehaviour
         PlayerController pc = col.gameObject.GetComponent<PlayerController>();
         Rigidbody2D rb2d = col.gameObject.GetComponent<Rigidbody2D>();
 
+        //Assign previous speeds and input the new speeds.
         previousMoveSpeed = pc.moveSpeed;
         previousAirSpeed = pc.airSpeed;
         pc.moveSpeed = waterWalkSpeed;
 
+        //Divide the player's velocity in half so he won't take fall damage when hitting the water IF they're moving too fast.
+        if (rb2d.velocity.y < -12f)
+            rb2d.velocity = rb2d.velocity / 2;
+
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-        print("Entered");
+
+        //Play the splash SFX if it isn't already playing.
+        if(!audioSource.isPlaying)
+            audioSource.Play();
     }
 
 
@@ -46,6 +61,7 @@ public class WaterBehaviour : MonoBehaviour
     {
         if (!col.CompareTag("Player"))
             return;
+        //Ignore the player's circle collider cause that's used for checking if boxes are nearby.
         else if (col.GetType() == typeof(CircleCollider2D))
             return;
 
@@ -75,6 +91,7 @@ public class WaterBehaviour : MonoBehaviour
     {
         if (!col.CompareTag("Player"))
             return;
+        //Ignore the player's circle collider cause that's used for checking if boxes are nearby.
         else if (col.GetType() == typeof(CircleCollider2D))
             return;
 
@@ -93,9 +110,6 @@ public class WaterBehaviour : MonoBehaviour
         db.health = db.breathTime;
         db.drownbar.maxValue = db.breathTime;
         db.drownbar.value = db.health;
-
-
-        print("Player exit");
     }
 
 

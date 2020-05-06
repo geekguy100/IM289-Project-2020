@@ -497,12 +497,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        //If the gameobject is an interactable, be able to pick it up.
-        if (col.gameObject.CompareTag("Grabbable") && !objectGrabbed)
-        {
-            //print("Object in range! " + col.transform.parent.name);
-            objectInRange = col.transform.parent.gameObject;
-        }
+
     }
 
     private NpcInteraction NPC;
@@ -514,6 +509,12 @@ public class PlayerController : MonoBehaviour
         {
             NPC = col.gameObject.GetComponent<NpcInteraction>();
             NPC.HandleInteraction();
+        }
+        //If the gameobject is a box, be able to pick it up.
+        else if (col.gameObject.CompareTag("Grabbable") && !objectGrabbed)
+        {
+            //print("Object in range! " + col.transform.parent.name);
+            objectInRange = col.transform.parent.gameObject;
         }
     }
 

@@ -17,14 +17,14 @@ public class InteractableBehaviour : MonoBehaviour
     private SpriteRenderer sr;
 
     //CR
-    [Header("Movment System")]
-    public bool stayOn = false;
-    public bool moving = false;
-    public bool yMove = false;
-    public bool xMove = false;
-    public int speed = 0;
-    public float time = 0;
-    private Vector3 diagonal = new Vector3(2.5f, 0f, 2.5f);
+    [Header("Fan Movment System")]
+    //Should the fan be a moving fan?
+    public bool fanMoves = false;
+    public Vector3 startPos;
+    public Vector3 endPos;
+    public float fanMoveSpeed = 1f;
+    private bool fanMoving = false;
+    private Vector3 currentDestination;
 
     [Header("Power System")]
     public InteractableType type;
@@ -51,6 +51,8 @@ public class InteractableBehaviour : MonoBehaviour
     private AudioController audioController;
 
     private Animator anim;
+
+    private Coroutine lastRoutine;
 
     private void Awake()
     {
@@ -79,6 +81,9 @@ public class InteractableBehaviour : MonoBehaviour
         }
         else if (type == InteractableType.Fan)
         {
+            if (fanMoves)
+                currentDestination = endPos;
+
             if (isPowered)
                 PowerOn();
             else
@@ -88,18 +93,9 @@ public class InteractableBehaviour : MonoBehaviour
 
         sr.color = offColor;
 
-        InvokeRepeating("Flip", 0.1f, time);
+        //InvokeRepeating("Flip", 0.1f, time);
 
     }
-
-    private void Update()
-    {   
-        if (moving && isPowered) //CR
-        {
-            move(xMove, yMove, speed);
-        }
-    }
-
 
 
     //Power on the interactable and peform appropriate functions.
@@ -157,11 +153,14 @@ public class InteractableBehaviour : MonoBehaviour
         foreach(GameObject draft in drafts)
         {
             draft.SetActive(true);
-            moving = true;
         }
 
         audioController.PlayClip(AudioController.FanSFX.fanWhir, true);
         anim.SetBool("Powered", true);
+
+        //If the fan is a moving fan, make it move!
+        if (fanMoves)
+            lastRoutine = StartCoroutine(MoveFan());
     }
 
     /// <summary>
@@ -171,14 +170,22 @@ public class InteractableBehaviour : MonoBehaviour
     {
         foreach(GameObject draft in drafts)
         {
-            if(!stayOn)
-            {
-                draft.SetActive(false);
-            }
+            draft.SetActive(false);
         }
 
         audioController.StopPlayingLoop();
         anim.SetBool("Powered", false);
+
+        //If the fan is a moving fan, make sure to make it stop moving!
+        if (fanMoves)
+        {
+            print("Stopping fan!");
+
+            if (lastRoutine != null)
+                StopCoroutine(lastRoutine);
+
+            fanMoving = false;
+        }
     }
 
     /// <summary>
@@ -217,24 +224,57 @@ public class InteractableBehaviour : MonoBehaviour
     /// moves it accordingly to the speed. 
     /// CR
     /// </summary>
-    private void move(bool moveX, bool moveY, int speed)
+    //private void move(bool moveX, bool moveY, int speed)
+    //{
+    //    if(moveX && moveY)
+    //    {
+    //        transform.Translate(diagonal * speed * Time.deltaTime);
+    //    }
+    //    else
+    //    if(moveX)
+    //    {
+    //        //If the fan hasn't reached its target, keep moving it.
+    //        if (Mathf.Abs(distance - currentDistance) != 0)
+    //            transform.position += Vector3.right * speed * Time.deltaTime;
+    //        else
+    //            Flip();
+    //    }
+    //    else
+    //    if(moveY)
+    //    {
+    //        transform.Translate(Vector2.up * speed * Time.deltaTime);
+    //    }
+    //}
+
+    private IEnumerator MoveFan()
     {
-        if(moveX && moveY)
+        Vector2 cPos = transform.position;
+        fanMoving = true;
+        while (fanMoving)
         {
-            transform.Translate(diagonal * speed * Time.deltaTime);
-        }
+            Vector2 dir = (transform.position - currentDestination).normalized;
+            Vector2 vel = dir * fanMoveSpeed;
 
-        if(moveX)
-        {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-        }
+            while (Vector2.Distance(cPos, currentDestination) > 0.05f)
+            {
+                cPos -= vel * Time.deltaTime;
+                transform.position = cPos;
 
-        if(moveY)
-        {
-            transform.Translate(Vector2.up * speed * Time.deltaTime);
+                //If the fan should NOT be moving mid transformation, just break out.
+                //if (!fanMoving)
+                //    yield break;
+
+                yield return null;
+            }
+
+            if (currentDestination == endPos)
+                currentDestination = startPos;
+            else
+                currentDestination = endPos;
+
+            yield return null;
         }
     }
-
 
     /// <summary>
     /// Multiplies speed by -1 so that the fan will
@@ -245,6 +285,6 @@ public class InteractableBehaviour : MonoBehaviour
     /// <returns></returns>
     private void Flip()
     {
-        speed *= -1;
+        fanMoveSpeed *= -1;
     }
 }

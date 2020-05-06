@@ -7,8 +7,6 @@
                        including direction and force applied to objects.
 *****************************************************************************/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DraftBehaviour : MonoBehaviour
