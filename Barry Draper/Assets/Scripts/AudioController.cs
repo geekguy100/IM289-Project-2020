@@ -125,7 +125,7 @@ public class AudioController : MonoBehaviour
         audioSource.Play();
 
         //Wait until the intro is over.
-        yield return new WaitForSecondsRealtime(audioSource.clip.length + 0.08f);
+        yield return new WaitForSecondsRealtime(audioSource.clip.length);
 
         audioSource.clip = loop;
         audioSource.loop = true;
