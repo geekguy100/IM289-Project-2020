@@ -1914,8 +1914,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.23, y: -0.21}
-  m_SizeDelta: {x: 905.499, y: 442.34}
+  m_AnchoredPosition: {x: 0.074, y: -0.273}
+  m_SizeDelta: {x: 905.499, y: 464.427}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &409675978
 MonoBehaviour:
@@ -1937,7 +1937,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0d61388293d9b754db2376a98d792fb0, type: 3}
-    m_FontSize: 51
+    m_FontSize: 45
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -1948,11 +1948,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '"Ye think this be bad? I been down ''ere for o''er a''hunnit years! This
+  m_Text: 'Ye think this be bad? I been down ''ere for o''er a''hunnid years! This
     mug yer after, Joe, I know how to deal wit guys like ''at. Get right up''n personal,
-    wait for ''em to jump on ye, ''en hit ''em wit somethin'' from below.
+    <i>wait for ''em to jump</i> on ye, ''en <i>hit ''em wit dat umbrella from below</i>.
+    An'' watch out for his henchman. They can walk on spikes with their iron shoes!
 
-    When yer done, tell ''em ol'' Ahab says ''ello."'
+    When yer done, tell ''em Ahab says ''ello.'
 --- !u!222 &409675979
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -52127,7 +52128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.098, y: 0.118}
+  m_AnchoredPosition: {x: 0.228, y: 0.101}
   m_SizeDelta: {x: 5.515, y: 2.931}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368558984

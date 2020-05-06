@@ -55,7 +55,7 @@ public class DraftBehaviour : MonoBehaviour
                 ApplyForce(rb);
             }
         }
-        else if (!col.gameObject.CompareTag("Umbrella")) //if some other rigidbody enters the draft
+        else if (!col.gameObject.CompareTag("Umbrella") && !col.gameObject.CompareTag("Bullet")) //if some other rigidbody enters the draft
         {
             ApplyForce(rb);
         }

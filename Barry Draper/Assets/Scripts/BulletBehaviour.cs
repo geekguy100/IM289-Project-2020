@@ -38,31 +38,10 @@ public class BulletBehaviour : MonoBehaviour
         rb.MovePosition(transform.position + direction * Time.fixedDeltaTime * bulletSpeed);
     }
 
-    //private void OnCollisionEnter2D(Collision2D col)
-    //{
-    //    if (col.gameObject.CompareTag("Player"))
-    //    {
-    //        //Note: Player hit SFX is handled in the GameControllerScript.
-    //        GameControllerScript.instance.RemoveLivesFromPlayer(1);
-    //    }
-    //    else if (col.gameObject.CompareTag("Minion"))
-    //    {
-    //        col.gameObject.GetComponent<MinionHealthBehaviour>().TakeDamage(1);
-    //    }
-    //    else
-    //    {
-    //        //TODO: Play a bullet destroyed SFX.
-    //        print("Collided with an unknown collider: " + col.gameObject.name);
-    //    }
-
-    //    Destroy(gameObject);
-    //}
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Umbrella"))
         {
-            //TODO: Play a blocked SFX.
             direction = -direction;
 
             //Once the bullet bounces off of the umbrella, it can hurt minions.
@@ -92,14 +71,11 @@ public class BulletBehaviour : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("Turret"))
         {
-            //TODO: Play a metalic SFX to notify of turret damage infliction.
             col.gameObject.GetComponent<TurretHealthBehaviour>().TakeDamage(damageDealt);
             Destroy(gameObject);
         }
-        else
+        else if (col.gameObject.CompareTag("Ground"))
         {
-            //TODO: Play a bullet destroyed SFX.
-            //print("Collided with another trigger: GameObject named \'" + col.gameObject.name + "\'");
             Destroy(gameObject);
         }
     }

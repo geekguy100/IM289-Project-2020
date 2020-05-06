@@ -189,7 +189,7 @@ public class GameControllerScript : MonoBehaviour
 
         UpdateLives();
 
-
+        transform.GetChild(1).GetComponent<AudioController>().StopBackgroundMusic();
         transform.GetChild(1).GetComponent<AudioController>().PlayBackgroundMusic();
     }
 
@@ -215,7 +215,11 @@ public class GameControllerScript : MonoBehaviour
     void RemoveInvincibility()
     {
         invincible = false;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().StopFlash();
+
+        if (GameObject.FindGameObjectWithTag("Player") == null)
+            return;
+        else
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().StopFlash();
     }
 
     public void FinishLevel()
@@ -231,6 +235,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void RestartLevel()
     {
+        transform.GetChild(1).GetComponent<AudioController>().StopBackgroundMusic();
         string levelName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(levelName);
     }

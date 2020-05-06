@@ -198,7 +198,6 @@ public class FinalBossBehaviour : MonoBehaviour
     public float shootingDistance = 10f;
     public float jumpAttackDistance = 3f;
     public float jumpForce = 4f;
-    public float smashForce = 10f;
     private bool jumped = false;
     public float movementSpeed = 12f;
     private Vector2 newPos;
@@ -280,14 +279,6 @@ public class FinalBossBehaviour : MonoBehaviour
             anim.SetBool("IsJumping", false);
         }
             
-
-        //Smashing down.
-        if (jumped && transform.position.y > -21f)
-        {
-            audioController.PlayClip(AudioController.BossSFX.smash);
-            rb.velocity = Vector2.zero;
-            rb.AddForce(-Vector2.up * smashForce, ForceMode2D.Impulse);
-        }
 
         //Handle flipping here.
         HandleFlipping(direction);

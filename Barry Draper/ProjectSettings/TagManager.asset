@@ -20,6 +20,7 @@ TagManager:
   - Grabbable
   - Checkpoint
   - NPC
+  - Ground
   layers:
   - Default
   - TransparentFX
