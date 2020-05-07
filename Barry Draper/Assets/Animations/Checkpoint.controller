@@ -126,7 +126,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: flagflip
+  m_Name: turnon
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -139,7 +139,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a0ff247a9c867d841a214755a09d648e, type: 2}
+  m_Motion: {fileID: 7400000, guid: 70330c98718a7ce488e37e110143ff4e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
