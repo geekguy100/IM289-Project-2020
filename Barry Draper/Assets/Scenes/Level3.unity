@@ -1914,7 +1914,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.074, y: -0.273}
+  m_AnchoredPosition: {x: 0.07400012, y: -0.273}
   m_SizeDelta: {x: 905.499, y: 464.427}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &409675978
@@ -1951,7 +1951,7 @@ MonoBehaviour:
   m_Text: 'Ye think this be bad? I been down ''ere for o''er a''hunnid years! This
     mug yer after, Joe, I know how to deal wit guys like ''at. Get right up''n personal,
     <i>wait for ''em to jump</i> on ye, ''en <i>hit ''em wit dat umbrella from below</i>.
-    An'' watch out for his henchman. They can walk on spikes with their iron shoes!
+    An'' watch out for his henchmen. They can walk on spikes with their iron shoes!
 
     When yer done, tell ''em Ahab says ''ello.'
 --- !u!222 &409675979
