@@ -140,6 +140,7 @@ public class GameControllerScript : MonoBehaviour
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Main Menu"))
             return;
 
+        Cursor.visible = false;
         Time.timeScale = 1;
 
         invincible = false;
@@ -224,6 +225,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void FinishLevel()
     {
+        Cursor.visible = true;
         audioController.PlayClip(AudioController.GameManagerSFX.finishLevel);
         ResetCheckpointStatus();
     }

@@ -24,6 +24,7 @@ public class WinAreaBehaviour : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+            Cursor.visible = true;
             int currentProgress = PlayerPrefs.GetInt("Game Progress");
             if (currentProgress < increaseprogress)
             {

@@ -18,6 +18,9 @@ public class HealthPowerupBehaviour : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            if (col.GetType() == typeof(CircleCollider2D))
+                return;
+
             //If lives have been awarded, destroy the power up.
             if (GameControllerScript.instance.AwardLives(health))
             {

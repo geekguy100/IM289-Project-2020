@@ -46487,12 +46487,12 @@ PrefabInstance:
     - target: {fileID: 6613824408461919424, guid: 56606abdc991ee249bf7f798a22d6740,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -96.15
+      value: -111.18
       objectReference: {fileID: 0}
     - target: {fileID: 6613824408461919424, guid: 56606abdc991ee249bf7f798a22d6740,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.08
+      value: -42.47
       objectReference: {fileID: 0}
     - target: {fileID: 6613824408461919424, guid: 56606abdc991ee249bf7f798a22d6740,
         type: 3}
@@ -77690,6 +77690,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FINAL BOSS
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421211950034967899, guid: 71902a5139625e54eb1dd1a10c461ab5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 2421211950034967901, guid: 71902a5139625e54eb1dd1a10c461ab5,
         type: 3}
