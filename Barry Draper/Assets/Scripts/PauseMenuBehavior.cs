@@ -86,6 +86,7 @@ public class PauseMenuBehavior : MonoBehaviour
         else
         {
             isPaused = !isPaused;
+            GameControllerScript.instance.gamePaused = isPaused;
 
             if (isPaused)
             {

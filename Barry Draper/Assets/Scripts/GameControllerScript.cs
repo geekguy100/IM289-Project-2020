@@ -47,6 +47,8 @@ public class GameControllerScript : MonoBehaviour
 
     private bool freeCamMode = false;
 
+    public bool gamePaused = false;
+
     private void Awake()
     {
         //Singleton behaviour
@@ -140,6 +142,7 @@ public class GameControllerScript : MonoBehaviour
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Main Menu"))
             return;
 
+        gamePaused = false;
         Cursor.visible = false;
         Time.timeScale = 1;
 
@@ -208,6 +211,7 @@ public class GameControllerScript : MonoBehaviour
             transform.GetChild(1).GetComponent<AudioController>().StopBackgroundMusic(); //Stop the background music.
             audioController.PlayClip(AudioController.GameManagerSFX.gameOver);
             GameObject.Find("Menu Controller").GetComponent<PauseMenuBehavior>().ShowPauseAtGameEnd();
+            gamePaused = true;
         }
 
         Invoke("RemoveInvincibility", invincibilityTime);
@@ -225,9 +229,11 @@ public class GameControllerScript : MonoBehaviour
 
     public void FinishLevel()
     {
+        gamePaused = true;
         Cursor.visible = true;
         audioController.PlayClip(AudioController.GameManagerSFX.finishLevel);
         ResetCheckpointStatus();
+        Time.timeScale = 0;
     }
 
     public void ResetCheckpointStatus()

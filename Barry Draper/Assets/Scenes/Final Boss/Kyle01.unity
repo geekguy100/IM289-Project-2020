@@ -38436,6 +38436,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5506865319962328340, guid: ae55bb8135c329b43aebb3a69557954d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 5506865319962328342, guid: ae55bb8135c329b43aebb3a69557954d,
         type: 3}
       propertyPath: m_DrawMode
@@ -39595,6 +39600,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506865319962328340, guid: ae55bb8135c329b43aebb3a69557954d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 5506865319962328342, guid: ae55bb8135c329b43aebb3a69557954d,
         type: 3}
@@ -43879,6 +43889,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506865319962328340, guid: ae55bb8135c329b43aebb3a69557954d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 5506865319962328342, guid: ae55bb8135c329b43aebb3a69557954d,
         type: 3}
@@ -48649,7 +48664,7 @@ GameObject:
   - component: {fileID: 1981391289}
   m_Layer: 8
   m_Name: Struct
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77686,6 +77701,18 @@ PrefabInstance:
       propertyPath: levelCompleteCanvas
       value: 
       objectReference: {fileID: 1299015445}
+    - target: {fileID: 575117461, guid: 71902a5139625e54eb1dd1a10c461ab5, type: 3}
+      propertyPath: m_Volume
+      value: 0.258
+      objectReference: {fileID: 0}
+    - target: {fileID: 575117461, guid: 71902a5139625e54eb1dd1a10c461ab5, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 575117461, guid: 71902a5139625e54eb1dd1a10c461ab5, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2421211950034967899, guid: 71902a5139625e54eb1dd1a10c461ab5,
         type: 3}
       propertyPath: m_Name

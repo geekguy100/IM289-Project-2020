@@ -204,6 +204,9 @@ public class PlayerController : MonoBehaviour
         else
             audioController.StopPlayingLoop();
 
+        if (GameControllerScript.instance.gamePaused)
+            audioController.StopPlayingLoop();
+
         ActivateUmbrella();
         PointUmbrella();
 
